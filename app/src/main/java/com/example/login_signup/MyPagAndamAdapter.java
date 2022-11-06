@@ -42,6 +42,7 @@ public class MyPagAndamAdapter extends RecyclerView.Adapter<MyPagAndamAdapter.Vi
             public void onClick(View v) {
                 Toast.makeText(context, myPagAndamDataList.getMainName(), Toast.LENGTH_SHORT).show();
 
+
             }
         });
     }
