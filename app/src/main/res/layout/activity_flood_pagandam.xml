@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".flood_pagandam">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutHeader"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:background="@drawable/header_background"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="0dp">
+
+        <LinearLayout
+            android:id="@+id/backarrow"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/arrowback_pagandam"
+            android:clickable="true"
+            android:orientation="vertical"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
+            tools:layout_editor_absoluteX="10dp"
+            tools:layout_editor_absoluteY="10dp">
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="43dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/applogo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bungee_inline"
+            android:text="IAKSYONPADAYON.PH"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/nav_pagandam"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.2"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.666" />
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/nav_pagandam"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:background="@drawable/nav_header"
+            app:itemIconTint="@drawable/nav_selector"
+            app:itemTextColor="@drawable/nav_selector"
+            app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/menu_pagandam"
+            tools:layout_editor_absoluteX="16dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutHeader"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="-35dp">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/linearLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/rectangle_background"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintHorizontal_bias="0.777"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/flood1"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/flood1"
+                    tools:ignore="OnClick,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:text="Watch the news"
+                    android:textSize="30sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/rectangle_background"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintHorizontal_bias="0.777"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linearLayout1">
+
+                <ImageView
+                    android:id="@+id/flood2"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/flood2"
+                    tools:ignore="OnClick,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:text="Call, Wait for rescue"
+                    android:textSize="30sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/rectangle_background"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintHorizontal_bias="0.777"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linearLayout2">
+
+                <ImageView
+                    android:id="@+id/flood3"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/flood3"
+                    tools:ignore="OnClick,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:text="Check water level"
+                    android:textSize="30sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/rectangle_background"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintHorizontal_bias="0.777"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linearLayout3">
+
+                <ImageView
+                    android:id="@+id/flood4"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/flood4"
+                    tools:ignore="OnClick,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:text="Get to high ground"
+                    android:textSize="30sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout5"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/rectangle_background"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintHorizontal_bias="0.777"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linearLayout4">
+
+                <ImageView
+                    android:id="@+id/flood5"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/flood5"
+                    tools:ignore="OnClick,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:text="Look for evacuation centers"
+                    android:textSize="30sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout6"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/rectangle_background"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintHorizontal_bias="0.777"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linearLayout5">
+
+                <ImageView
+                    android:id="@+id/flood6"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/flood6"
+                    tools:ignore="OnClick,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:text="Listen, Check announcements"
+                    android:textSize="30sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout7"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/rectangle_background"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintHorizontal_bias="0.777"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linearLayout6">
+
+                <ImageView
+                    android:id="@+id/flood7"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/flood7"
+                    tools:ignore="OnClick,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:text="Never drive through a flood"
+                    android:textSize="30sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout8"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/rectangle_background"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintHorizontal_bias="0.777"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linearLayout7">
+
+                <ImageView
+                    android:id="@+id/flood8"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/flood8"
+                    tools:ignore="OnClick,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:text="Don't swim in the flood"
+                    android:textSize="30sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout9"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/rectangle_background"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintHorizontal_bias="0.777"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linearLayout8">
+
+                <ImageView
+                    android:id="@+id/flood9"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/flood9"
+                    tools:ignore="OnClick,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:text="Save yourself"
+                    android:textSize="30sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout10"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/rectangle_background"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintHorizontal_bias="0.777"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linearLayout9">
+
+                <ImageView
+                    android:id="@+id/flood10"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/flood10"
+                    tools:ignore="OnClick,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:text="stay away from electricity"
+                    android:textSize="30sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout11"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/rectangle_background"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintHorizontal_bias="0.777"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linearLayout10">
+
+                <ImageView
+                    android:id="@+id/flood11"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/flood11"
+                    tools:ignore="OnClick,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:text="Evacuate your house"
+                    android:textSize="30sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout12"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/rectangle_background"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintHorizontal_bias="0.777"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linearLayout11">
+
+                <ImageView
+                    android:id="@+id/flood12"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/flood12"
+                    tools:ignore="OnClick,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:text="Beware of looters"
+                    android:textSize="30sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout13"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/rectangle_background"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintHorizontal_bias="0.777"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linearLayout12">
+
+                <ImageView
+                    android:id="@+id/flood13"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/flood13"
+                    tools:ignore="OnClick,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:text="Check the surroundings"
+                    android:textSize="30sp"/>
+
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

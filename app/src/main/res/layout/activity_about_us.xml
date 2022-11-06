@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AboutUs">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutHeader"
+            app:layout_constraintVertical_bias="0.0"
+            tools:layout_editor_absoluteX="-35dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    app:layout_constraintDimensionRatio="H,1:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:ignore="MissingConstraints">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:fontFamily="@font/bungee"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="ABOUT US"
+                        android:textSize="30sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:gravity="center"
+                        android:text="@string/text_header_aboutus"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:textStyle="italic"
+
+                        />
+
+
+                    <RelativeLayout
+                        android:layout_width="380dp"
+                        android:layout_height="170dp"
+                        android:layout_gravity="center">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="142dp"
+                            android:background="@color/backgroundColor">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/bungee_inline"
+                                android:padding="5dp"
+                                android:text="HEAD PROGRAMMER"
+                                android:textSize="20sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginStart="59dp"
+                                android:layout_marginBottom="65dp"
+                                android:text="Rovin John Medrano"
+                                android:textColor="@color/black"
+                                android:textStyle="italic" />
+
+                        </RelativeLayout>
+
+                        <ImageView
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="5dp"
+                            android:src="@drawable/person1" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="380dp"
+                        android:layout_height="170dp"
+                        android:layout_gravity="center">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="142dp"
+                            android:background="@color/pusha">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentTop="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginRight="14dp"
+                                android:fontFamily="@font/bungee_inline"
+                                android:padding="5dp"
+                                android:text="PROGRAMMER 1"
+                                android:textSize="20sp" />
+
+                            <TextView
+                                android:layout_width="140dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginStart="214dp"
+                                android:layout_marginRight="26dp"
+                                android:layout_marginBottom="64dp"
+                                android:text="lealyn Rose S. Froilan"
+                                android:textColor="@color/black"
+                                android:textStyle="italic" />
+
+                        </RelativeLayout>
+
+                        <ImageView
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginTop="5dp"
+                            android:src="@drawable/person1" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="380dp"
+                        android:layout_height="170dp"
+                        android:layout_gravity="center">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="142dp"
+                            android:background="@color/teal_200">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentTop="true"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginRight="14dp"
+                                android:fontFamily="@font/bungee_inline"
+                                android:padding="5dp"
+                                android:text="PROGRAMMER 2"
+                                android:textSize="20sp" />
+
+                            <TextView
+                                android:layout_width="140dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginStart="22dp"
+                                android:layout_marginLeft="22dp"
+                                android:layout_marginRight="26dp"
+                                android:layout_marginBottom="60dp"
+                                android:text="Alec Bryan Sison"
+                                android:textColor="@color/black"
+                                android:textStyle="italic" />
+
+                        </RelativeLayout>
+
+                        <ImageView
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="5dp"
+                            android:src="@drawable/person1" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="380dp"
+                        android:layout_height="170dp"
+                        android:layout_gravity="center">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="142dp"
+                            android:background="@color/pusha">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentTop="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginRight="14dp"
+                                android:fontFamily="@font/bungee_inline"
+                                android:padding="5dp"
+                                android:text="GROUP LEADER"
+                                android:textSize="20sp" />
+
+                            <TextView
+                                android:layout_width="140dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginStart="236dp"
+                                android:layout_marginRight="4dp"
+                                android:layout_marginBottom="62dp"
+                                android:text="Rj Cruz"
+                                android:textColor="@color/black"
+                                android:textStyle="italic" />
+
+                        </RelativeLayout>
+
+                        <ImageView
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginTop="5dp"
+                            android:src="@drawable/rjpicture" />
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </ScrollView>
+
+
+        <View
+            android:id="@+id/viewDivider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorDivider"
+            app:layout_constraintBaseline_toTopOf="@id/viewDivider" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutHeader"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:background="@drawable/header_background"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="0dp">
+
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="43dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="52dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/applogo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bungee_inline"
+                android:text="IAKSYONPADAYON.PH"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/nav"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.2"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.666" />
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/nav"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                android:background="@drawable/nav_header"
+                app:itemIconTint="@drawable/nav_selector"
+                app:itemTextColor="@drawable/nav_selector"
+                app:layout_constraintTop_toTopOf="parent"
+                app:menu="@menu/navigation_menu"
+                tools:layout_editor_absoluteX="16dp" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

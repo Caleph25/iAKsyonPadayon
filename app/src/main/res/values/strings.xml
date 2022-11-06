@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name"> iAksyonPadayon.PH</string>
+    <string name="greetings">iAksyonPadayon.ph</string>
+    <string name="signup_button">Sign Up</string>
+    <string name="login_button">Login</string>
+    <string name="already_have_account">Already have an Account?</string>
+    <string name="forget_password">Forget Password?</string>
+
+    <string name="hint_home_address">Enter Home Address</string>
+    <string name="hint_first_name">Enter First Name</string>
+    <string name="hint_contact">Enter Contact Number</string>
+    <string name="hint_last_name">Enter Last Name</string>
+    <string name="hint_password">Enter Password</string>
+    <string name="hint_email_address">Enter Email Address</string>
+
+
+    <string name="view_home_address">Home Address</string>
+    <string name="view_first_name">First Name</string>
+    <string name="view_contact">Contact Number</string>
+    <string name="view_last_name">Last Name</string>
+    <string name="view_password">Password</string>
+    <string name="view_email_address">Email Address</string>
+
+
+    <string name="pagAndam_text">PAG-ANDAM</string>
+    <string name="pagLikas_text">PAG-LIKAS</string>
+    <string name="pagAroBulig_text">PAG-AROBULIG</string>
+    <string name="faqs">FAQ</string>
+    <string name="john">John</string>
+    <string name="title_activity_paglikas">paglikas</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="text_header_aboutus">The team of iAksyonPadayon.Ph has dedicated its time and resources to helping the CDRRMC and the residents of Catbalogan city. During moments of crisis and devastation, the residents of Catbalogan city have endured many disasters by struggling and persevering with the traditional ways. The team behind iAksyonPadayon.PH introduces a new method of calling for aid and learning the various types of calamities and disasters with the tap of a finger.</string>
+
+</resources>
