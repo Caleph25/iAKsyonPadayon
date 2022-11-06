@@ -46,13 +46,10 @@ public class pagandam extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         MyPagAndamData[] myPagAndamData = new MyPagAndamData[]{
-                new MyPagAndamData("Avengers", "2019 Film", R.drawable.button_fireimg),
-                new MyPagAndamData("Venom", "2018 Film", R.drawable.button_earthquakeimg),
-                new MyPagAndamData("Batman Begins", "2005 Film", R.drawable.button_floodimgimg),
-                new MyPagAndamData("Jumanji", "2019 Film", R.drawable.button_flamesimg),
-                new MyPagAndamData("Good Deeds", "2012 Film", R.drawable.button_caraccidentimg),
-                new MyPagAndamData("Hulk", "2003 Film", R.drawable.imgfire),
-                new MyPagAndamData("Avatar", "2009 Film", R.drawable.imgdisaster),
+                new MyPagAndamData("Fire", "Click for Subcategories", R.drawable.button_fireimg),
+                new MyPagAndamData("Earthquake", "Click for Subcategories", R.drawable.button_earthquakeimg),
+                new MyPagAndamData("Flood", "Click for Subcategories", R.drawable.button_floodimgimg),
+                new MyPagAndamData("Car Accident", "Click for Subcategories", R.drawable.button_caraccidentimg)
 
         };
 

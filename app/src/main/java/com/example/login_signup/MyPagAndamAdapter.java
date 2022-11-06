@@ -33,14 +33,14 @@ public class MyPagAndamAdapter extends RecyclerView.Adapter<MyPagAndamAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final MyPagAndamData myPagAndamDataList = myPagAndamData[position];
-        holder.textViewName.setText(myPagAndamDataList.getMovieName());
-        holder.textViewDate.setText(myPagAndamDataList.getMovieDate());
-        holder.movieImage.setImageResource(myPagAndamDataList.getMovieImage());
+        holder.textViewName.setText(myPagAndamDataList.getMainName());
+        holder.textViewDate.setText(myPagAndamDataList.getMainDetails());
+        holder.mainImage.setImageResource(myPagAndamDataList.getMainImage());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, myPagAndamDataList.getMovieName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, myPagAndamDataList.getMainName(), Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -53,15 +53,15 @@ public class MyPagAndamAdapter extends RecyclerView.Adapter<MyPagAndamAdapter.Vi
 
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        ImageView movieImage;
+        ImageView mainImage;
         TextView textViewName;
         TextView textViewDate;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            movieImage = itemView.findViewById(R.id.imageview);
+            mainImage = itemView.findViewById(R.id.imageview);
             textViewName = itemView.findViewById(R.id.textName);
-            textViewDate = itemView.findViewById(R.id.textdate);
+            textViewDate = itemView.findViewById(R.id.textdetails);
 
 
         }

@@ -2,38 +2,38 @@ package com.example.login_signup;
 
 public class MyPagAndamData {
 
-    private String movieName;
-    private String movieDate;
-    private Integer movieImage;
+    private String mainName;
+    private String mainDetails;
+    private Integer mainImage;
 
-    public MyPagAndamData(String movieName, String movieDate, Integer movieImage) {
-        this.movieName = movieName;
-        this.movieDate = movieDate;
-        this.movieImage = movieImage;
+    public MyPagAndamData(String mainName, String mainDetails, Integer mainImage) {
+        this.mainName = mainName;
+        this.mainDetails = mainDetails;
+        this.mainImage = mainImage;
     }
 
 
-    public String getMovieName() {
-        return movieName;
+    public String getMainName() {
+        return mainName;
     }
 
-    public void setMovieName(String movieName) {
-        this.movieName = movieName;
+    public void setMainName(String mainName) {
+        this.mainName = mainName;
     }
 
-    public String getMovieDate() {
-        return movieDate;
+    public String getMainDetails() {
+        return mainDetails;
     }
 
-    public void setMovieDate(String movieDate) {
-        this.movieDate = movieDate;
+    public void setMainDetails(String mainDetails) {
+        this.mainDetails = mainDetails;
     }
 
-    public Integer getMovieImage() {
-        return movieImage;
+    public Integer getMainImage() {
+        return mainImage;
     }
 
-    public void setMovieImage(Integer movieImage) {
-        this.movieImage = movieImage;
+    public void setMainImage(Integer mainImage) {
+        this.mainImage = mainImage;
     }
 }
