@@ -1,19 +1,42 @@
 package com.example.login_signup;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
-import android.content.Intent;
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+
+import android.provider.Telephony;
+import android.telecom.TelecomManager;
+import android.telephony.TelephonyManager;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+
 public class Signup_Page extends AppCompatActivity {
     Button btnihave, btnsignup;
-    TextInputEditText fistname, middlename, lastname, username, email, password, number,gender, birthday;
+    private TextInputEditText fistname, middlename, lastname, username, email, password, contacno, gender, birthday;
+    TextView resultTextView;
+    TelephonyManager tm;
+    String IMEI;
+
+    final int REQUEST_CODE = 101;
+
+    @SuppressLint("MissingPermission")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,18 +45,65 @@ public class Signup_Page extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
 
+        // in the below line, we are setting our imei to our text view.
+
         fistname = findViewById(R.id.fistname);
         middlename = findViewById(R.id.middlename);
         lastname = findViewById(R.id.lastname);
         username = findViewById(R.id.username);
         email = findViewById(R.id.email);
-        number = findViewById(R.id.phonenumber);
+        contacno = findViewById(R.id.phonenumber);
         password = findViewById(R.id.password);
         gender = findViewById(R.id.gender);
         birthday = findViewById(R.id.birthday);
         btnsignup = findViewById(R.id.signupbutton);
 
         btnsignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    saveUser(createRequest());
+            }
+        });
+    }
+    public UserRequest createRequest(){
+        UserRequest userRequest = new UserRequest();
+        userRequest.setFirstname(fistname.getText().toString());
+        userRequest.setMiddlename(middlename.getText().toString());
+        userRequest.setLastname(lastname.getText().toString());
+        userRequest.setContacno(contacno.getText().toString());
+        userRequest.setEmail(email.getText().toString());
+        userRequest.setGender(gender.getText().toString());
+        userRequest.setBirthday(birthday.getText().toString());
+        userRequest.setIMEI("123123132");
+        userRequest.set_fk_MobileUserId(userRequest.getId());
+        userRequest.set_username(username.getText().toString());
+        userRequest.set_password(username.getText().toString());
+        userRequest.set_IsDeactivated("0");
+        return userRequest;
+    }
+    public void saveUser(UserRequest userRequest){
+
+        Call<UserResponse> userResponseCall = ApiClient.getUserService().saveUser(userRequest);
+        userResponseCall.enqueue(new Callback<UserResponse>() {
+            @Override
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                if(response.isSuccessful()){
+                    Toast.makeText(Signup_Page.this, "saved sucessfully" , Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(Signup_Page.this, "request failed" , Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+                Toast.makeText(Signup_Page.this, "Request Field" + t.getLocalizedMessage() , Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+}
+
+
+        /*btnsignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String fname = fistname.getText().toString();
@@ -45,6 +115,7 @@ public class Signup_Page extends AppCompatActivity {
                 String password_signup= password.getText().toString();
                 String gen=gender.getText().toString();
                 String bday = birthday.getText().toString();
+
 
                boolean check = validationinfo(fname, mname, lname,uname,semail,num, password_signup, gen,bday);
 
@@ -129,6 +200,7 @@ public class Signup_Page extends AppCompatActivity {
                     return true;
                 }
             }
+
         });
 
         btnihave = findViewById(R.id.login_screen);
@@ -142,4 +214,4 @@ public class Signup_Page extends AppCompatActivity {
 
 
     }
-}
+}*/
