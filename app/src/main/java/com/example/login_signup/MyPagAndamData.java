@@ -1,17 +1,27 @@
 package com.example.login_signup;
 
-public class MyPagAndamData {
+import android.graphics.Bitmap;
 
+public class MyPagAndamData {
+    private Integer categoryID;
     private String mainName;
     private String mainDetails;
-    private Integer mainImage;
+    private String mainImage;
 
-    public MyPagAndamData(String mainName, String mainDetails, Integer mainImage) {
+    public MyPagAndamData(Integer categoryID,String mainName, String mainDetails, String mainImage) {
+        this.categoryID = categoryID;
         this.mainName = mainName;
         this.mainDetails = mainDetails;
         this.mainImage = mainImage;
     }
 
+    public Integer getCategoryID() {
+        return categoryID;
+    }
+
+    public void setCategoryID(Integer categoryID) {
+        this.categoryID = categoryID;
+    }
 
     public String getMainName() {
         return mainName;
@@ -29,11 +39,11 @@ public class MyPagAndamData {
         this.mainDetails = mainDetails;
     }
 
-    public Integer getMainImage() {
+    public String getMainImage() {
         return mainImage;
     }
 
-    public void setMainImage(Integer mainImage) {
+    public void setMainImage(String mainImage) {
         this.mainImage = mainImage;
     }
 }

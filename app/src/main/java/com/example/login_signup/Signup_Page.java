@@ -22,19 +22,19 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
 
 
 public class Signup_Page extends AppCompatActivity {
     Button btnihave, btnsignup;
     private TextInputEditText fistname, middlename, lastname, username, email, password, contacno, gender, birthday;
     TextView resultTextView;
-    TelephonyManager tm;
-    String IMEI;
-
-    final int REQUEST_CODE = 101;
+    int id;
 
     @SuppressLint("MissingPermission")
     @Override
@@ -44,8 +44,6 @@ public class Signup_Page extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
-
-        // in the below line, we are setting our imei to our text view.
 
         fistname = findViewById(R.id.fistname);
         middlename = findViewById(R.id.middlename);
@@ -75,10 +73,9 @@ public class Signup_Page extends AppCompatActivity {
         userRequest.setGender(gender.getText().toString());
         userRequest.setBirthday(birthday.getText().toString());
         userRequest.setIMEI("123123132");
-        userRequest.set_fk_MobileUserId(userRequest.getId());
-        userRequest.set_username(username.getText().toString());
-        userRequest.set_password(username.getText().toString());
-        userRequest.set_IsDeactivated("0");
+        userRequest.setUsername(username.getText().toString());
+        userRequest.setPassword(password.getText().toString());
+        userRequest.setIsDeactivated(0);
         return userRequest;
     }
     public void saveUser(UserRequest userRequest){
@@ -89,11 +86,11 @@ public class Signup_Page extends AppCompatActivity {
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if(response.isSuccessful()){
                     Toast.makeText(Signup_Page.this, "saved sucessfully" , Toast.LENGTH_SHORT).show();
+
                 }else{
                     Toast.makeText(Signup_Page.this, "request failed" , Toast.LENGTH_SHORT).show();
                 }
             }
-
             @Override
             public void onFailure(Call<UserResponse> call, Throwable t) {
                 Toast.makeText(Signup_Page.this, "Request Field" + t.getLocalizedMessage() , Toast.LENGTH_SHORT).show();

@@ -6,7 +6,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
-
+    private static ApiClient instance =null;
+    private UserGetService myApi;
     private static Retrofit getRetrofit(){
 
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
@@ -16,7 +17,7 @@ public class ApiClient {
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.6:8000")
+                .baseUrl("http://192.168.1.6:8000/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .build();
@@ -28,6 +29,13 @@ public class ApiClient {
 
         return userService;
     }
-
-
+    public static synchronized ApiClient getInstance(){
+        if (instance == null){
+            instance = new ApiClient();
+        }
+        return instance;
+    }
+    public UserGetService getMyApi(){
+        return myApi;
+    }
 }

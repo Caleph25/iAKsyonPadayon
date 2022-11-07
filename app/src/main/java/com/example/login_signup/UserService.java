@@ -6,7 +6,7 @@ import retrofit2.http.POST;
 
 public interface UserService {
 
-    @POST("/api/mobile_user_account_personal_info")
+    @POST("mobile_user_account")
     Call<UserResponse>saveUser(@Body UserRequest userRequest);
 
 }

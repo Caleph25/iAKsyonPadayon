@@ -2,7 +2,6 @@ package com.example.login_signup;
 
 public class UserResponse {
 
-    private int id;
     private String firstname;
     private String middlename;
     private String lastname;
@@ -12,18 +11,6 @@ public class UserResponse {
     private String birthday;
     private String IMEI;
 
-    private int fk_MobileUserId;
-    private String username;
-    private String password;
-    private String IsDeactivated;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getFirstname() {
         return firstname;
@@ -84,32 +71,7 @@ public class UserResponse {
     public String getIMEI() {
         return IMEI;
     }
-
     public void setIMEI(String IMEI) {
         this.IMEI = IMEI;
-    }
-    public int get_tfk_MobileUserId(){
-        return fk_MobileUserId;
-    }
-    public void set_fk_MobileUserId(int fk_MobileUserId){
-        this.fk_MobileUserId = fk_MobileUserId;
-    }
-    public String get_username(){
-        return username;
-    }
-    public void set_username(String username){
-        this.username = username;
-    }
-    public String get_password(){
-        return password;
-    }
-    public void set_password(String password){
-        this.password = password;
-    }
-    public String get_IsDeactivated(){
-        return IsDeactivated;
-    }
-    public void set_IsDeactivated(String IsDeactivated){
-        this.IsDeactivated = IsDeactivated;
     }
 }

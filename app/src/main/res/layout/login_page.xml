@@ -14,20 +14,6 @@
     tools:context=".Login_Page"
     android:orientation="vertical"
     android:padding="10dp">
-
-
-    <LinearLayout
-        android:id="@+id/imgarrow"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginLeft="320dp"
-        android:background="@drawable/ic_baseline_arrow"
-        android:clickable="true"
-        android:orientation="vertical"
-        tools:ignore="SpeakableTextPresentCheck">
-
-    </LinearLayout>
-
     <ImageView
         android:id="@+id/logoImage"
         android:layout_width="250dp"

@@ -19,6 +19,7 @@
         app:layout_constraintTop_toBottomOf="@+id/layoutHeader"
         app:uiRotateGestures="true"
         app:uiZoomControls="true" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutHeader"
         android:layout_width="match_parent"
