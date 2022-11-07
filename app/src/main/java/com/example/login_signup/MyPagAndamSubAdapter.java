@@ -15,13 +15,13 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class MyPagAndamAdapter extends RecyclerView.Adapter<MyPagAndamAdapter.ViewHolder>{
+public class MyPagAndamSubAdapter extends RecyclerView.Adapter<MyPagAndamSubAdapter.ViewHolder>{
 
-    List<MyPagAndamData> myPagAndamData;
+    List<MyPagAndamSubData> myPagAndamSubData;
     Context context;
 
-    public MyPagAndamAdapter(List<MyPagAndamData> myPagAndamData, pagandam activity){
-        this.myPagAndamData = myPagAndamData;
+    public MyPagAndamSubAdapter(List<MyPagAndamSubData> myPagAndamSubData, pagandamSub activity){
+        this.myPagAndamSubData = myPagAndamSubData;
         this.context = activity;
     }
 
@@ -36,17 +36,17 @@ public class MyPagAndamAdapter extends RecyclerView.Adapter<MyPagAndamAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        final MyPagAndamData myPagAndamDataList = myPagAndamData.get(position);
-        holder.textViewName.setText(myPagAndamDataList.getMainName());
-        holder.textViewDate.setText(myPagAndamDataList.getMainDetails());
+        final MyPagAndamSubData myPagAndamSubDataList = myPagAndamSubData.get(position);
+        holder.textViewName.setText(myPagAndamSubDataList.getMainName());
+        holder.textViewDate.setText(myPagAndamSubDataList.getMainDetails());
         Picasso.with(context.getApplicationContext())
-                .load(myPagAndamDataList.getMainImage())
+                .load(myPagAndamSubDataList.getMainImage())
                 .into(holder.mainImage);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Call kayo ng New Activity dito na parang pagandam.java din anfg layout
-                Toast.makeText(context,"This is the MainCategoryID: " + myPagAndamDataList.getCategoryID(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"This is the MainCategoryID: " + myPagAndamSubDataList.getCategoryID(), Toast.LENGTH_SHORT).show();
 
 
             }
@@ -55,7 +55,7 @@ public class MyPagAndamAdapter extends RecyclerView.Adapter<MyPagAndamAdapter.Vi
 
     @Override
     public int getItemCount() {
-        return myPagAndamData.size();
+        return myPagAndamSubData.size();
     }
 
 
