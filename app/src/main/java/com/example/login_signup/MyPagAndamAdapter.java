@@ -48,6 +48,7 @@ public class MyPagAndamAdapter extends RecyclerView.Adapter<MyPagAndamAdapter.Vi
                 //Call kayo ng New Activity dito na parang pagandam.java din anfg layout
                 Toast.makeText(context,"This is the MainCategoryID: " + myPagAndamDataList.getCategoryID(), Toast.LENGTH_SHORT).show();
 
+
             }
         });
     }
