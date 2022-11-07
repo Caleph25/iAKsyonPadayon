@@ -1,6 +1,7 @@
 package com.example.login_signup;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +49,6 @@ public class MyPagAndamAdapter extends RecyclerView.Adapter<MyPagAndamAdapter.Vi
                 //Call kayo ng New Activity dito na parang pagandam.java din anfg layout
                 Toast.makeText(context,"This is the MainCategoryID: " + myPagAndamDataList.getCategoryID(), Toast.LENGTH_SHORT).show();
 
-
             }
         });
     }
@@ -74,5 +74,5 @@ public class MyPagAndamAdapter extends RecyclerView.Adapter<MyPagAndamAdapter.Vi
         }
     }
 
-
 }
+
