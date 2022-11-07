@@ -25,6 +25,7 @@ public class MyPagAndamSubAdapter extends RecyclerView.Adapter<MyPagAndamSubAdap
         this.context = activity;
     }
 
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -46,7 +47,7 @@ public class MyPagAndamSubAdapter extends RecyclerView.Adapter<MyPagAndamSubAdap
             @Override
             public void onClick(View v) {
                 //Call kayo ng New Activity dito na parang pagandam.java din anfg layout
-                Toast.makeText(context,"This is the MainCategoryID: " + myPagAndamSubDataList.getCategoryID(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"THIS IS SUBCATEGORY!!!: " + myPagAndamSubDataList.getCategoryID(), Toast.LENGTH_SHORT).show();
 
 
             }

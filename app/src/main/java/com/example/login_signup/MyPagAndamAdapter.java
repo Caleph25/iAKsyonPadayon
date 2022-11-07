@@ -20,6 +20,7 @@ public class MyPagAndamAdapter extends RecyclerView.Adapter<MyPagAndamAdapter.Vi
 
     List<MyPagAndamData> myPagAndamData;
     Context context;
+    Context mContext;
 
     public MyPagAndamAdapter(List<MyPagAndamData> myPagAndamData, pagandam activity){
         this.myPagAndamData = myPagAndamData;
@@ -48,7 +49,11 @@ public class MyPagAndamAdapter extends RecyclerView.Adapter<MyPagAndamAdapter.Vi
             public void onClick(View v) {
                 //Call kayo ng New Activity dito na parang pagandam.java din anfg layout
                 Toast.makeText(context,"This is the MainCategoryID: " + myPagAndamDataList.getCategoryID(), Toast.LENGTH_SHORT).show();
+                //Create intent getting the context of your View and the class where you want to go
+                Intent intent = new Intent(v.getContext(), pagandamSub.class);
 
+                //start the activity from the view/context
+                v.getContext().startActivity(intent); //If you are inside activity, otherwise pass context to this funtion
             }
         });
     }
