@@ -6,7 +6,7 @@ public class MyPagAndamSubData {
     private String mainDetails;
     private String mainImage;
 
-    public MyPagAndamSubData(Integer categoryID, String mainName, String mainDetails, String mainImage) {
+    public MyPagAndamSubData(Integer categoryID,String mainName, String mainDetails, String mainImage) {
         this.categoryID = categoryID;
         this.mainName = mainName;
         this.mainDetails = mainDetails;
