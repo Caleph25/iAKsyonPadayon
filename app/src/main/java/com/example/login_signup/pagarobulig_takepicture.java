@@ -1,5 +1,7 @@
 package com.example.login_signup;
 
+import static android.app.PendingIntent.getActivity;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -16,12 +18,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+
 public class pagarobulig_takepicture extends AppCompatActivity {
 
     ImageView imagecap;
-    Button camopen;
+    Button camopen, sendbtn;
+    String button = "";
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        String button_name = getIntent().getStringExtra("button_name");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pagarobulig_takepicture);
 
@@ -42,6 +52,16 @@ public class pagarobulig_takepicture extends AppCompatActivity {
                 startActivityForResult(intent, 100);
             }
         });
+        sendbtn = findViewById(R.id.sendbtn);
+        sendbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Intent intent = new Intent(Intent.ACTION_PICK,
+//                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//                intent.setType("image/*");
+//                startActivityForResult(intent.creatChooser(intent, "Select Image"), G);
+            }
+        });
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -51,4 +71,6 @@ public class pagarobulig_takepicture extends AppCompatActivity {
             imagecap.setImageBitmap(captureImage);
         }
     }
+
+
 }

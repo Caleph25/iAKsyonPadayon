@@ -16,6 +16,7 @@ import android.widget.Toast;
 public class pagarobulig extends AppCompatActivity {
 
     ImageView btn1, btn2, btn3;
+    String button = " ";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +26,8 @@ public class pagarobulig extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openAlertBox();
+                button = "Accident";
+                openAlertBox(button);
             }
         });
 
@@ -33,7 +35,8 @@ public class pagarobulig extends AppCompatActivity {
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openAlertBox();
+                button = "Fire";
+                openAlertBox(button);
             }
         });
 
@@ -41,11 +44,12 @@ public class pagarobulig extends AppCompatActivity {
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openAlertBox();
+                button = "Disaster";
+                openAlertBox(button);
             }
         });
     }
-    private void openAlertBox() {
+    private void openAlertBox(String name) {
         AlertDialog.Builder builder = new AlertDialog.Builder(pagarobulig.this);
         builder.setTitle("W A R N I N G");
         builder.setIcon(R.drawable.ic_baseline_warning_24);
@@ -54,7 +58,10 @@ public class pagarobulig extends AppCompatActivity {
         builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                Intent intent = new Intent();
+                intent.putExtra("button_name", name);
                 startActivity(new Intent(pagarobulig.this, pagarobulig_takepicture.class));
+                Toast.makeText(pagarobulig.this,  name  , Toast.LENGTH_SHORT).show();
             }
         });
         builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {

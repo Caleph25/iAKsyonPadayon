@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest.permission;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,6 +19,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -26,15 +29,18 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.GoogleMap.OnMyLocationButtonClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMyLocationClickListener;
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
@@ -60,13 +66,14 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
     private boolean permissionDenied = false;
     MarkerOptions origin, destination;
+    private double lat;
+    private double lng;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
-
 
         setContentView(R.layout.activity_paglikas);
         queue = Volley.newRequestQueue(this);
@@ -79,7 +86,7 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
     @Override
     public void onMapReady(GoogleMap googleMap) {
         // Display traffic.
-        googleMap.setTrafficEnabled(true);
+        googleMap.setTrafficEnabled(false);
         String url = "http://192.168.1.6:8000/api/pointofinterest";
         JsonObjectRequest
                 jsonObjectRequest
@@ -118,6 +125,14 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
                         Toast.makeText(paglikas.this, "Error 1" + error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
+        googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(@NonNull Marker marker) {
+                lat = marker.getPosition().latitude;
+                lng = marker.getPosition().longitude;
+                return false;
+            }
+        });
         queue.add(jsonObjectRequest);
         // Set the map coordinates to Kyoto Japan.
         LatLng samar = new LatLng(11.776840, 124.884630);
@@ -132,6 +147,7 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
         map.setOnMyLocationClickListener(this);
         enableMyLocation();
     }
+
     public void setRoute(float CurrentX, float CurrentY,float DestinationX, float DestinationY) {
         origin = new MarkerOptions().position(new LatLng(CurrentX, CurrentY)).title("You are here.").snippet("origin");
         destination = new MarkerOptions().position(new LatLng(DestinationX, DestinationY)).title("Destination").snippet("destination");
@@ -251,8 +267,8 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
                 }
 
                 lineOptions.addAll(points);
-                lineOptions.width(12);
-                lineOptions.color(Color.RED);
+                lineOptions.width(10);
+                lineOptions.color(Color.BLUE);
                 lineOptions.geodesic(true);
 
             }
@@ -295,10 +311,11 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
     public void onMyLocationClick(@NonNull Location location) {
         float CurrentX= (float) location.getLatitude();
         float CurrentY= (float) location.getLongitude();
-        float DestinationX=Float.parseFloat(String.valueOf(14.688191));
-        float DestinationY=Float.parseFloat(String.valueOf(121.063545));
-        setRoute(CurrentX,CurrentY ,DestinationX,DestinationY );
+        float DestinationX = Float.parseFloat(String.valueOf(lat));
+        float DestinationY = Float.parseFloat(String.valueOf(lng));
+        setRoute(CurrentX,CurrentY,DestinationX,DestinationY);
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
@@ -324,5 +341,6 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
      */
     private void showMissingPermissionError() {
     }
+
 
 }
