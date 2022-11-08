@@ -4,12 +4,12 @@ import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class ApiClient {
     private static ApiClient instance =null;
     private UserGetService myApi;
     private static Retrofit getRetrofit(){
-
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
@@ -24,10 +24,23 @@ public class ApiClient {
 
         return retrofit;
     }
+    private static Retrofit getRetrofit2(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.1.6:8000/api/")
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .build();
+
+        return retrofit;
+    }
     public static UserService getUserService(){
         UserService userService = getRetrofit().create(UserService.class);
 
         return userService;
+    }
+    public static imageInterface getImages(){
+        imageInterface images = getRetrofit().create(imageInterface.class);
+
+        return images;
     }
     public static synchronized ApiClient getInstance(){
         if (instance == null){
