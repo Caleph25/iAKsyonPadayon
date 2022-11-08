@@ -24,13 +24,13 @@ public class pagarobulig_takepicture extends AppCompatActivity {
 
     ImageView imagecap;
     Button camopen, sendbtn;
-    String button = "";
+    String button_name = "";
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        String button_name = getIntent().getStringExtra("button_name");
+        button_name = getIntent().getStringExtra("button_name");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pagarobulig_takepicture);
