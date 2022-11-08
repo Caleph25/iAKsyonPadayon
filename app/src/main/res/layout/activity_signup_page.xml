@@ -15,7 +15,8 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="2dp"
-        android:layout_marginTop="-2dp">
+        android:layout_marginTop="-2dp"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -63,7 +64,7 @@
                         android:id="@+id/fistname"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat_semibold"
+                        android:fontFamily="@font/montserrat_medium"
                         android:inputType="text" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -78,7 +79,7 @@
                         android:id="@+id/middlename"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat_semibold"
+                        android:fontFamily="@font/montserrat_medium"
                         android:inputType="text" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -94,7 +95,7 @@
                         android:id="@+id/lastname"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat_semibold"
+                        android:fontFamily="@font/montserrat_medium"
                         android:inputType="text" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -110,7 +111,7 @@
                         android:id="@+id/email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat_semibold"
+                        android:fontFamily="@font/montserrat_medium"
                         android:inputType="textEmailAddress" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -125,7 +126,7 @@
                         android:id="@+id/phonenumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat_semibold"
+                        android:fontFamily="@font/montserrat_medium"
                         android:inputType="number" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -142,7 +143,7 @@
                         android:id="@+id/gender"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat_semibold"
+                        android:fontFamily="@font/montserrat_medium"
                         android:inputType="text" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -151,13 +152,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
-                    android:hint="Birthday (dd-mm-yyyy)">
+                    android:hint="Birthday (yyyy-mm-dd)">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/birthday"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat_semibold"
+                        android:fontFamily="@font/montserrat_medium"
                         android:inputType="text" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -173,7 +174,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:digits="0,1,2,3,4,5,6,7,8,9,*,qwertzuiopasdfghjklyxcvbnm,_,-"
-                        android:fontFamily="@font/montserrat_semibold"
+                        android:fontFamily="@font/montserrat_medium"
                         android:inputType="text" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -189,7 +190,7 @@
                         android:id="@+id/password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat_semibold"
+                        android:fontFamily="@font/montserrat_medium"
                         android:inputType="textPassword" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -204,6 +205,15 @@
                     android:textStyle="bold"
                     android:theme="@style/myButtonTheme" />
 
+                <CheckBox
+                    android:id="@+id/simpleCheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="I agree to the Terms of Service and Privacy Policy"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:textSize="10dp"
+                    android:textColor="#4E5487"/>
+
                 <Button
                     android:id="@+id/login_screen"
                     android:layout_width="match_parent"
@@ -211,7 +221,7 @@
                     android:background="#00000000"
                     android:clickable="true"
                     android:focusable="true"
-                    android:fontFamily="@font/montserrat_semibold"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="Already have an account? Login"
                     android:textColor="@color/black"
                     android:textSize="12sp"

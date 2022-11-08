@@ -46,8 +46,6 @@ public class MyPagAndamSubAdapter extends RecyclerView.Adapter<MyPagAndamSubAdap
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Call kayo ng New Activity dito na parang pagandam.java din anfg layout
-                Toast.makeText(context,"THIS IS SUBCATEGORY!!!: " + myPagAndamSubDataList.getCategoryID(), Toast.LENGTH_SHORT).show();
 
 
             }

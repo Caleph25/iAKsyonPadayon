@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -37,9 +38,9 @@ public class pagandam extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        GetMainCategory(recyclerView);
+        GetMainCategory(recyclerView,this);
     }
-    public void GetMainCategory(RecyclerView recyclerView) {
+    public void GetMainCategory(RecyclerView recyclerView, Context con) {
         String url = "http://192.168.1.6:8000/api/maincategories";
         JsonObjectRequest
                 jsonObjectRequest
@@ -62,7 +63,7 @@ public class pagandam extends AppCompatActivity {
                                 Integer PMCid = Jasonobject.getInt("PMCid");
                                 myPagAndamData.add(new MyPagAndamData(PMCid,PMCname,"", CategoryImageUrl));
                             }
-                            MyPagAndamAdapter myPagAndamAdapter = new MyPagAndamAdapter(myPagAndamData, pagandam.this);
+                            MyPagAndamAdapter myPagAndamAdapter = new MyPagAndamAdapter(con,myPagAndamData, pagandam.this);
                             recyclerView.setAdapter(myPagAndamAdapter);
                         } catch (JSONException e) {
                             e.printStackTrace();

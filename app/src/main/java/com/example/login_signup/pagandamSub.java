@@ -29,18 +29,21 @@ import java.util.List;
 
 public class pagandamSub extends AppCompatActivity {
     RequestQueue queue;
+    String MainCategoryID;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pagandam);
+        setContentView(R.layout.activity_pagandam_sub);
         queue = Volley.newRequestQueue(this);
+        MainCategoryID = getIntent().getStringExtra("MainCategoryID");
+        Toast.makeText(this,"This is the MainCategoryID: " + MainCategoryID, Toast.LENGTH_SHORT).show();
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         GetMainCategory(recyclerView);
     }
     public void GetMainCategory(RecyclerView recyclerView) {
-        String url = "http://192.168.1.6:8000/api/maincategories";
+        String url = "http://192.168.1.6:8000/api/subcategories/"+MainCategoryID;
         JsonObjectRequest
                 jsonObjectRequest
                 = new JsonObjectRequest(
@@ -53,14 +56,14 @@ public class pagandamSub extends AppCompatActivity {
                     {
                         try {
                             List<MyPagAndamSubData> myPagAndamSubData = new ArrayList<>();
-                            JSONArray Jarray  = response.getJSONArray("maincategories");
+                            JSONArray Jarray  = response.getJSONArray("subcategories");
                             for (int i = 0; i < Jarray.length(); i++)
                             {
                                 JSONObject Jasonobject = Jarray.getJSONObject(i);
-                                String PMCname = Jasonobject.getString("PMCname");
-                                String CategoryImageUrl = Jasonobject.getString("CategoryImage");
-                                Integer PMCid = Jasonobject.getInt("PMCid");
-                                myPagAndamSubData.add(new MyPagAndamSubData(PMCid,PMCname,"", CategoryImageUrl));
+                                String PSMCname = Jasonobject.getString("PSMCname");
+                                String CategoryImageUrl =null;
+                                Integer PSMCid = Jasonobject.getInt("PSMCid");
+                                myPagAndamSubData.add(new MyPagAndamSubData(PSMCid,PSMCname,"", CategoryImageUrl));
                             }
                             MyPagAndamSubAdapter myPagAndamSubAdapter = new MyPagAndamSubAdapter(myPagAndamSubData, pagandamSub.this);
                             recyclerView.setAdapter(myPagAndamSubAdapter);
