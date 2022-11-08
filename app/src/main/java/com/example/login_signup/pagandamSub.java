@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -28,20 +27,23 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class pagandam extends AppCompatActivity {
+public class pagandamSub extends AppCompatActivity {
     RequestQueue queue;
+    String MainCategoryID;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pagandam);
+        setContentView(R.layout.activity_pagandam_sub);
         queue = Volley.newRequestQueue(this);
+        MainCategoryID = getIntent().getStringExtra("MainCategoryID");
+        Toast.makeText(this,"This is the MainCategoryID: " + MainCategoryID, Toast.LENGTH_SHORT).show();
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        GetMainCategory(recyclerView,this);
+        GetMainCategory(recyclerView);
     }
-    public void GetMainCategory(RecyclerView recyclerView, Context con) {
-        String url = "http://192.168.1.6:8000/api/maincategories";
+    public void GetMainCategory(RecyclerView recyclerView) {
+        String url = "http://192.168.1.6:8000/api/subcategories/"+MainCategoryID;
         JsonObjectRequest
                 jsonObjectRequest
                 = new JsonObjectRequest(
@@ -53,18 +55,18 @@ public class pagandam extends AppCompatActivity {
                     public void onResponse(JSONObject response)
                     {
                         try {
-                            List<MyPagAndamData> myPagAndamData = new ArrayList<>();
-                            JSONArray Jarray  = response.getJSONArray("maincategories");
+                            List<MyPagAndamSubData> myPagAndamSubData = new ArrayList<>();
+                            JSONArray Jarray  = response.getJSONArray("subcategories");
                             for (int i = 0; i < Jarray.length(); i++)
                             {
                                 JSONObject Jasonobject = Jarray.getJSONObject(i);
-                                String PMCname = Jasonobject.getString("PMCname");
-                                String CategoryImageUrl = Jasonobject.getString("CategoryImage");
-                                Integer PMCid = Jasonobject.getInt("PMCid");
-                                myPagAndamData.add(new MyPagAndamData(PMCid,PMCname,"", CategoryImageUrl));
+                                String PSMCname = Jasonobject.getString("PSMCname");
+                                String CategoryImageUrl =null;
+                                Integer PSMCid = Jasonobject.getInt("PSMCid");
+                                myPagAndamSubData.add(new MyPagAndamSubData(PSMCid,PSMCname,"", CategoryImageUrl));
                             }
-                            MyPagAndamAdapter myPagAndamAdapter = new MyPagAndamAdapter(con,myPagAndamData, pagandam.this);
-                            recyclerView.setAdapter(myPagAndamAdapter);
+                            MyPagAndamSubAdapter myPagAndamSubAdapter = new MyPagAndamSubAdapter(myPagAndamSubData, pagandamSub.this);
+                            recyclerView.setAdapter(myPagAndamSubAdapter);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -74,7 +76,7 @@ public class pagandam extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error)
                     {
-                        Toast.makeText(pagandam.this, "Error 1" + error.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(pagandamSub.this, "Error 1" + error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
         queue.add(jsonObjectRequest);

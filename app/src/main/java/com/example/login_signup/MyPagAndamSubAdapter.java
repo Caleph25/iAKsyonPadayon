@@ -1,29 +1,30 @@
 package com.example.login_signup;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
-public class MyPagAndamAdapter extends RecyclerView.Adapter<MyPagAndamAdapter.ViewHolder>{
+public class MyPagAndamSubAdapter extends RecyclerView.Adapter<MyPagAndamSubAdapter.ViewHolder>{
 
-    List<MyPagAndamData> myPagAndamData;
+    List<MyPagAndamSubData> myPagAndamSubData;
     Context context;
-    Context mContext;
 
-    public MyPagAndamAdapter(Context con,List<MyPagAndamData> myPagAndamData, pagandam activity){
-        this.myPagAndamData = myPagAndamData;
+    public MyPagAndamSubAdapter(List<MyPagAndamSubData> myPagAndamSubData, pagandamSub activity){
+        this.myPagAndamSubData = myPagAndamSubData;
         this.context = activity;
-        mContext=con;
     }
+
 
     @NonNull
     @Override
@@ -36,27 +37,24 @@ public class MyPagAndamAdapter extends RecyclerView.Adapter<MyPagAndamAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        final MyPagAndamData myPagAndamDataList = myPagAndamData.get(position);
-        holder.textViewName.setText(myPagAndamDataList.getMainName());
-        holder.textViewDate.setText(myPagAndamDataList.getMainDetails());
+        final MyPagAndamSubData myPagAndamSubDataList = myPagAndamSubData.get(position);
+        holder.textViewName.setText(myPagAndamSubDataList.getMainName());
+        holder.textViewDate.setText(myPagAndamSubDataList.getMainDetails());
         Picasso.with(context.getApplicationContext())
-                .load(myPagAndamDataList.getMainImage())
+                .load(myPagAndamSubDataList.getMainImage())
                 .into(holder.mainImage);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context.getApplicationContext(),pagandamSub.class);
-                String MainCat= String.valueOf(myPagAndamDataList.getCategoryID());
-                intent.putExtra("MainCategoryID", MainCat.toString() );
-                mContext.startActivity(intent);
-                Toast.makeText(context,"This is the MainCategoryID: " + myPagAndamDataList.getCategoryID(), Toast.LENGTH_SHORT).show();
+
+
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return myPagAndamData.size();
+        return myPagAndamSubData.size();
     }
 
 
@@ -75,5 +73,5 @@ public class MyPagAndamAdapter extends RecyclerView.Adapter<MyPagAndamAdapter.Vi
         }
     }
 
-}
 
+}

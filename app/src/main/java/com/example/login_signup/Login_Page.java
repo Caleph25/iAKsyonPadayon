@@ -46,8 +46,8 @@ public class Login_Page extends AppCompatActivity {
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 String user_name = username.getText().toString();
-                 String password_login = passwordlogin.getText().toString();
+                String user_name = username.getText().toString();
+                String password_login = passwordlogin.getText().toString();
                 String url = "http://192.168.1.6:8000/api/mobile_user_account?username="+user_name+"&password="+password_login;
                 JsonObjectRequest
                         jsonObjectRequest
@@ -65,7 +65,7 @@ public class Login_Page extends AppCompatActivity {
                                          Intent i = new Intent(Login_Page.this,MainActivity.class);
                                          startActivity(i);
                                      }else{
-                                         Toast.makeText(Login_Page.this, "Login Failed.", Toast.LENGTH_SHORT).show();
+                                         Toast.makeText(Login_Page.this, "Submission Field Please Re-enter your information", Toast.LENGTH_SHORT).show();
                                      }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -76,10 +76,11 @@ public class Login_Page extends AppCompatActivity {
                             @Override
                             public void onErrorResponse(VolleyError error)
                             {
-                                Toast.makeText(Login_Page.this, "Login Failed.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Login_Page.this, "Submission Field Please Re-enter your information", Toast.LENGTH_SHORT).show();
                             }
                         });
                 queue.add(jsonObjectRequest);
+
             }
         });
 
