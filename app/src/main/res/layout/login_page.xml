@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:fillViewport="true"
-    android:background="@drawable/loginbackground"
+    android:background="@drawable/loginbackgroundfinal"
     >
 <LinearLayout
     android:layout_width="match_parent"
@@ -18,7 +18,9 @@
         android:id="@+id/logoImage"
         android:layout_width="250dp"
         android:layout_height="180dp"
-        android:src="@drawable/applogo" />
+        android:src="@drawable/applogo"
+        android:layout_gravity="center"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -26,25 +28,35 @@
         android:fontFamily="@font/bungee"
         android:text="WELCOME TO             iAKSYONPADAYON.PH"
         android:textSize="30sp"
-        android:id="@+id/splash_text"/>
+        android:id="@+id/splash_text"
+        android:textStyle="bold"
+        android:textColor="@color/darkblue"
+        android:layout_marginBottom="10dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="309dp"
         android:layout_marginTop="0dp"
-        android:layout_marginBottom="20dp"
-        android:orientation="vertical">
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical"
+        android:background="@drawable/backgroundloginlinear"
+        android:padding="30dp">
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Username"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:id="@+id/username"/>
+                android:fontFamily="@font/montserrat_semibold"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -55,48 +67,45 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordlogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
                 android:imeOptions="actionDone"
+                android:inputType="textPassword"
                 android:text=""
-                android:id="@+id/passwordlogin"/>
+                android:fontFamily="@font/montserrat_semibold"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
         </com.google.android.material.textfield.TextInputLayout>
-        
+
         <Button
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="Forget Password?"
-            android:textColor="@color/black"
-            android:background="#00000000"
-            android:layout_gravity="right"
-            android:elevation="0dp"
-            android:layout_margin="5dp"/>
-        <Button
+            android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/montserrat_semibold"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:text="LOGIN"
-            android:textColor="@color/white"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:id="@+id/loginButton"
+            android:textColor="@color/darkblue"
+            android:textStyle="bold"
+            android:theme="@style/myButtonTheme"
             />
 
         <Button
+            android:id="@+id/signup_screen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_margin="5dp"
             android:background="#00000000"
             android:elevation="0dp"
+            android:fontFamily="@font/montserrat_semibold"
             android:text="Need an account? SIGNUP"
             android:textColor="@color/black"
-            android:id="@+id/signup_screen"
             android:textSize="12sp"
-           />
+            tools:ignore="TouchTargetSizeCheck" />
 
     </LinearLayout>
 
