@@ -5,13 +5,13 @@ import android.graphics.Bitmap;
 public class MyPagAndamData {
     private Integer categoryID;
     private String mainName;
-    private String mainDetails;
+    //private String mainDetails;
     private String mainImage;
 
-    public MyPagAndamData(Integer categoryID,String mainName, String mainDetails, String mainImage) {
+    public MyPagAndamData(Integer categoryID,String mainName, String mainImage) {
         this.categoryID = categoryID;
         this.mainName = mainName;
-        this.mainDetails = mainDetails;
+        //this.mainDetails = mainDetails;
         this.mainImage = mainImage;
     }
 
@@ -29,14 +29,6 @@ public class MyPagAndamData {
 
     public void setMainName(String mainName) {
         this.mainName = mainName;
-    }
-
-    public String getMainDetails() {
-        return mainDetails;
-    }
-
-    public void setMainDetails(String mainDetails) {
-        this.mainDetails = mainDetails;
     }
 
     public String getMainImage() {

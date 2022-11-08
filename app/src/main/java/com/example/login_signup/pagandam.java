@@ -61,7 +61,7 @@ public class pagandam extends AppCompatActivity {
                                 String PMCname = Jasonobject.getString("PMCname");
                                 String CategoryImageUrl = Jasonobject.getString("CategoryImage");
                                 Integer PMCid = Jasonobject.getInt("PMCid");
-                                myPagAndamData.add(new MyPagAndamData(PMCid,PMCname,"", CategoryImageUrl));
+                                myPagAndamData.add(new MyPagAndamData(PMCid,PMCname, CategoryImageUrl));
                             }
                             MyPagAndamAdapter myPagAndamAdapter = new MyPagAndamAdapter(con,myPagAndamData, pagandam.this);
                             recyclerView.setAdapter(myPagAndamAdapter);

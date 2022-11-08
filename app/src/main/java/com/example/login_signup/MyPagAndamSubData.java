@@ -3,13 +3,11 @@ package com.example.login_signup;
 public class MyPagAndamSubData {
     private Integer categoryID;
     private String mainName;
-    private String mainDetails;
     private String mainImage;
 
-    public MyPagAndamSubData(Integer categoryID,String mainName, String mainDetails, String mainImage) {
+    public MyPagAndamSubData(Integer categoryID,String mainName, String mainImage) {
         this.categoryID = categoryID;
         this.mainName = mainName;
-        this.mainDetails = mainDetails;
         this.mainImage = mainImage;
     }
 
@@ -27,14 +25,6 @@ public class MyPagAndamSubData {
 
     public void setMainName(String mainName) {
         this.mainName = mainName;
-    }
-
-    public String getMainDetails() {
-        return mainDetails;
-    }
-
-    public void setMainDetails(String mainDetails) {
-        this.mainDetails = mainDetails;
     }
 
     public String getMainImage() {

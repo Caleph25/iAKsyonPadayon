@@ -64,7 +64,7 @@ public class pagandamSub extends AppCompatActivity {
                                 String PSMCname = Jasonobject.getString("PSMCname");
                                 String CategoryImageUrl = Jasonobject.getString("subCategoryImage");
                                 Integer PSMCid = Jasonobject.getInt("PSMCid");
-                                myPagAndamSubData.add(new MyPagAndamSubData(PSMCid,PSMCname,"", CategoryImageUrl));
+                                myPagAndamSubData.add(new MyPagAndamSubData(PSMCid,PSMCname, CategoryImageUrl));
                             }
                             MyPagAndamSubAdapter myPagAndamSubAdapter = new MyPagAndamSubAdapter(con, myPagAndamSubData, pagandamSub.this);
                             recyclerView.setAdapter(myPagAndamSubAdapter);

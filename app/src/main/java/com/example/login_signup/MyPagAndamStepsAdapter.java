@@ -29,7 +29,7 @@ public class MyPagAndamStepsAdapter extends RecyclerView.Adapter<MyPagAndamSteps
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.pagandam_item_list,parent,false);
+        View view = layoutInflater.inflate(R.layout.pagandam_steps_item_list,parent,false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }

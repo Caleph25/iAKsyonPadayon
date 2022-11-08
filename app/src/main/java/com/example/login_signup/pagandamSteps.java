@@ -61,7 +61,7 @@ public class pagandamSteps extends AppCompatActivity {
                                 String PMCname = Jasonobject.getString("PSname");
                                 String StepsImageUrl = Jasonobject.getString("PSimagepath");
                                 Integer PMCid = Jasonobject.getInt("PSid");
-                                myPagAndamStepsData.add(new MyPagAndamStepsData(PMCid,PMCname,"", StepsImageUrl));
+                                myPagAndamStepsData.add(new MyPagAndamStepsData(PMCid,PMCname,"Description", StepsImageUrl));
                             }
                             MyPagAndamStepsAdapter myPagAndamStepsAdapter = new MyPagAndamStepsAdapter(con,myPagAndamStepsData, pagandamSteps.this);
                             recyclerView.setAdapter(myPagAndamStepsAdapter);

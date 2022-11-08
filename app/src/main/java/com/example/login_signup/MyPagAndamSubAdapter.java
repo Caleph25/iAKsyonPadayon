@@ -33,7 +33,7 @@ public class MyPagAndamSubAdapter extends RecyclerView.Adapter<MyPagAndamSubAdap
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.pagandam_item_list,parent,false);
+        View view = layoutInflater.inflate(R.layout.pagandam_sub_item_list,parent,false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
@@ -42,7 +42,7 @@ public class MyPagAndamSubAdapter extends RecyclerView.Adapter<MyPagAndamSubAdap
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final MyPagAndamSubData myPagAndamSubDataList = myPagAndamSubData.get(position);
         holder.textViewName.setText(myPagAndamSubDataList.getMainName());
-        holder.textViewDate.setText(myPagAndamSubDataList.getMainDetails());
+        //holder.textViewDate.setText(myPagAndamSubDataList.getMainDetails());
         Picasso.with(context.getApplicationContext())
                 .load(myPagAndamSubDataList.getMainImage())
                 .into(holder.mainImage);
@@ -66,13 +66,13 @@ public class MyPagAndamSubAdapter extends RecyclerView.Adapter<MyPagAndamSubAdap
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView mainImage;
         TextView textViewName;
-        TextView textViewDate;
+       // TextView textViewDate;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             mainImage = itemView.findViewById(R.id.imageview);
             textViewName = itemView.findViewById(R.id.textName);
-            textViewDate = itemView.findViewById(R.id.textdetails);
+           // textViewDate = itemView.findViewById(R.id.textdetails);
 
 
         }

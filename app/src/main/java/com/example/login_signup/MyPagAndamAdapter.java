@@ -38,7 +38,7 @@ public class MyPagAndamAdapter extends RecyclerView.Adapter<MyPagAndamAdapter.Vi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final MyPagAndamData myPagAndamDataList = myPagAndamData.get(position);
         holder.textViewName.setText(myPagAndamDataList.getMainName());
-        holder.textViewDate.setText(myPagAndamDataList.getMainDetails());
+        //holder.textViewDate.setText(myPagAndamDataList.getMainDetails());
         Picasso.with(context.getApplicationContext())
                 .load(myPagAndamDataList.getMainImage())
                 .into(holder.mainImage);
@@ -64,13 +64,13 @@ public class MyPagAndamAdapter extends RecyclerView.Adapter<MyPagAndamAdapter.Vi
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView mainImage;
         TextView textViewName;
-        TextView textViewDate;
+        //TextView textViewDate;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             mainImage = itemView.findViewById(R.id.imageview);
             textViewName = itemView.findViewById(R.id.textName);
-            textViewDate = itemView.findViewById(R.id.textdetails);
+            //textViewDate = itemView.findViewById(R.id.textdetails);
 
 
         }
