@@ -22,26 +22,29 @@
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="30dp"
+            >
 
             <ImageView
                 android:id="@+id/logoImage"
                 android:layout_width="250dp"
-                android:layout_height="80dp"
+                android:layout_height="70dp"
                 android:layout_gravity="center"
-                android:src="@drawable/applogo" />
+                android:src="@drawable/applogo"
+                android:layout_marginBottom="10dp"/>
 
             <TextView
                 android:id="@+id/splash_text"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
-                android:fontFamily="@font/bungee"
-                android:text="Create Account"
-                android:textColor="@color/darkblue"
-                android:textSize="30sp"
+                android:fontFamily="@font/pt_sans_caption_bold"
+                android:text="Create a new account"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="28sp"
                 android:textStyle="bold" />
+
 
 
             <LinearLayout
@@ -49,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/backgroundloginlinear"
                 android:orientation="vertical"
-                android:padding="30dp"
+                android:padding="25dp"
 
                 >
 
@@ -57,30 +60,28 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
                     android:hint="First Name">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/fistname"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:inputType="text" />
+                        android:fontFamily="@font/pt_sans_caption"
+                        android:inputType="textCapSentences"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
                     android:hint="Middle Name">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/middlename"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:inputType="text" />
+                        android:fontFamily="@font/pt_sans_caption"
+                        android:inputType="textCapSentences" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -88,15 +89,14 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
                     android:hint="Last Name">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/lastname"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:inputType="text" />
+                        android:fontFamily="@font/pt_sans_caption"
+                        android:inputType="textCapSentences" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -104,14 +104,13 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
                     android:hint="Email">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat_medium"
+                        android:fontFamily="@font/pt_sans_caption"
                         android:inputType="textEmailAddress" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -119,14 +118,13 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
                     android:hint="Phone Number">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/phonenumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat_medium"
+                        android:fontFamily="@font/pt_sans_caption"
                         android:inputType="number" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -136,29 +134,27 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
                     android:hint="Gender (Male/Female)">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/gender"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:inputType="text" />
+                        android:fontFamily="@font/pt_sans_caption"
+                        android:inputType="textCapSentences" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
                     android:hint="Birthday (yyyy-mm-dd)">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/birthday"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat_medium"
+                        android:fontFamily="@font/pt_sans_caption"
                         android:inputType="text" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -166,7 +162,6 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
                     android:hint="Username">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -174,7 +169,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:digits="0,1,2,3,4,5,6,7,8,9,*,qwertzuiopasdfghjklyxcvbnm,_,-"
-                        android:fontFamily="@font/montserrat_medium"
+                        android:fontFamily="@font/pt_sans_caption"
                         android:inputType="text" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -182,7 +177,6 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
                     android:hint="Password"
                     app:passwordToggleEnabled="true">
 
@@ -190,7 +184,7 @@
                         android:id="@+id/password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat_medium"
+                        android:fontFamily="@font/pt_sans_caption"
                         android:inputType="textPassword" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -199,9 +193,9 @@
                     android:id="@+id/signupbutton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_semibold"
+                    android:fontFamily="@font/pt_sans_caption_bold"
                     android:text="SignUp"
-                    android:textColor="@color/darkblue"
+                    android:textColor="@color/black"
                     android:textStyle="bold"
                     android:theme="@style/myButtonTheme" />
 
@@ -210,9 +204,48 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="I agree to the Terms of Service and Privacy Policy"
-                    android:fontFamily="@font/montserrat_medium"
+                    android:fontFamily="@font/pt_sans_caption"
                     android:textSize="10dp"
                     android:textColor="#4E5487"/>
+
+                <RelativeLayout
+                    android:id="@+id/rela"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp">
+
+                    <TextView
+                        android:id="@+id/tvText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/pt_sans_caption_bold"
+                        android:text="or"
+                        android:textColor="#000000"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="16dp"
+                        android:layout_toLeftOf="@id/tvText"
+                        android:background="@color/black"
+                        />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="16dp"
+                        android:layout_toRightOf="@id/tvText"
+                        android:background="@color/black"
+                        />
+
+                </RelativeLayout>
 
                 <Button
                     android:id="@+id/login_screen"
@@ -221,7 +254,7 @@
                     android:background="#00000000"
                     android:clickable="true"
                     android:focusable="true"
-                    android:fontFamily="@font/montserrat_medium"
+                    android:fontFamily="@font/pt_sans_caption_bold"
                     android:text="Already have an account? Login"
                     android:textColor="@color/black"
                     android:textSize="12sp"

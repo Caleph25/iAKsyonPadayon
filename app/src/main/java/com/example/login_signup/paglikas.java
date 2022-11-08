@@ -6,21 +6,30 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest.permission;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -57,10 +66,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnMyLocationButtonClickListener,
         OnMyLocationClickListener,
-        ActivityCompat.OnRequestPermissionsResultCallback {
+        ActivityCompat.OnRequestPermissionsResultCallback, LocationListener {
     RequestQueue queue;
     private GoogleMap map;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
@@ -68,15 +78,20 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
     MarkerOptions origin, destination;
     private double lat;
     private double lng;
-
+    LocationManager locationManager;
+    ProgressBar SHOW_PROGRESS;
+    String address;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
         setContentView(R.layout.activity_paglikas);
         queue = Volley.newRequestQueue(this);
+        RecyclerView recyclerView = findViewById(R.id.maprecyclerview);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        SetPOIList(recyclerView,this);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -147,16 +162,63 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
         map.setOnMyLocationClickListener(this);
         enableMyLocation();
     }
+    public void SetPOIList(RecyclerView recyclerView, Context con) {
+        String url = "http://192.168.1.6:8000/api/pointofinterest";
+        JsonObjectRequest
+                jsonObjectRequest
+                = new JsonObjectRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new com.android.volley.Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response)
+                    {
+                        try {
+                            List<POIListData> myPOIListData= new ArrayList<>();
+                            JSONArray Jarray  = response.getJSONArray("maincategories");
+                            for (int i = 0; i < Jarray.length(); i++)
+                            {
+                                JSONObject Jasonobject = Jarray.getJSONObject(i);
+                                String POIname = Jasonobject.getString("POIname");
+                                String POIdescription = Jasonobject.getString("POIdescription");
+                                String categoryImage = Jasonobject.getString("categoryImage");
+                                String POIlat = Jasonobject.getString("POIlat");
+                                String POIlng = Jasonobject.getString("POIlng");
 
-    public void setRoute(float CurrentX, float CurrentY,float DestinationX, float DestinationY) {
+                                myPOIListData.add(new POIListData(POIname, categoryImage,POIlat,POIlng));
+                            }
+                            POIListAdapter myPOIListAdapter= new POIListAdapter(myPOIListData, paglikas.this,con);
+                            recyclerView.setAdapter(myPOIListAdapter);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error)
+                    {
+                        Toast.makeText(paglikas.this, "Error 1" + error.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+        queue.add(jsonObjectRequest);
+    }
+    public void setRoute(float CurrentX, float CurrentY,float DestinationX, float DestinationY,String DestinationName,String POIyImage) {
+        map.clear();
+        Toast.makeText(paglikas.this, "Lat: " +String.valueOf(DestinationX)+" Long: " +String.valueOf(DestinationY), Toast.LENGTH_SHORT).show();
         origin = new MarkerOptions().position(new LatLng(CurrentX, CurrentY)).title("You are here.").snippet("origin");
-        destination = new MarkerOptions().position(new LatLng(DestinationX, DestinationY)).title("Destination").snippet("destination");
+        destination = new MarkerOptions().position(new LatLng(DestinationX, DestinationY)).title("Destination").snippet(DestinationName).icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromURL(POIyImage)));
+
         map.addMarker(origin);
         map.addMarker(destination);
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(origin.getPosition(), 10));
         String url = getDirectionsUrl(origin.getPosition(), destination.getPosition());
         DownloadTask downloadTask = new DownloadTask();
         downloadTask.execute(url);
+        LatLng currentLatLng = new LatLng(CurrentX, CurrentY);
+        map.moveCamera(CameraUpdateFactory.newLatLng(currentLatLng));
+        map.moveCamera(CameraUpdateFactory.zoomTo(15));
     }
     private String getDirectionsUrl(LatLng origin, LatLng dest) {
         // Origin of route
@@ -173,6 +235,29 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
         String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters + "&key=" + "AIzaSyB2X39piAmceakPNZePVI_Ptdytv_e1ZZY";
         return url;
     }
+
+    @Override
+    public void onLocationChanged(@NonNull Location location) {
+        Toast.makeText(this, ""+location.getLatitude()+","+location.getLongitude(), Toast.LENGTH_SHORT).show();
+        try {
+            Geocoder geocoder=new Geocoder(paglikas.this, Locale.getDefault());
+            List<Address> addresses=geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
+            address=addresses.get(0).getAddressLine(0);
+            SHOW_PROGRESS.setVisibility(View.GONE);
+            lat=location.getLatitude();
+            lng=location.getLongitude();
+            TextView xCurrent = (TextView)findViewById(R.id.xCurrent);
+            xCurrent.setText(String.valueOf(lat));
+            TextView yCurrent = (TextView)findViewById(R.id.yCurrent);
+            yCurrent.setText(String.valueOf(lng));
+            Toast.makeText(paglikas.this, "Lat: " +String.valueOf(lat)+" Long: " +String.valueOf(lng), Toast.LENGTH_SHORT).show();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
     private class DownloadTask extends AsyncTask<String, Void, String> {
 
         @Override
@@ -290,7 +375,6 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
             return null;
         }
     }
-
     @SuppressLint("MissingPermission")
     private void enableMyLocation() {
         // 1. Check if permissions are granted, if so, enable the my location layer
@@ -301,22 +385,25 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
             map.setMyLocationEnabled(true);
         }
     }
-
     @Override
     public boolean onMyLocationButtonClick() {
         return false;
     }
-
     @Override
     public void onMyLocationClick(@NonNull Location location) {
         float CurrentX= (float) location.getLatitude();
         float CurrentY= (float) location.getLongitude();
-        float DestinationX = Float.parseFloat(String.valueOf(lat));
-        float DestinationY = Float.parseFloat(String.valueOf(lng));
-        setRoute(CurrentX,CurrentY,DestinationX,DestinationY);
+        lat=CurrentX;
+        lng=CurrentY;
+        Toast.makeText(paglikas.this, "Lat: " +String.valueOf(CurrentX)+" Long: " +String.valueOf(CurrentY), Toast.LENGTH_SHORT).show();
+        TextView xCurrent = (TextView)findViewById(R.id.xCurrent);
+        xCurrent.setText(String.valueOf(CurrentX));
+        TextView yCurrent = (TextView)findViewById(R.id.yCurrent);
+        yCurrent.setText(String.valueOf(CurrentY));
+        LatLng currentLatLng = new LatLng(CurrentX, CurrentY);
+        map.moveCamera(CameraUpdateFactory.newLatLng(currentLatLng));
+        map.moveCamera(CameraUpdateFactory.zoomTo(30));
     }
-
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
@@ -325,7 +412,6 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
         }
 
     }
-
     @Override
     protected void onResumeFragments() {
         super.onResumeFragments();
@@ -335,12 +421,6 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
             permissionDenied = false;
         }
     }
-
-    /**
-     * Displays a dialog with error message explaining that the location permission is missing.
-     */
     private void showMissingPermissionError() {
     }
-
-
 }

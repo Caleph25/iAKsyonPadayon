@@ -17,26 +17,29 @@
     <ImageView
         android:id="@+id/logoImage"
         android:layout_width="250dp"
-        android:layout_height="180dp"
-        android:src="@drawable/applogo"
+        android:layout_height="150dp"
+        android:src="@drawable/whitelogo"
         android:layout_gravity="center"
+        android:layout_marginTop="10dp"
         />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:fontFamily="@font/bungee"
         android:text="WELCOME TO             iAKSYONPADAYON.PH"
         android:textSize="30sp"
         android:id="@+id/splash_text"
         android:textStyle="bold"
         android:textColor="@color/darkblue"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="10dp"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="310dp"
-        android:layout_marginTop="0dp"
+        android:layout_height="330dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -55,7 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:fontFamily="@font/montserrat_semibold"
+                android:fontFamily="@font/pt_sans_caption"
                 tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -73,8 +76,8 @@
                 android:imeOptions="actionDone"
                 android:inputType="textPassword"
                 android:text=""
-                android:fontFamily="@font/montserrat_semibold"
-                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+                android:fontFamily="@font/pt_sans_caption"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -84,28 +87,68 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:fontFamily="@font/montserrat_semibold"
+            android:fontFamily="@font/pt_sans_caption_bold"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:text="LOGIN"
-            android:textColor="@color/darkblue"
+            android:textColor="@color/black"
             android:textStyle="bold"
             android:theme="@style/myButtonTheme"
             />
+
+        <RelativeLayout
+            android:id="@+id/rela"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp">
+
+            <TextView
+                android:id="@+id/tvText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/pt_sans_caption_bold"
+                android:text="or"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:layout_toLeftOf="@id/tvText"
+                android:background="@color/black"
+                />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="16dp"
+                android:layout_toRightOf="@id/tvText"
+                android:background="@color/black"
+                />
+
+        </RelativeLayout>
 
         <Button
             android:id="@+id/signup_screen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_margin="5dp"
-            android:background="#00000000"
-            android:elevation="0dp"
-            android:fontFamily="@font/montserrat_semibold"
-            android:text="Need an account? SIGNUP"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/pt_sans_caption_bold"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="SIGNUP"
             android:textColor="@color/black"
-            android:textSize="12sp"
-            tools:ignore="TouchTargetSizeCheck" />
+            android:textStyle="bold"
+            android:theme="@style/myButtonTheme"
+            />
 
     </LinearLayout>
 
