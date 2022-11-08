@@ -1,28 +1,30 @@
 package com.example.login_signup;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
-public class MyPagAndamAdapter extends RecyclerView.Adapter<MyPagAndamAdapter.ViewHolder>{
+public class MyPagAndamSubAdapter extends RecyclerView.Adapter<MyPagAndamSubAdapter.ViewHolder>{
 
-    List<MyPagAndamData> myPagAndamData;
+    List<MyPagAndamSubData> myPagAndamSubData;
     Context context;
-    Context mContext;
 
-    public MyPagAndamAdapter(List<MyPagAndamData> myPagAndamData, pagandam activity){
-        this.myPagAndamData = myPagAndamData;
+    public MyPagAndamSubAdapter(List<MyPagAndamSubData> myPagAndamSubData, pagandamSub activity){
+        this.myPagAndamSubData = myPagAndamSubData;
         this.context = activity;
     }
+
 
     @NonNull
     @Override
@@ -35,29 +37,26 @@ public class MyPagAndamAdapter extends RecyclerView.Adapter<MyPagAndamAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        final MyPagAndamData myPagAndamDataList = myPagAndamData.get(position);
-        holder.textViewName.setText(myPagAndamDataList.getMainName());
-        holder.textViewDate.setText(myPagAndamDataList.getMainDetails());
+        final MyPagAndamSubData myPagAndamSubDataList = myPagAndamSubData.get(position);
+        holder.textViewName.setText(myPagAndamSubDataList.getMainName());
+        holder.textViewDate.setText(myPagAndamSubDataList.getMainDetails());
         Picasso.with(context.getApplicationContext())
-                .load(myPagAndamDataList.getMainImage())
+                .load(myPagAndamSubDataList.getMainImage())
                 .into(holder.mainImage);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Call kayo ng New Activity dito na parang pagandam.java din anfg layout
-                Toast.makeText(context,"This is the MainCategoryID: " + myPagAndamDataList.getCategoryID(), Toast.LENGTH_SHORT).show();
-                //Create intent getting the context of your View and the class where you want to go
-                Intent intent = new Intent(v.getContext(), pagandamSub.class);
+                Toast.makeText(context,"THIS IS SUBCATEGORY!!!: " + myPagAndamSubDataList.getCategoryID(), Toast.LENGTH_SHORT).show();
 
-                //start the activity from the view/context
-                v.getContext().startActivity(intent); //If you are inside activity, otherwise pass context to this funtion
+
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return myPagAndamData.size();
+        return myPagAndamSubData.size();
     }
 
 
@@ -76,5 +75,5 @@ public class MyPagAndamAdapter extends RecyclerView.Adapter<MyPagAndamAdapter.Vi
         }
     }
 
-}
 
+}

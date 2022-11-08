@@ -27,7 +27,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class pagandam extends AppCompatActivity {
+public class pagandamSub extends AppCompatActivity {
     RequestQueue queue;
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -52,7 +52,7 @@ public class pagandam extends AppCompatActivity {
                     public void onResponse(JSONObject response)
                     {
                         try {
-                            List<MyPagAndamData> myPagAndamData = new ArrayList<>();
+                            List<MyPagAndamSubData> myPagAndamSubData = new ArrayList<>();
                             JSONArray Jarray  = response.getJSONArray("maincategories");
                             for (int i = 0; i < Jarray.length(); i++)
                             {
@@ -60,10 +60,10 @@ public class pagandam extends AppCompatActivity {
                                 String PMCname = Jasonobject.getString("PMCname");
                                 String CategoryImageUrl = Jasonobject.getString("CategoryImage");
                                 Integer PMCid = Jasonobject.getInt("PMCid");
-                                myPagAndamData.add(new MyPagAndamData(PMCid,PMCname,"", CategoryImageUrl));
+                                myPagAndamSubData.add(new MyPagAndamSubData(PMCid,PMCname,"", CategoryImageUrl));
                             }
-                            MyPagAndamAdapter myPagAndamAdapter = new MyPagAndamAdapter(myPagAndamData, pagandam.this);
-                            recyclerView.setAdapter(myPagAndamAdapter);
+                            MyPagAndamSubAdapter myPagAndamSubAdapter = new MyPagAndamSubAdapter(myPagAndamSubData, pagandamSub.this);
+                            recyclerView.setAdapter(myPagAndamSubAdapter);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -73,7 +73,7 @@ public class pagandam extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error)
                     {
-                        Toast.makeText(pagandam.this, "Error 1" + error.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(pagandamSub.this, "Error 1" + error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
         queue.add(jsonObjectRequest);
