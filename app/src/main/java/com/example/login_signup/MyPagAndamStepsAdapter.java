@@ -8,26 +8,22 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.squareup.picasso.Picasso;
-
 import java.util.List;
 
-public class MyPagAndamSubAdapter extends RecyclerView.Adapter<MyPagAndamSubAdapter.ViewHolder>{
+public class MyPagAndamStepsAdapter extends RecyclerView.Adapter<MyPagAndamStepsAdapter.ViewHolder>{
 
-    List<MyPagAndamSubData> myPagAndamSubData;
+    List<MyPagAndamStepsData> myPagAndamStepsData;
     Context context;
     Context mContext;
 
-    public MyPagAndamSubAdapter(Context con, List<MyPagAndamSubData> myPagAndamSubData, pagandamSub activity){
-        this.myPagAndamSubData = myPagAndamSubData;
+    public MyPagAndamStepsAdapter(Context con,List<MyPagAndamStepsData> myPagAndamStepsData, pagandamSteps activity){
+        this.myPagAndamStepsData = myPagAndamStepsData;
         this.context = activity;
-        mContext = con;
+        mContext=con;
     }
-
 
     @NonNull
     @Override
@@ -40,26 +36,23 @@ public class MyPagAndamSubAdapter extends RecyclerView.Adapter<MyPagAndamSubAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        final MyPagAndamSubData myPagAndamSubDataList = myPagAndamSubData.get(position);
-        holder.textViewName.setText(myPagAndamSubDataList.getMainName());
-        holder.textViewDate.setText(myPagAndamSubDataList.getMainDetails());
+        final MyPagAndamStepsData myPagAndamStepsDataList = myPagAndamStepsData.get(position);
+        holder.textViewName.setText(myPagAndamStepsDataList.getMainName());
+        holder.textViewDate.setText(myPagAndamStepsDataList.getMainDetails());
         Picasso.with(context.getApplicationContext())
-                .load(myPagAndamSubDataList.getMainImage())
+                .load(myPagAndamStepsDataList.getMainImage())
                 .into(holder.mainImage);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context,"This is the SubCategoryID: " + myPagAndamSubDataList.getCategoryID(), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(context.getApplicationContext(),pagandamSteps.class);
-                mContext.startActivity(intent);
-
+                Toast.makeText(context,"This is the STEPS: " + myPagAndamStepsDataList.getCategoryID(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return myPagAndamSubData.size();
+        return myPagAndamStepsData.size();
     }
 
 
@@ -78,5 +71,5 @@ public class MyPagAndamSubAdapter extends RecyclerView.Adapter<MyPagAndamSubAdap
         }
     }
 
-
 }
+

@@ -28,23 +28,20 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class pagandamSub extends AppCompatActivity {
+public class pagandamSteps extends AppCompatActivity {
     RequestQueue queue;
-    String MainCategoryID;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pagandam_sub);
+        setContentView(R.layout.activity_pagandam);
         queue = Volley.newRequestQueue(this);
-        MainCategoryID = getIntent().getStringExtra("MainCategoryID");
-        Toast.makeText(this,"This is the MainCategoryID: " + MainCategoryID, Toast.LENGTH_SHORT).show();
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        GetMainCategory(recyclerView, this);
+        GetMainCategory(recyclerView,this);
     }
     public void GetMainCategory(RecyclerView recyclerView, Context con) {
-        String url = "http://192.168.1.6:8000/api/subcategories/"+MainCategoryID;
+        String url = "http://192.168.1.6:8000/api/pagadamsteps";
         JsonObjectRequest
                 jsonObjectRequest
                 = new JsonObjectRequest(
@@ -56,18 +53,18 @@ public class pagandamSub extends AppCompatActivity {
                     public void onResponse(JSONObject response)
                     {
                         try {
-                            List<MyPagAndamSubData> myPagAndamSubData = new ArrayList<>();
-                            JSONArray Jarray  = response.getJSONArray("subcategories");
+                            List<MyPagAndamStepsData> myPagAndamStepsData = new ArrayList<>();
+                            JSONArray Jarray  = response.getJSONArray("pagadamsteps");
                             for (int i = 0; i < Jarray.length(); i++)
                             {
                                 JSONObject Jasonobject = Jarray.getJSONObject(i);
-                                String PSMCname = Jasonobject.getString("PSMCname");
-                                String CategoryImageUrl = Jasonobject.getString("subCategoryImage");
-                                Integer PSMCid = Jasonobject.getInt("PSMCid");
-                                myPagAndamSubData.add(new MyPagAndamSubData(PSMCid,PSMCname,"", CategoryImageUrl));
+                                String PMCname = Jasonobject.getString("PSname");
+                                String StepsImageUrl = Jasonobject.getString("PSimagepath");
+                                Integer PMCid = Jasonobject.getInt("PSid");
+                                myPagAndamStepsData.add(new MyPagAndamStepsData(PMCid,PMCname,"", StepsImageUrl));
                             }
-                            MyPagAndamSubAdapter myPagAndamSubAdapter = new MyPagAndamSubAdapter(con, myPagAndamSubData, pagandamSub.this);
-                            recyclerView.setAdapter(myPagAndamSubAdapter);
+                            MyPagAndamStepsAdapter myPagAndamStepsAdapter = new MyPagAndamStepsAdapter(con,myPagAndamStepsData, pagandamSteps.this);
+                            recyclerView.setAdapter(myPagAndamStepsAdapter);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -77,7 +74,7 @@ public class pagandamSub extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error)
                     {
-                        Toast.makeText(pagandamSub.this, "Error 1" + error.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(pagandamSteps.this, "Error 1" + error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
         queue.add(jsonObjectRequest);

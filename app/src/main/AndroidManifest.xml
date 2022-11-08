@@ -132,6 +132,10 @@
             android:name=".pagandamSub"
             android:label="New Activity"></activity>
 
+        <activity
+            android:name=".pagandamSteps"
+            android:label="New Activity"></activity>
+
 
     </application>
 
