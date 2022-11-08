@@ -61,7 +61,7 @@ public class pagandamSub extends AppCompatActivity {
                             {
                                 JSONObject Jasonobject = Jarray.getJSONObject(i);
                                 String PSMCname = Jasonobject.getString("PSMCname");
-                                String CategoryImageUrl =null;
+                                String CategoryImageUrl = Jasonobject.getString("subCategoryImage");
                                 Integer PSMCid = Jasonobject.getInt("PSMCid");
                                 myPagAndamSubData.add(new MyPagAndamSubData(PSMCid,PSMCname,"", CategoryImageUrl));
                             }
