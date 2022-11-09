@@ -24,14 +24,7 @@ public class ApiClient {
 
         return retrofit;
     }
-    private static Retrofit getRetrofit2(){
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.6:8000/api/")
-                .addConverterFactory(ScalarsConverterFactory.create())
-                .build();
 
-        return retrofit;
-    }
     public static UserService getUserService(){
         UserService userService = getRetrofit().create(UserService.class);
 

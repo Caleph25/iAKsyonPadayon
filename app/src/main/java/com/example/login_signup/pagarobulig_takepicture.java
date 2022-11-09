@@ -1,5 +1,6 @@
 package com.example.login_signup;
 
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static android.app.PendingIntent.getActivity;
 
 import androidx.annotation.NonNull;
@@ -15,21 +16,29 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Location;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.login_signup.databinding.ActivityMainBinding;
 import com.example.login_signup.databinding.ActivityPagarobuligTakepictureBinding;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
 
@@ -52,16 +61,37 @@ public class pagarobulig_takepicture extends AppCompatActivity {
     private final int GALLERY = 1;
     String button_name = "";
     String path;
+    private double lat;
+    private double lng;
     ActivityPagarobuligTakepictureBinding binding;
+    private FusedLocationProviderClient client;
     public  static final int RequestPermissionCode  = 1 ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityPagarobuligTakepictureBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-   //     EnableCameraWhileRunning();
         button_name = getIntent().getStringExtra("button_name");
         clickListeners();
+        requestXYLocation();
+    }
+    @SuppressLint("MissingPermission")
+    private void requestXYLocation(){
+        ActivityCompat.requestPermissions(this, new String[]{ACCESS_FINE_LOCATION}, 1);
+        if (ActivityCompat.checkSelfPermission(pagarobulig_takepicture.this, ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
+            return;
+        }
+        client = LocationServices.getFusedLocationProviderClient(this);
+        client.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                if (location != null) {
+                    lat=location.getLatitude();
+                    lng= location.getLongitude();
+                    Toast.makeText(pagarobulig_takepicture.this, "X:"+lat+" Y:"+lng, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
     private void clickListeners() {
         binding.selectImage.setOnClickListener(v->{
@@ -94,7 +124,6 @@ public class pagarobulig_takepicture extends AppCompatActivity {
                 try {
                     captureImage = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
                     binding.imageview.setImageBitmap(captureImage);
-
                 } catch (IOException e) {
                     e.printStackTrace();
                     Toast.makeText(pagarobulig_takepicture.this, "Failed to select image!", Toast.LENGTH_SHORT).show();
@@ -104,20 +133,28 @@ public class pagarobulig_takepicture extends AppCompatActivity {
         }
     }
     public addImageRes createImage(){
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        captureImage.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
-        String image = Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT);
-        String name = String.valueOf(Calendar.getInstance().getTimeInMillis());
+        TextView name= findViewById(R.id.name);
+        TextView desc= findViewById(R.id.descript);
 
         addImageRes imageRes = new addImageRes();
-        imageRes.setReportImagePath(image);
-        imageRes.setReportName(button_name);
-        imageRes.setReportDescription(name);
+        imageRes.setReportName(String.valueOf(name.getText()));
+        imageRes.setReportDescription(String.valueOf(desc.getText()));
+        imageRes.setReportCategoryId(1);
+        imageRes.setMobileUserAccountId(18);
         return imageRes;
     }
     //Upload Image Using Retrofit
     private void uploadImage(addImageRes imageRes){
-        Call<addImageRes> call = ApiClient.getImages().uploadImage(imageRes);
+        File file = bitmapToFile(getApplicationContext(),captureImage, "ReportedImage.png");
+        RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("images", file.getName(), requestFile);
+
+        RequestBody ReportName =  RequestBody.create(imageRes.getReportName(), MediaType.parse("multipart/form-data"));
+        RequestBody Description =  RequestBody.create(imageRes.getReportDescription(), MediaType.parse("multipart/form-data"));
+        RequestBody CategoryId =  RequestBody.create(String.valueOf(imageRes.getReportCategoryId()), MediaType.parse("multipart/form-data"));
+        RequestBody MobileUserAccountId =  RequestBody.create(String.valueOf(imageRes.getMobileUserAccountId()), MediaType.parse("multipart/form-data"));
+
+        Call<addImageRes> call = ApiClient.getImages().uploadImage(ReportName,Description,CategoryId,MobileUserAccountId,body);
         call.enqueue(new Callback<addImageRes>() {
             @Override
             public void onResponse(Call<addImageRes> call, Response<addImageRes> response) {
@@ -133,5 +170,23 @@ public class pagarobulig_takepicture extends AppCompatActivity {
             }
         });
     }
-
+    public static File bitmapToFile(Context context,Bitmap bitmap, String fileNameToSave) {
+        File f = new File(context.getCacheDir(), fileNameToSave);
+        try {
+            f.createNewFile();
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, bos);
+            byte[] bitmapdata = bos.toByteArray();
+            FileOutputStream fos = null;
+            fos = new FileOutputStream(f);
+            fos.write(bitmapdata);
+            fos.flush();
+            fos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return  f;
+    }
 }

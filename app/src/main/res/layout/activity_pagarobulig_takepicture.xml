@@ -43,14 +43,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:hint="Enter Name" />
+            android:hint="Enter Title" />
 
         <EditText
-            android:id="@+id/reference"
+            android:id="@+id/descript"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:hint="Enter Reference" />
+            android:hint="Enter Description" />
 
         <Button
             android:id="@+id/save"

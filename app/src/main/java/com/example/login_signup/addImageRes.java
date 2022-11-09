@@ -8,7 +8,8 @@ import java.util.List;
 public class addImageRes {
     private String reportName;
     private String reportDescription;
-    private String reportImagePath;
+    private Integer ReportCategoryId;
+    private Integer MobileUserAccountId;
 
     public String getReportName(){
         return reportName;
@@ -16,16 +17,25 @@ public class addImageRes {
     public void setReportName(String reportName) {
         this.reportName = reportName;
     }
+
     public String getReportDescription(){
         return reportDescription;
     }
     public void setReportDescription(String reportDescription) {
         this.reportDescription = reportDescription;
     }
-    public String getReportImagePath(){
-        return reportImagePath;
+
+    public Integer getReportCategoryId(){
+        return ReportCategoryId;
     }
-    public void setReportImagePath(String reportImagePath) {
-        this.reportImagePath = reportImagePath;
+    public void setReportCategoryId(Integer ReportCategoryId) {
+        this.ReportCategoryId = ReportCategoryId;
+    }
+
+    public Integer getMobileUserAccountId(){
+        return MobileUserAccountId;
+    }
+    public void setMobileUserAccountId(Integer MobileUserAccountId) {
+        this.MobileUserAccountId = MobileUserAccountId;
     }
 }

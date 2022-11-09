@@ -38,6 +38,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -52,6 +54,8 @@ import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -67,7 +71,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnMyLocationButtonClickListener,
         OnMyLocationClickListener,
         ActivityCompat.OnRequestPermissionsResultCallback, LocationListener {
@@ -81,9 +85,11 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
     LocationManager locationManager;
     ProgressBar SHOW_PROGRESS;
     String address;
+    private FusedLocationProviderClient client;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestPermission();
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         setContentView(R.layout.activity_paglikas);
@@ -96,8 +102,27 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
-
-    // Update the map configuration at runtime.
+    @SuppressLint("MissingPermission")
+    private void requestPermission(){
+        ActivityCompat.requestPermissions(this, new String[]{ACCESS_FINE_LOCATION}, 1);
+        if (ActivityCompat.checkSelfPermission(paglikas.this, ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
+            return;
+        }
+        client = LocationServices.getFusedLocationProviderClient(this);
+        client.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                if (location != null) {
+                    lat=location.getLatitude();
+                    lng= location.getLongitude();
+                    TextView xCurrent = (TextView)findViewById(R.id.xCurrent);
+                    xCurrent.setText(String.valueOf(lat));
+                    TextView yCurrent = (TextView)findViewById(R.id.yCurrent);
+                    yCurrent.setText(String.valueOf(lng));
+                }
+            }
+        });
+    }
     @Override
     public void onMapReady(GoogleMap googleMap) {
         // Display traffic.
