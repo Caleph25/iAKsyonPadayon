@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SplashScreen"
-    android:background="@drawable/splasgscreenbgexam"
+    android:background="@drawable/splashscreentyellow"
     >
     <ImageView
         android:layout_width="match_parent"
@@ -40,7 +40,7 @@
             android:textColor="#FF1100"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/bungee_inline"
-            
+
             />
         <ImageView
             android:layout_width="match_parent"
@@ -48,8 +48,8 @@
             android:id="@+id/splash_lines"
 
             />
-        
-        
+
+
     </LinearLayout>
 
     <ImageView
@@ -60,11 +60,6 @@
         android:layout_alignParentBottom="true"
         android:src="@drawable/bottom_vector"
         />
-
-
-
-
-
 
 
 
