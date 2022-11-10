@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -57,7 +58,7 @@ public class pagarobulig_takepicture extends AppCompatActivity {
 
     Button camopen, sendbtn;
     Bitmap captureImage;
-    private final int GALLERY = 1;
+    public final int GALLERY = 1888;
     String button_name = "";
     String path;
     private double lat;
@@ -71,6 +72,13 @@ public class pagarobulig_takepicture extends AppCompatActivity {
         binding = ActivityPagarobuligTakepictureBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         button_name = getIntent().getStringExtra("button_name");
+        if (ContextCompat.checkSelfPermission(pagarobulig_takepicture.this,
+                Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(pagarobulig_takepicture.this,
+                    new String[]{
+                            Manifest.permission.CAMERA
+                    }, 100);
+        }
         clickListeners();
         requestXYLocation();
     }
@@ -94,16 +102,8 @@ public class pagarobulig_takepicture extends AppCompatActivity {
     }
     private void clickListeners() {
         binding.selectImage.setOnClickListener(v->{
-            if (ContextCompat.checkSelfPermission(getApplicationContext(),
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-                Intent intent = new Intent(Intent.ACTION_PICK,
-                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                intent.setType("image/*");
-                startActivityForResult(Intent.createChooser(intent, "Select Image"), GALLERY);
-            } else {
-                ActivityCompat.requestPermissions(pagarobulig_takepicture.this,
-                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
-            }
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(intent, GALLERY);
         });
         binding.save.setOnClickListener(v -> {
             uploadImage(createImage());
@@ -114,23 +114,16 @@ public class pagarobulig_takepicture extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode,@Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == this.RESULT_CANCELED) {
+        if(resultCode == this.RESULT_CANCELED){
             return;
         }
-        if (requestCode == GALLERY) {
-            if (data != null) {
-                Uri uri = data.getData();
-                try {
-                    captureImage = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
-                    binding.imageview.setImageBitmap(captureImage);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    Toast.makeText(pagarobulig_takepicture.this, "Failed to select image!", Toast.LENGTH_SHORT).show();
-
-                }
-            }
+        if (requestCode == GALLERY && resultCode == Activity.RESULT_OK) {
+                captureImage = (Bitmap) data.getExtras().get("data");
+                binding.imageview.setImageBitmap(captureImage);
         }
+
     }
+
     public addImageRes createImage(){
         TextView name= findViewById(R.id.name);
         TextView desc= findViewById(R.id.descript);

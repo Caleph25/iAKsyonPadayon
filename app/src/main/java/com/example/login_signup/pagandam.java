@@ -41,7 +41,7 @@ public class pagandam extends AppCompatActivity {
         GetMainCategory(recyclerView,this);
     }
     public void GetMainCategory(RecyclerView recyclerView, Context con) {
-        String url = "http://192.168.1.6:8000/api/maincategories";
+        String url = "http://192.168.254.101:8000/api/maincategories";
         JsonObjectRequest
                 jsonObjectRequest
                 = new JsonObjectRequest(
@@ -59,7 +59,7 @@ public class pagandam extends AppCompatActivity {
                             {
                                 JSONObject Jasonobject = Jarray.getJSONObject(i);
                                 String PMCname = Jasonobject.getString("PMCname");
-                                String CategoryImageUrl = Jasonobject.getString("CategoryImage");
+                                String CategoryImageUrl = Jasonobject.getString("pagAdamImagePath");
                                 Integer PMCid = Jasonobject.getInt("PMCid");
                                 myPagAndamData.add(new MyPagAndamData(PMCid,PMCname, CategoryImageUrl));
                             }

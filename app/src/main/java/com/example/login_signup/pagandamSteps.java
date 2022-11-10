@@ -41,7 +41,7 @@ public class pagandamSteps extends AppCompatActivity {
         GetMainCategory(recyclerView,this);
     }
     public void GetMainCategory(RecyclerView recyclerView, Context con) {
-        String url = "http://192.168.1.6:8000/api/pagadamsteps";
+        String url = "http://192.168.254.101:8000/api/pagadamsteps";
         JsonObjectRequest
                 jsonObjectRequest
                 = new JsonObjectRequest(

@@ -127,7 +127,7 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
     public void onMapReady(GoogleMap googleMap) {
         // Display traffic.
         googleMap.setTrafficEnabled(false);
-        String url = "http://192.168.1.6:8000/api/pointofinterest";
+        String url = "http://192.168.254.101:8000/api/pointofinterest";
         JsonObjectRequest
                 jsonObjectRequest
                 = new JsonObjectRequest(
@@ -188,7 +188,7 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
         enableMyLocation();
     }
     public void SetPOIList(RecyclerView recyclerView, Context con) {
-        String url = "http://192.168.1.6:8000/api/pointofinterest";
+        String url = "http://192.168.254.101:8000/api/pointofinterest";
         JsonObjectRequest
                 jsonObjectRequest
                 = new JsonObjectRequest(
@@ -207,7 +207,7 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
                                 JSONObject Jasonobject = Jarray.getJSONObject(i);
                                 String POIname = Jasonobject.getString("POIname");
                                 String POIdescription = Jasonobject.getString("POIdescription");
-                                String categoryImage = Jasonobject.getString("categoryImage");
+                                String categoryImage = Jasonobject.getString("poiCategoryImage");
                                 String POIlat = Jasonobject.getString("POIlat");
                                 String POIlng = Jasonobject.getString("POIlng");
 
