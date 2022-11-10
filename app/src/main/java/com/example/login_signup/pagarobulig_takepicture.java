@@ -50,7 +50,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class pagarobulig_takepicture extends AppCompatActivity {
 
@@ -140,7 +139,7 @@ public class pagarobulig_takepicture extends AppCompatActivity {
         imageRes.setReportName(String.valueOf(name.getText()));
         imageRes.setReportDescription(String.valueOf(desc.getText()));
         imageRes.setReportCategoryId(1);
-        imageRes.setMobileUserAccountId(18);
+        imageRes.setMobileUserAccountId(1);
         return imageRes;
     }
     //Upload Image Using Retrofit

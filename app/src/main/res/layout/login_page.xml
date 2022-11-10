@@ -112,7 +112,7 @@
                 android:layout_marginRight="10dp"
                 android:fontFamily="@font/pt_sans_caption_bold"
                 android:text="or"
-                android:textColor="#000000"
+                android:textColor="#505050"
                 android:textStyle="bold" />
 
             <View
@@ -121,7 +121,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="16dp"
                 android:layout_toLeftOf="@id/tvText"
-                android:background="@color/black"
+                android:background="#505050"
                 />
 
             <View
@@ -130,7 +130,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="16dp"
                 android:layout_toRightOf="@id/tvText"
-                android:background="@color/black"
+                android:background="#505050"
                 />
 
         </RelativeLayout>

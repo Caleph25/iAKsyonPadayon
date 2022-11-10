@@ -6,6 +6,6 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 
 public interface UserGetService {
-    @GET("api/mobile_user_account")
+    @GET("mobile_user_account")
     Call<List<UserGet>> getSuperID();
 }
