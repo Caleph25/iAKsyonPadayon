@@ -127,7 +127,8 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
     public void onMapReady(GoogleMap googleMap) {
         // Display traffic.
         googleMap.setTrafficEnabled(false);
-        String url = "http://192.168.254.101:8000/api/pointofinterest";
+        String HOSTurl=ApiClient.VolletURL();
+        String url = HOSTurl+"pointofinterest";
         JsonObjectRequest
                 jsonObjectRequest
                 = new JsonObjectRequest(
@@ -188,7 +189,8 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
         enableMyLocation();
     }
     public void SetPOIList(RecyclerView recyclerView, Context con) {
-        String url = "http://192.168.254.101:8000/api/pointofinterest";
+        String HOSTurl=ApiClient.VolletURL();
+        String url = HOSTurl+"pointofinterest";
         JsonObjectRequest
                 jsonObjectRequest
                 = new JsonObjectRequest(

@@ -41,7 +41,8 @@ public class pagandam extends AppCompatActivity {
         GetMainCategory(recyclerView,this);
     }
     public void GetMainCategory(RecyclerView recyclerView, Context con) {
-        String url = "http://192.168.254.101:8000/api/maincategories";
+        String HOSTurl=ApiClient.VolletURL();
+        String url =  HOSTurl + "maincategories";
         JsonObjectRequest
                 jsonObjectRequest
                 = new JsonObjectRequest(

@@ -9,7 +9,6 @@ public class UserResponse {
     private String email;
     private String gender;
     private String birthday;
-    private String IMEI;
 
 
     public String getFirstname() {
@@ -68,10 +67,4 @@ public class UserResponse {
         this.birthday = birthday;
     }
 
-    public String getIMEI() {
-        return IMEI;
-    }
-    public void setIMEI(String IMEI) {
-        this.IMEI = IMEI;
-    }
 }

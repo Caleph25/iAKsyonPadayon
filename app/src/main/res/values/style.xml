@@ -2,6 +2,6 @@
 <resources>
     <style name="myButtonTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:textColorPrimary">@color/white</item>
-        <item name="colorButtonNormal">#5552f1</item>
+        <item name="colorButtonNormal">#FFFFFF</item>
     </style>
 </resources>

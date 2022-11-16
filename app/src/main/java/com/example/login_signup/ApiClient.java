@@ -17,14 +17,17 @@ public class ApiClient {
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.254.101:8000/api/")
+                .baseUrl("http://192.168.115.2:8000/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .build();
 
         return retrofit;
     }
-
+    public static String VolletURL(){
+        String HostUrl="http://192.168.115.2:8000/api/";
+        return HostUrl;
+    }
     public static UserService getUserService(){
         UserService userService = getRetrofit().create(UserService.class);
 
@@ -41,6 +44,7 @@ public class ApiClient {
         }
         return instance;
     }
+
     public UserGetService getMyApi(){
         return myApi;
     }

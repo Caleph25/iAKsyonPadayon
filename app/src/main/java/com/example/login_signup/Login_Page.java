@@ -48,7 +48,8 @@ public class Login_Page extends AppCompatActivity {
             public void onClick(View view) {
                 String user_name = username.getText().toString();
                 String password_login = passwordlogin.getText().toString();
-                String url = "http://192.168.254.101:8000/api/mobile_user_account?username="+user_name+"&password="+password_login;
+                String HOSTurl=ApiClient.VolletURL();
+                String url = HOSTurl + "mobile_user_account?username="+user_name+"&password="+password_login;
                 JsonObjectRequest
                         jsonObjectRequest
                         = new JsonObjectRequest(

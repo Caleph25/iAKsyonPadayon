@@ -8,7 +8,6 @@ public class UserRequest {
     private String email;
     private String gender;
     private String birthday;
-    private String IMEI;
 
     private String username;
     private String password;
@@ -69,14 +68,6 @@ public class UserRequest {
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;
-    }
-
-    public String getIMEI() {
-        return IMEI;
-    }
-
-    public void setIMEI(String IMEI) {
-        this.IMEI = IMEI;
     }
 
     public String getUsername() {

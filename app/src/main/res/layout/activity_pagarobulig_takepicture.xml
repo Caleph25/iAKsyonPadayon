@@ -6,36 +6,85 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_gravity="center"
-    android:padding="10dp"
     tools:context=".pagarobulig_takepicture">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutHeader"
+        android:layout_width="match_parent"
+        android:background="@drawable/header_background"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints"
+        android:layout_height="80dp"
+        tools:layout_editor_absoluteY="0dp">
 
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="43dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/applogo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bungee_inline"
+            android:text="IAKSYONPADAYON.PH"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.2"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.666" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="70dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="50dp"
             android:gravity="center"
             android:orientation="horizontal"
             tools:ignore="MissingConstraints">
 
+            <ImageView
+                android:id="@+id/imageview"
+                android:layout_width="240dp"
+                android:layout_height="240dp"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/ic_launcher" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            tools:ignore="MissingConstraints">
             <Button
                 android:id="@+id/select_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="30dp"
-                android:text="Select Image" />
-
-            <ImageView
-                android:id="@+id/imageview"
-                android:layout_width="140dp"
-                android:layout_height="140dp"
-                android:scaleType="fitCenter"
-                android:src="@mipmap/ic_launcher" />
+                android:text="Capture Image"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/style2"
+                android:textColor="@color/black"
+                android:theme="@style/myButtonTheme"/>
         </LinearLayout>
 
         <EditText
@@ -43,7 +92,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:hint="Enter Title"
+            android:hint="What kind of Response do you want?"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:minHeight="48dp" />
 
         <EditText
@@ -51,7 +102,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:hint="Enter Description"
+            android:hint="Describe"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:minHeight="48dp" />
 
         <Button
@@ -59,7 +112,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:text="Save Record" />
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="Save Record"
+            android:textColor="@color/black"
+            android:theme="@style/myButtonTheme"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

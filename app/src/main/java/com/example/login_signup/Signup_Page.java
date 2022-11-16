@@ -178,7 +178,6 @@ public class Signup_Page extends AppCompatActivity {
         userRequest.setEmail(email.getText().toString());
         userRequest.setGender(gender.getText().toString());
         userRequest.setBirthday(birthday.getText().toString());
-        userRequest.setIMEI("1234");
         userRequest.setUsername(username.getText().toString());
         userRequest.setPassword(password.getText().toString());
         userRequest.setIsDeactivated(0);
