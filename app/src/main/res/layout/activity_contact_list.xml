@@ -28,19 +28,16 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingTop="15dp">
+                >
 
                 <ImageView
                     android:id="@+id/userprofile"
                     android:layout_width="wrap_content"
                     android:layout_height="90dp"
+                    android:layout_marginTop="10dp"
                     android:src="@drawable/header_emegency" />
 
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:layout_marginTop="10dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -160,6 +157,14 @@
 
 
                 </LinearLayout>
+                                <View
+                                    android:layout_marginTop="8dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:background="@color/black"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/nav" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -229,6 +234,16 @@
 
                 </LinearLayout>
 
+                <View
+                    android:layout_marginTop="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/nav" />
+
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -268,6 +283,16 @@
 
 
                 </LinearLayout>
+
+                <View
+                    android:layout_marginTop="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/nav" />
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -311,6 +336,14 @@
 
                 </LinearLayout>
 
+                <View
+                    android:layout_marginTop="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/nav" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -322,11 +355,6 @@
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp">
 
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/emegency_phone" />
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -336,6 +364,11 @@
                         android:textColor="@color/black"
                         android:textSize="22sp"
                         android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/emegency_phone" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -360,7 +393,7 @@
         <View
             android:id="@+id/viewDivider"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="2dp"
             android:background="@color/colorDivider"
             app:layout_constraintBaseline_toTopOf="@id/viewDivider" />
 
@@ -368,44 +401,44 @@
             android:id="@+id/layoutHeader"
             android:layout_width="match_parent"
             android:layout_height="160dp"
-            android:background="@drawable/header_background"
+            android:background="@drawable/waveui"
             android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteY="0dp">
 
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="43dp"
-                android:layout_height="52dp"
-                android:layout_marginStart="52dp"
-                android:layout_marginTop="16dp"
-                android:src="@drawable/applogo"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <!--                <View-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="1dp"-->
+            <!--            android:background="@color/black"-->
+            <!--            app:layout_constraintEnd_toEndOf="parent"-->
+            <!--            app:layout_constraintStart_toStartOf="parent"-->
+            <!--            app:layout_constraintTop_toTopOf="@+id/nav" />-->
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/bungee_inline"
+                android:fontFamily="@font/pt_sans_caption_bold"
                 android:text="IAKSYONPADAYON.PH"
-                android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textColor="@color/darkblue"
+                android:textSize="25sp"
                 android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
                 app:layout_constraintBottom_toTopOf="@+id/nav"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.2"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintHorizontal_bias="0.009"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.666" />
+                app:layout_constraintVertical_bias="0.25" />
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/nav"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="60dp"
                 android:background="@drawable/nav_header"
                 app:itemIconTint="@drawable/nav_selector"
                 app:itemTextColor="@drawable/nav_selector"

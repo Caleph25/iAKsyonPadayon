@@ -39,7 +39,8 @@
                 android:padding="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
+                tools:ignore="DuplicateClickableBoundsCheck">
 
 
                 <ImageView
@@ -59,6 +60,7 @@
                     android:clickable="true"
                     android:gravity="center"
                     android:text="@string/pagAndam_text"
+                    android:fontFamily="@font/pt_sans_caption_bold"
                     android:textColor="@color/white"
                     android:textSize="40sp"
                     android:textStyle="bold" />
@@ -105,11 +107,13 @@
                     android:layout_width="270dp"
                     android:layout_height="73dp"
                     android:clickable="true"
+                    android:fontFamily="@font/pt_sans_caption_bold"
                     android:gravity="center"
                     android:text="@string/pagLikas_text"
                     android:textColor="@color/white"
                     android:textSize="40sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:ignore="DuplicateClickableBoundsCheck" />
 
             </LinearLayout>
 
@@ -144,18 +148,15 @@
                     android:clickable="true"
                     android:gravity="center"
                     android:text="@string/pagAroBulig_text"
+                    android:fontFamily="@font/pt_sans_caption_bold"
                     android:textColor="@color/white"
                     android:textSize="35sp"
                     android:textStyle="bold"
 
-                    />
+                    android:focusable="true" />
 
 
             </LinearLayout>
-
-
-
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -173,7 +174,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutHeader"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="160dp"
         android:background="@drawable/waveui"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -195,9 +196,11 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/pt_sans_caption_bold"
             android:text="IAKSYONPADAYON.PH"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/darkblue"
             android:textSize="25sp"
             android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
             app:layout_constraintBottom_toTopOf="@+id/nav"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.009"
@@ -209,7 +212,7 @@
             android:id="@+id/nav"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="60dp"
             android:background="@drawable/nav_header"
             app:itemIconTint="@drawable/nav_selector"
             app:itemTextColor="@drawable/nav_selector"

@@ -3,24 +3,25 @@
     <item
         android:icon="@drawable/nav_dashboard"
         android:title="Dashboard"
-        android:id="@+id/dashboard_drawer"/>
 
-    <item
-        android:icon="@drawable/nav_profile"
-        android:title="Profile"
-        android:id="@+id/profile_drawer"/>
-    <item
-        android:icon="@drawable/nav_aboutus"
-        android:title="About Us"
-        android:id="@+id/aboutus_drawer"/>
+        android:id="@+id/dashboard_drawer"/>
     <item
         android:icon="@drawable/nav_call"
         android:title="Contact"
         android:id="@+id/call_drawer"/>
     <item
-        android:icon="@drawable/nav_logout"
-        android:title="Logout"
-        android:id="@+id/logout_drawer"/>
+        android:icon="@drawable/nav_profile"
+        android:title="Profile"
+        android:id="@+id/profile_drawer"/>
+    <item
+        android:icon="@drawable/nav_faq"
+        android:title="FAQ"
+        android:id="@+id/faq_drawer"/>
+    <item
+        android:icon="@drawable/nav_aboutus"
+        android:title="About Us"
+        android:id="@+id/aboutus_drawer"/>
+
 
 
 </menu>

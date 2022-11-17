@@ -10,11 +10,27 @@
         android:id="@+id/layoutHeader"
         android:layout_width="match_parent"
         android:layout_height="78dp"
-        android:background="@drawable/header_background"
+        android:background="@color/ic_launcher_background"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteY="0dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/pt_sans_caption_bold"
+            android:text="PAG-LIKAS"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textColor="@color/darkblue"
+            android:textSize="45sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.009"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 <!--        <ImageView-->
 <!--            android:id="@+id/imageView"-->
@@ -45,7 +61,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/xCurrent"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="50dp"
             android:inputType="text"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -53,7 +69,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/yCurrent"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="50dp"
             android:inputType="text"
             android:layout_marginTop="200dp"
             android:visibility="invisible"

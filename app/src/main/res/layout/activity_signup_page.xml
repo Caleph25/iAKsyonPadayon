@@ -27,24 +27,24 @@
 
             <ImageView
                 android:id="@+id/logoImage"
-                android:layout_width="250dp"
-                android:layout_height="70dp"
+                android:layout_width="183dp"
+                android:layout_height="97dp"
                 android:layout_gravity="center"
-                android:src="@drawable/applogo"
-                android:layout_marginBottom="10dp"/>
+                android:src="@drawable/aksyonpadayonlogo" />
 
             <TextView
-                android:id="@+id/splash_text"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="@font/bungee"
-                android:text="Create a new account"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/pt_sans_caption_bold"
+                android:text="REGISTER TO             IAKSYONPADAYON.PH"
+                android:textSize="30sp"
+                android:id="@+id/splash_text3"
+                android:textStyle="bold"
                 android:gravity="center"
-                android:textColor="@color/black"
-                android:textSize="25sp"
-                android:textStyle="bold" />
-
+                android:textColor="@color/darkblue"
+                android:layout_marginBottom="10dp"
+                />
 
 
             <LinearLayout
@@ -53,9 +53,18 @@
                 android:background="@drawable/backgroundloginlinear"
                 android:orientation="vertical"
                 android:padding="25dp"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="50dp">
 
-                >
+                <TextView
+                    android:id="@+id/splash_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/pt_sans_caption_bold"
+                    android:text="Create Account"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"

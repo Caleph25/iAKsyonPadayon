@@ -7,14 +7,7 @@
     tools:context=".SplashScreen"
     android:background="@drawable/splashscreentyellow"
     >
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/splash_top"
-        android:adjustViewBounds="true"
-        android:src="@drawable/top_vector"
 
-        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -27,17 +20,17 @@
             android:layout_height="340dp"
             android:id="@+id/splash_center"
             android:adjustViewBounds="true"
-            android:src="@drawable/applogo"
+            android:src="@drawable/aksyonpadayonlogo"
 
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/splash_text"
-            android:textSize="25sp"
+            android:textSize="30sp"
             android:textStyle="bold"
-            android:text="iAksyonPadayon.ph"
-            android:textColor="#FF1100"
+            android:text="IAKSYONPADAYON.PH"
+            android:textColor="@color/darkblue"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/bungee_inline"
 
@@ -51,16 +44,5 @@
 
 
     </LinearLayout>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/splash_bottom"
-        android:adjustViewBounds="true"
-        android:layout_alignParentBottom="true"
-        android:src="@drawable/bottom_vector"
-        />
-
-
 
 </RelativeLayout>

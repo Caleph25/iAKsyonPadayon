@@ -4,16 +4,11 @@
 <!--    <solid android:color="#E3242B"/>-->
 <!--    <solid android:color="#D0312D"/>-->
 <!--    <solid android:color="#d21f3d"/>-->
-    <solid android:color="#fa4931"/>
+    <solid android:color="#FE4006"/>
 <!--    <solid android:color="#FF0000"/>-->
 <!--    <solid android:color="#FF2E2E"/>-->
 <!--    <solid android:color="#DF1D2D"/>-->
 
 <!--    <solid android:color="#FF291E"/>-->
-
-
-    <corners
-        android:bottomLeftRadius="25dp"
-        android:bottomRightRadius="25dp"/>
 
 </shape>

@@ -46,8 +46,8 @@ public class AboutUs extends AppCompatActivity {
                         overridePendingTransition(0,0);
                         return true;
 
-                    case R.id.logout_drawer:
-                        startActivity(new Intent(getApplicationContext(),Login_Page.class));
+                    case R.id.faq_drawer:
+                        startActivity(new Intent(getApplicationContext(),FAQ.class));
                         overridePendingTransition(0,0);
                         return true;
 

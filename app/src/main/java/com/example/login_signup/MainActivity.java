@@ -11,11 +11,11 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.example.login_signup.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 public class MainActivity extends AppCompatActivity {
-
 
 
     @Override
@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
+
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.nav);
         bottomNavigationView.setSelectedItemId(R.id.dashboard_drawer);
@@ -51,14 +52,13 @@ public class MainActivity extends AppCompatActivity {
                         overridePendingTransition(0, 0);
                         return true;
 
-                    case R.id.logout_drawer:
-                        startActivity(new Intent(getApplicationContext(), Login_Page.class));
+                    case R.id.faq_drawer:
+                        startActivity(new Intent(getApplicationContext(), FAQ.class));
                         overridePendingTransition(0, 0);
                         return true;
 
 
                 }
-
                 return false;
             }
         });

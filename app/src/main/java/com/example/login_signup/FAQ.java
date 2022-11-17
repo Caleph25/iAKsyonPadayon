@@ -10,18 +10,18 @@ import android.view.WindowManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class Logout extends AppCompatActivity {
+public class FAQ extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_logout);
+        setContentView(R.layout.activity_faq);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
 
         BottomNavigationView bottomNavigationView =findViewById(R.id.nav);
-        bottomNavigationView.setSelectedItemId(R.id.logout_drawer);
+        bottomNavigationView.setSelectedItemId(R.id.faq_drawer);
 
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
             @Override
@@ -47,7 +47,7 @@ public class Logout extends AppCompatActivity {
                         overridePendingTransition(0,0);
                         return true;
 
-                    case R.id.logout_drawer:
+                    case R.id.faq_drawer:
                         return true;
 
 

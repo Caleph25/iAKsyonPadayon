@@ -32,8 +32,8 @@ public class SplashScreen extends AppCompatActivity {
 
         //assign variable
 
-        splashTop = findViewById(R.id.splash_top);
-        splashBottom = findViewById(R.id.splash_bottom);
+//        splashTop = findViewById(R.id.splash_top);
+//        splashBottom = findViewById(R.id.splash_bottom);
         splashCenter = findViewById(R.id.splash_center);
         splashLines = findViewById(R.id.splash_lines);
         splashText = findViewById(R.id.splash_text);
@@ -44,10 +44,10 @@ public class SplashScreen extends AppCompatActivity {
         getSupportActionBar().hide();
         //initialize top animation
 
-        Animation animation1 = AnimationUtils.loadAnimation(this,
-                R.anim.top_wave);
-        //start top animation
-        splashTop.setAnimation(animation1);
+//        Animation animation1 = AnimationUtils.loadAnimation(this,
+//                R.anim.top_wave);
+//        //start top animation
+//        splashTop.setAnimation(animation1);
 
         //Initialize object animator
         ObjectAnimator  objectAnimator = ObjectAnimator.ofPropertyValuesHolder(
@@ -69,10 +69,10 @@ public class SplashScreen extends AppCompatActivity {
         animatText("iAksyonPadayon.ph");
 
         //Initialize bottom animation
-        Animation animation2 = AnimationUtils.loadAnimation(this,
-                R.anim.botton_wave);
-        //Strat bottom animation
-        splashBottom.setAnimation(animation2);
+//        Animation animation2 = AnimationUtils.loadAnimation(this,
+//                R.anim.botton_wave);
+//        //Strat bottom animation
+//        splashBottom.setAnimation(animation2);
 
         //initialize handler
         new Handler().postDelayed(new Runnable() {

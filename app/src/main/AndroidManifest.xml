@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -19,6 +19,13 @@
         android:theme="@style/Theme.Login_Signup"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
+        <activity
+            android:name=".FAQ"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".ContactList"
             android:exported="false">
@@ -35,13 +42,6 @@
         </activity>
         <activity
             android:name=".flood_pagandam"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".Logout"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -95,13 +95,16 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name=".Signup_Page"
+        <activity
+            android:name=".Signup_Page"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="${MAPS_API_KEY}" />
@@ -128,16 +131,12 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" />
-
         <activity
             android:name=".pagandamSub"
-            android:label="New Activity"></activity>
-
+            android:label="New Activity" />
         <activity
             android:name=".pagandamSteps"
-            android:label="New Activity"></activity>
-
-
+            android:label="New Activity" />
     </application>
 
 </manifest>

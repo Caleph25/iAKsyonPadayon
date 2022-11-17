@@ -27,6 +27,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -86,10 +87,14 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
     ProgressBar SHOW_PROGRESS;
     String address;
     private FusedLocationProviderClient client;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         requestPermission();
+
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         setContentView(R.layout.activity_paglikas);
@@ -450,4 +455,5 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
     }
     private void showMissingPermissionError() {
     }
+
 }
