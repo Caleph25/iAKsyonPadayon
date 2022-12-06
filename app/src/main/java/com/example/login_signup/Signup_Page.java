@@ -190,7 +190,7 @@ public class Signup_Page extends AppCompatActivity {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if(response.isSuccessful()){
-                    Intent i = new Intent(Signup_Page.this, MainActivity.class);
+                    Intent i = new Intent(Signup_Page.this, Login_Page.class);
                     startActivity(i);
 
                 }else{

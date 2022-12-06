@@ -58,24 +58,23 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class pagarobulig_takepicture extends AppCompatActivity {
 
-    ImageView imagecap;
-
-    Button camopen, sendbtn;
     Bitmap captureImage;
     public final int GALLERY = 1888;
     String button_name = "";
-    String path;
-    private double lat;
-    private double lng;
+
+    public double lat;
+    public double lng;
+    int counter = 0;
     ActivityPagarobuligTakepictureBinding binding;
     private FusedLocationProviderClient client;
-    public  static final int RequestPermissionCode  = 1 ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityPagarobuligTakepictureBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        button_name = getIntent().getStringExtra("button_name");
+        button_name = getIntent().getStringExtra("name");
+
         if (ContextCompat.checkSelfPermission(pagarobulig_takepicture.this,
                 Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(pagarobulig_takepicture.this,
@@ -83,6 +82,7 @@ public class pagarobulig_takepicture extends AppCompatActivity {
                             Manifest.permission.CAMERA
                     }, 100);
         }
+
         clickListeners();
         requestXYLocation();
     }
@@ -132,11 +132,17 @@ public class pagarobulig_takepicture extends AppCompatActivity {
     public addImageRes createImage(){
         TextView name= findViewById(R.id.name);
         TextView desc= findViewById(R.id.descript);
-
+        if(button_name.equals("Accident")){
+            counter = 1;
+        }else if(button_name.equals("Fire")){
+            counter = 2;
+        }else if (button_name.equals("Disaster")){
+            counter = 3;
+        }
         addImageRes imageRes = new addImageRes();
         imageRes.setReportName(String.valueOf(name.getText()));
         imageRes.setReportDescription(String.valueOf(desc.getText()));
-        imageRes.setReportCategoryId(1);
+        imageRes.setReportCategoryId(counter);
         imageRes.setMobileUserAccountId(1);
         return imageRes;
     }
@@ -150,8 +156,9 @@ public class pagarobulig_takepicture extends AppCompatActivity {
         RequestBody Description =  RequestBody.create(imageRes.getReportDescription(), MediaType.parse("multipart/form-data"));
         RequestBody CategoryId =  RequestBody.create(String.valueOf(imageRes.getReportCategoryId()), MediaType.parse("multipart/form-data"));
         RequestBody MobileUserAccountId =  RequestBody.create(String.valueOf(imageRes.getMobileUserAccountId()), MediaType.parse("multipart/form-data"));
-
-        Call<addImageRes> call = ApiClient.getImages().uploadImage(ReportName,Description,CategoryId,MobileUserAccountId,body);
+        RequestBody latitude = RequestBody.create(String.valueOf(lat), MediaType.parse("multipart/form-data"));
+        RequestBody longtitude = RequestBody.create(String.valueOf(lng), MediaType.parse("multipart/form-data"));
+        Call<addImageRes> call = ApiClient.getImages().uploadImage(ReportName,Description,CategoryId,MobileUserAccountId,latitude,longtitude,body);
         call.enqueue(new Callback<addImageRes>() {
             @Override
             public void onResponse(Call<addImageRes> call, Response<addImageRes> response) {

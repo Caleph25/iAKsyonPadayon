@@ -15,5 +15,7 @@ public interface imageInterface {
                                    @Part("reportDescription") RequestBody reportDescription,
                                    @Part("ReportCategoryId") RequestBody ReportCategoryId,
                                    @Part("MobileUserAccountId") RequestBody MobileUserAccountId,
+                                   @Part("lat") RequestBody lat,
+                                   @Part("lng") RequestBody lng,
                                    @Part MultipartBody.Part images);
 }

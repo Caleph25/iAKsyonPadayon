@@ -86,22 +86,22 @@ public class Login_Page extends AppCompatActivity {
             }
         });
 
-        callSignUp = findViewById(R.id.signup_screen);
-        callSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Login_Page.this,MainActivity.class);
-                startActivity(intent);
-            }
-        });
-
 //        callSignUp = findViewById(R.id.signup_screen);
 //        callSignUp.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
-//                Intent intent = new Intent(Login_Page.this,Signup_Page.class);
+//                Intent intent = new Intent(Login_Page.this,MainActivity.class);
 //                startActivity(intent);
 //            }
 //        });
+
+        callSignUp = findViewById(R.id.signup_screen);
+        callSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Login_Page.this,Signup_Page.class);
+                startActivity(intent);
+            }
+        });
     }
 }

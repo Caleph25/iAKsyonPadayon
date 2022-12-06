@@ -63,9 +63,9 @@ public class pagarobulig extends AppCompatActivity {
         builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Intent intent = new Intent();
-                intent.putExtra("button_name", name);
-                startActivity(new Intent(pagarobulig.this, pagarobulig_takepicture.class));
+                Intent intent = new Intent(pagarobulig.this, pagarobulig_takepicture.class);
+                intent.putExtra("name",name);
+                startActivity(intent);
                 Toast.makeText(pagarobulig.this,  name  , Toast.LENGTH_SHORT).show();
             }
         });

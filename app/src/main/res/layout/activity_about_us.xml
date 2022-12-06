@@ -82,12 +82,12 @@
 
                         </RelativeLayout>
 
-                        <ImageView
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginTop="5dp"
-                            android:src="@drawable/person1" />
+<!--                        <ImageView-->
+<!--                            android:layout_width="150dp"-->
+<!--                            android:layout_height="150dp"-->
+<!--                            android:layout_alignParentRight="true"-->
+<!--                            android:layout_marginTop="5dp"-->
+<!--                            android:src="@drawable/person1" />-->
 
                     </RelativeLayout>
 
@@ -128,12 +128,12 @@
 
                         </RelativeLayout>
 
-                        <ImageView
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
-                            android:layout_alignParentLeft="true"
-                            android:layout_marginTop="5dp"
-                            android:src="@drawable/person1" />
+<!--                        <ImageView-->
+<!--                            android:layout_width="150dp"-->
+<!--                            android:layout_height="150dp"-->
+<!--                            android:layout_alignParentLeft="true"-->
+<!--                            android:layout_marginTop="5dp"-->
+<!--                            android:src="@drawable/person1" />-->
 
                     </RelativeLayout>
 
@@ -175,12 +175,12 @@
 
                         </RelativeLayout>
 
-                        <ImageView
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginTop="5dp"
-                            android:src="@drawable/person1" />
+<!--                        <ImageView-->
+<!--                            android:layout_width="150dp"-->
+<!--                            android:layout_height="150dp"-->
+<!--                            android:layout_alignParentRight="true"-->
+<!--                            android:layout_marginTop="5dp"-->
+<!--                            android:src="@drawable/person1" />-->
 
                     </RelativeLayout>
 
@@ -221,12 +221,12 @@
 
                         </RelativeLayout>
 
-                        <ImageView
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
-                            android:layout_alignParentLeft="true"
-                            android:layout_marginTop="5dp"
-                            android:src="@drawable/rjpicture" />
+<!--                        <ImageView-->
+<!--                            android:layout_width="150dp"-->
+<!--                            android:layout_height="150dp"-->
+<!--                            android:layout_alignParentLeft="true"-->
+<!--                            android:layout_marginTop="5dp"-->
+<!--                            android:src="@drawable/rjpicture" />-->
 
                     </RelativeLayout>
 
