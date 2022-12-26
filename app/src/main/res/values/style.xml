@@ -4,4 +4,9 @@
         <item name="android:textColorPrimary">@color/white</item>
         <item name="colorButtonNormal">#FFFFFF</item>
     </style>
+
+    <style name="myButtonTheme2" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColorPrimary">#5E5E5E</item>
+        <item name="colorButtonNormal">#4E4E4E</item>
+    </style>
 </resources>
