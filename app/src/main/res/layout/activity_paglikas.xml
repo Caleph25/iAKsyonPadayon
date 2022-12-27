@@ -55,23 +55,42 @@
     <LinearLayout
         android:id="@+id/buttonslinear1"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="65dp"
         tools:ignore="MissingConstraints"
-        app:layout_constraintTop_toBottomOf="@+id/layoutHeader2"
-        android:orientation="horizontal">
+        app:layout_constraintTop_toBottomOf="@+id/maplinear"
+        android:orientation="horizontal"
+        android:background="#8DF2FF">
 
-        <Button
-            android:id="@+id/drivingcbutton"
-            android:layout_width="90dp"
+
+        <ImageButton
+            android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="15dp"
-            android:text="EVACUATION"
-            android:textColor="#000000"
-            android:textSize="8sp"
-            android:theme="@style/myButtonTheme"
-            />
+            android:src="@drawable/walking"
+            android:clickable="true"
+            tools:ignore="SpeakableTextPresentCheck"
+            android:background="@drawable/roundbutton"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"/>
 
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/roundbutton"
+            android:clickable="true"
+            android:src="@drawable/driving"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/roundbutton"
+            android:clickable="true"
+            android:src="@drawable/train"
+            tools:ignore="SpeakableTextPresentCheck" />
 
 
     </LinearLayout>
@@ -80,7 +99,7 @@
         android:layout_width="match_parent"
         android:layout_height="290dp"
         tools:ignore="MissingConstraints"
-        app:layout_constraintTop_toBottomOf="@+id/buttonslinear1"
+        app:layout_constraintTop_toBottomOf="@+id/layoutHeader2"
         android:orientation="horizontal"
         android:background="@color/darkblue">
 
@@ -103,7 +122,7 @@
         android:layout_width="match_parent"
         android:layout_height="90dp"
         tools:ignore="MissingConstraints"
-        app:layout_constraintTop_toBottomOf="@+id/maplinear"
+        app:layout_constraintTop_toBottomOf="@+id/buttonslinear1"
         android:orientation="horizontal">
 
         <Button
