@@ -55,6 +55,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.maps.android.SphericalUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -335,7 +336,10 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
         Toast.makeText(paglikas.this, "Lat: " +String.valueOf(DestinationX)+" Long: " +String.valueOf(DestinationY), Toast.LENGTH_SHORT).show();
         origin = new MarkerOptions().position(new LatLng(CurrentX, CurrentY)).title("You are here.").snippet("origin");
         destination = new MarkerOptions().position(new LatLng(DestinationX, DestinationY)).title("Destination").snippet(DestinationName).icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromURL(POIyImage)));
-        
+        LatLng location = new LatLng(CurrentX, CurrentY);
+        LatLng deslocation = new LatLng(DestinationX, DestinationY);
+        Double distance = SphericalUtil.computeDistanceBetween(location, deslocation);
+        Toast.makeText(this, String.format("%.2f", distance / 1000) + "km", Toast.LENGTH_SHORT).show();
         map.addMarker(origin);
         map.addMarker(destination);
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(origin.getPosition(), 10));
