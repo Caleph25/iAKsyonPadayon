@@ -53,12 +53,23 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
+        android:id="@+id/buttonslinear1"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toBottomOf="@+id/layoutHeader2"
+        android:orientation="horizontal">
+
+
+    </LinearLayout>
+    <LinearLayout
         android:id="@+id/maplinear"
         android:layout_width="match_parent"
         android:layout_height="290dp"
         tools:ignore="MissingConstraints"
-        app:layout_constraintTop_toBottomOf="@+id/layoutHeader2"
-        android:orientation="horizontal">
+        app:layout_constraintTop_toBottomOf="@+id/buttonslinear1"
+        android:orientation="horizontal"
+        android:background="@color/darkblue">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/map"
@@ -69,7 +80,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layoutHeader"
+            app:layout_constraintTop_toBottomOf="@+id/buttonslinear1"
             app:uiRotateGestures="true"
             app:uiZoomControls="true" />
     </LinearLayout>
@@ -128,56 +139,24 @@
             />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/buttonslinear2"
-        android:layout_width="match_parent"
-        android:layout_height="240dp"
-        tools:ignore="MissingConstraints"
-        app:layout_constraintTop_toBottomOf="@+id/buttonslinear"
-        android:gravity="center"
-        android:orientation="vertical" >
 
 
-        <Button
-            android:id="@+id/poi1button"
-            android:layout_width="349dp"
-            android:layout_height="50dp"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
             android:gravity="center"
-            android:layout_marginTop="10dp"
-            android:text="POI1"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            android:background="@drawable/paglikasbuttonstyle"
-            android:theme="@style/myButtonTheme"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonslinear">
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/maprecyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="205dp" />
 
-        <Button
-            android:id="@+id/poi2button"
-            android:layout_width="349dp"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:layout_marginTop="20dp"
-            android:text="POI2"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            android:theme="@style/myButtonTheme"
-            android:background="@drawable/paglikasbuttonstyle"/>
-
-        <Button
-            android:id="@+id/poi3button"
-            android:layout_width="349dp"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:layout_marginTop="20dp"
-            android:text="POI3"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            android:theme="@style/myButtonTheme"
-            android:background="@drawable/paglikasbuttonstyle"/>
-
-    </LinearLayout>
-
-
+        </LinearLayout>
 
 
 
