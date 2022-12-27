@@ -99,7 +99,7 @@ public class pagarobulig_takepicture extends AppCompatActivity {
                 if (location != null) {
                     lat=location.getLatitude();
                     lng= location.getLongitude();
-                    Toast.makeText(pagarobulig_takepicture.this, "X:"+lat+" Y:"+lng, Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(pagarobulig_takepicture.this, "X:"+lat+" Y:"+lng, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -143,7 +143,7 @@ public class pagarobulig_takepicture extends AppCompatActivity {
         imageRes.setReportName(String.valueOf(name.getText()));
         imageRes.setReportDescription(String.valueOf(desc.getText()));
         imageRes.setReportCategoryId(counter);
-        imageRes.setMobileUserAccountId(1);
+        imageRes.setMobileUserAccountId(18);
         return imageRes;
     }
     //Upload Image Using Retrofit

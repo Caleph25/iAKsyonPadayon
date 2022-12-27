@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.Manifest.permission;
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -26,10 +25,12 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,13 +42,11 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.GoogleMap.OnMyLocationButtonClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMyLocationClickListener;
-import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -55,7 +54,6 @@ import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 import org.json.JSONArray;
@@ -72,7 +70,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+
 public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnMyLocationButtonClickListener,
         OnMyLocationClickListener,
         ActivityCompat.OnRequestPermissionsResultCallback, LocationListener {
@@ -158,6 +156,7 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
                                         .position(markerPOsition)
                                         .title(POIname)
                                         .icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromURL(categoryImage))));
+
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -180,7 +179,7 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
             }
         });
         queue.add(jsonObjectRequest);
-        // Set the map coordinates to Kyoto Japan.
+        // Set the map coordinates to Catbalogan Samar
         LatLng samar = new LatLng(11.776840, 124.884630);
         // Set the map type to Hybrid.
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
@@ -196,6 +195,7 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
     public void SetPOIList(RecyclerView recyclerView, Context con) {
         String HOSTurl=ApiClient.VolletURL();
         String url = HOSTurl+"pointofinterest";
+
         JsonObjectRequest
                 jsonObjectRequest
                 = new JsonObjectRequest(
@@ -206,25 +206,119 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
                     @Override
                     public void onResponse(JSONObject response)
                     {
-                        try {
-                            List<POIListData> myPOIListData= new ArrayList<>();
-                            JSONArray Jarray  = response.getJSONArray("maincategories");
-                            for (int i = 0; i < Jarray.length(); i++)
-                            {
-                                JSONObject Jasonobject = Jarray.getJSONObject(i);
-                                String POIname = Jasonobject.getString("POIname");
-                                String POIdescription = Jasonobject.getString("POIdescription");
-                                String categoryImage = Jasonobject.getString("poiCategoryImage");
-                                String POIlat = Jasonobject.getString("POIlat");
-                                String POIlng = Jasonobject.getString("POIlng");
+                        Button button1 = (Button) findViewById(R.id.evacbutton);
+                        button1.setOnClickListener(new View.OnClickListener(){
+                            @Override
+                            public void onClick(View view){
+                                button1.setEnabled(true);
+                                try {
+                                    List<POIListData> myPOIListData= new ArrayList<>();
+                                    JSONArray Jarray  = response.getJSONArray("maincategories");
+                                    for (int i = 0; i < Jarray.length(); i++)
+                                    {
+                                        JSONObject Jasonobject = Jarray.getJSONObject(i);
+                                        int fk_categoryId = Jasonobject.getInt("fk_categoryid");
+                                        String POIname = Jasonobject.getString("POIname");
+                                        String POIdescription = Jasonobject.getString("POIdescription");
+                                        String categoryImage = Jasonobject.getString("categoryImage");
+                                        String POIlat = Jasonobject.getString("POIlat");
+                                        String POIlng = Jasonobject.getString("POIlng");
+                                        if(fk_categoryId == 9) {
+                                            myPOIListData.add(new POIListData(POIname, categoryImage, POIlat, POIlng));
+                                        }
+                                    }
 
-                                myPOIListData.add(new POIListData(POIname, categoryImage,POIlat,POIlng));
+                                    POIListAdapter myPOIListAdapter= new POIListAdapter(myPOIListData, paglikas.this,con);
+                                    recyclerView.setAdapter(myPOIListAdapter);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
                             }
-                            POIListAdapter myPOIListAdapter= new POIListAdapter(myPOIListData, paglikas.this,con);
-                            recyclerView.setAdapter(myPOIListAdapter);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                        });
+                        Button button2 = (Button) findViewById(R.id.policebutton);
+                        button2.setOnClickListener(new View.OnClickListener(){
+                            @Override
+                            public void onClick(View view){
+                                try {
+                                    List<POIListData> myPOIListData= new ArrayList<>();
+                                    JSONArray Jarray  = response.getJSONArray("maincategories");
+                                    for (int i = 0; i < Jarray.length(); i++)
+                                    {
+                                        JSONObject Jasonobject = Jarray.getJSONObject(i);
+                                        int fk_categoryId = Jasonobject.getInt("fk_categoryid");
+                                        String POIname = Jasonobject.getString("POIname");
+                                        String POIdescription = Jasonobject.getString("POIdescription");
+                                        String categoryImage = Jasonobject.getString("categoryImage");
+                                        String POIlat = Jasonobject.getString("POIlat");
+                                        String POIlng = Jasonobject.getString("POIlng");
+                                        if(fk_categoryId == 11) {
+                                            myPOIListData.add(new POIListData(POIname, categoryImage, POIlat, POIlng));
+                                        }
+                                    }
+
+                                    POIListAdapter myPOIListAdapter= new POIListAdapter(myPOIListData, paglikas.this,con);
+                                    recyclerView.setAdapter(myPOIListAdapter);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+                        Button button3 = (Button) findViewById(R.id.hospitalbutton);
+                        button3.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                try {
+                                    List<POIListData> myPOIListData= new ArrayList<>();
+                                    JSONArray Jarray  = response.getJSONArray("maincategories");
+                                    for (int i = 0; i < Jarray.length(); i++)
+                                    {
+                                        JSONObject Jasonobject = Jarray.getJSONObject(i);
+                                        int fk_categoryId = Jasonobject.getInt("fk_categoryid");
+                                        String POIname = Jasonobject.getString("POIname");
+                                        String POIdescription = Jasonobject.getString("POIdescription");
+                                        String categoryImage = Jasonobject.getString("categoryImage");
+                                        String POIlat = Jasonobject.getString("POIlat");
+                                        String POIlng = Jasonobject.getString("POIlng");
+                                        if(fk_categoryId == 8) {
+                                            myPOIListData.add(new POIListData(POIname, categoryImage, POIlat, POIlng));
+                                        }
+                                    }
+
+                                    POIListAdapter myPOIListAdapter= new POIListAdapter(myPOIListData, paglikas.this,con);
+                                    recyclerView.setAdapter(myPOIListAdapter);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+                        Button button4 = (Button) findViewById(R.id.fire);
+                        button4.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                try {
+                                    List<POIListData> myPOIListData= new ArrayList<>();
+                                    JSONArray Jarray  = response.getJSONArray("maincategories");
+                                    for (int i = 0; i < Jarray.length(); i++)
+                                    {
+                                        JSONObject Jasonobject = Jarray.getJSONObject(i);
+                                        int fk_categoryId = Jasonobject.getInt("fk_categoryid");
+                                        String POIname = Jasonobject.getString("POIname");
+                                        String POIdescription = Jasonobject.getString("POIdescription");
+                                        String categoryImage = Jasonobject.getString("categoryImage");
+                                        String POIlat = Jasonobject.getString("POIlat");
+                                        String POIlng = Jasonobject.getString("POIlng");
+                                        if(fk_categoryId == 14) {
+                                            myPOIListData.add(new POIListData(POIname, categoryImage, POIlat, POIlng));
+                                        }
+                                    }
+
+                                    POIListAdapter myPOIListAdapter= new POIListAdapter(myPOIListData, paglikas.this,con);
+                                    recyclerView.setAdapter(myPOIListAdapter);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
                     }
                 },
                 new Response.ErrorListener() {
@@ -241,7 +335,7 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
         Toast.makeText(paglikas.this, "Lat: " +String.valueOf(DestinationX)+" Long: " +String.valueOf(DestinationY), Toast.LENGTH_SHORT).show();
         origin = new MarkerOptions().position(new LatLng(CurrentX, CurrentY)).title("You are here.").snippet("origin");
         destination = new MarkerOptions().position(new LatLng(DestinationX, DestinationY)).title("Destination").snippet(DestinationName).icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromURL(POIyImage)));
-
+        
         map.addMarker(origin);
         map.addMarker(destination);
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(origin.getPosition(), 10));
@@ -258,7 +352,9 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
         // Destination of route
         String str_dest = "destination=" + dest.latitude + "," + dest.longitude;
         // Setting mode
-        String mode = "mode=driving";
+        //String mode = "mode=driving";
+        String mode = "mode=walking";
+        //String mode = "mode=cycling";2
         // Building the parameters to the web service
         String parameters = str_origin + "&" + str_dest + "&" + mode;
         // Output format
@@ -289,6 +385,8 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
             e.printStackTrace();
         }
     }
+
+
 
     private class DownloadTask extends AsyncTask<String, Void, String> {
 

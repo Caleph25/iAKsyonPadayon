@@ -45,7 +45,7 @@ public class MyPagAndamAdapter extends RecyclerView.Adapter<MyPagAndamAdapter.Vi
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context,"This is the MainCategoryID: " + myPagAndamDataList.getCategoryID(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context,"This is the MainCategoryID: " + myPagAndamDataList.getCategoryID(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context.getApplicationContext(),pagandamSub.class);
                 String MainCat= String.valueOf(myPagAndamDataList.getCategoryID());
                 intent.putExtra("MainCategoryID", MainCat.toString() );

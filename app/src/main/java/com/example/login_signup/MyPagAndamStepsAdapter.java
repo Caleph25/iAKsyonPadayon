@@ -45,7 +45,7 @@ public class MyPagAndamStepsAdapter extends RecyclerView.Adapter<MyPagAndamSteps
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context,"This is the STEPS: " + myPagAndamStepsDataList.getCategoryID(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context,"This is the STEPS: " + myPagAndamStepsDataList.getCategoryID(), Toast.LENGTH_SHORT).show();
             }
         });
     }

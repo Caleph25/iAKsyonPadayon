@@ -60,6 +60,19 @@
         app:layout_constraintTop_toBottomOf="@+id/layoutHeader2"
         android:orientation="horizontal">
 
+        <Button
+            android:id="@+id/drivingcbutton"
+            android:layout_width="90dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="15dp"
+            android:text="EVACUATION"
+            android:textColor="#000000"
+            android:textSize="8sp"
+            android:theme="@style/myButtonTheme"
+            />
+
+
 
     </LinearLayout>
     <LinearLayout
@@ -95,6 +108,7 @@
 
         <Button
             android:id="@+id/evacbutton"
+
             android:layout_width="90dp"
             android:layout_height="50dp"
             android:layout_marginLeft="25dp"
@@ -116,7 +130,7 @@
             android:textSize="8sp"
             />
         <Button
-            android:id="@+id/firebutton"
+            android:id="@+id/fire"
             android:layout_width="80dp"
             android:layout_height="50dp"
             android:layout_marginTop="15dp"

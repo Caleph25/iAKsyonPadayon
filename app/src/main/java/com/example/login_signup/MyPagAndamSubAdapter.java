@@ -49,7 +49,7 @@ public class MyPagAndamSubAdapter extends RecyclerView.Adapter<MyPagAndamSubAdap
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context,"This is the SubCategoryID: " + myPagAndamSubDataList.getCategoryID(), Toast.LENGTH_SHORT).show();
+              //Toast.makeText(context,"This is the SubCategoryID: " + myPagAndamSubDataList.getCategoryID(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context.getApplicationContext(),pagandamSteps.class);
                 mContext.startActivity(intent);
 
