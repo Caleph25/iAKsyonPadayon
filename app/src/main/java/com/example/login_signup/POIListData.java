@@ -5,11 +5,17 @@ public class POIListData {
     private String imageUrl;
     private String xLocation;
     private String yLocation;
-    public POIListData(String description, String imageUrl,String xLocation,String yLocation) {
+    private float xCurrentLocation;
+    private float yCurrentLocation;
+    private float distance;
+    public POIListData(String description, String imageUrl,String xLocation,String yLocation,float xCurrentLocation,float yCurrentLocation,float distance) {
         this.description = description;
         this.imageUrl = imageUrl;
         this.xLocation = xLocation;
         this.yLocation = yLocation;
+        this.xCurrentLocation = xCurrentLocation;
+        this.yCurrentLocation = yCurrentLocation;
+        this.distance = distance;
     }
     public String getDescription() {
         return description;
@@ -34,5 +40,23 @@ public class POIListData {
     }
     public void setyLocation(String yLocation) {
         this.yLocation = yLocation;
+    }
+    public float getxLocationCurrent() {
+        return xCurrentLocation;
+    }
+    public void setxLocationCurrent(float xCurrentLocation) {
+        this.xCurrentLocation = xCurrentLocation;
+    }
+    public float getyLocationCurrent() {
+        return yCurrentLocation;
+    }
+    public void setyLocationCurrent(float yCurrentLocation) {
+        this.yCurrentLocation = yCurrentLocation;
+    }
+    public float getDistance() {
+        return distance;
+    }
+    public void setDistance(float distance) {
+        this.distance = distance;
     }
 }

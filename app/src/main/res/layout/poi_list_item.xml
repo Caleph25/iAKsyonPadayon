@@ -17,12 +17,25 @@
         android:contentDescription="Icon" />
 
     <TextView
+        android:id="@+id/textViewDistance"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@id/imageView"
+        android:layout_toRightOf="@id/imageView"
+        android:gravity="center_vertical"
+        android:text="1000000 km"
+        android:textSize="16sp"/>
+    <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_toEndOf="@id/imageView"
         android:layout_toRightOf="@id/imageView"
         android:gravity="center_vertical"
+        android:layout_marginStart="105dp"
+        android:text="test"
         android:textSize="16sp"/>
+
+
 
 </RelativeLayout>

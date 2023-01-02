@@ -63,6 +63,7 @@
 
 
         <ImageButton
+            android:id="@+id/walk"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/walking"
@@ -73,6 +74,7 @@
             android:layout_marginTop="5dp"/>
 
         <ImageButton
+            android:id="@+id/drive"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="5dp"
@@ -83,6 +85,7 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <ImageButton
+            android:id="@+id/transit"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="5dp"

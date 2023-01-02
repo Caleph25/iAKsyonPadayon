@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.Manifest.permission;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -21,6 +22,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -29,6 +31,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -68,6 +71,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -82,6 +87,10 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
     MarkerOptions origin, destination;
     private double lat;
     private double lng;
+    private float latDestination;
+    private float lngDestination;
+    private String POIDestinationName;
+    private String POIDestinationImage;
     LocationManager locationManager;
     ProgressBar SHOW_PROGRESS;
     String address;
@@ -196,7 +205,6 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
     public void SetPOIList(RecyclerView recyclerView, Context con) {
         String HOSTurl=ApiClient.VolletURL();
         String url = HOSTurl+"pointofinterest";
-
         JsonObjectRequest
                 jsonObjectRequest
                 = new JsonObjectRequest(
@@ -224,13 +232,20 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
                                         String categoryImage = Jasonobject.getString("categoryImage");
                                         String POIlat = Jasonobject.getString("POIlat");
                                         String POIlng = Jasonobject.getString("POIlng");
+
                                         if(fk_categoryId == 9) {
-                                            myPOIListData.add(new POIListData(POIname, categoryImage, POIlat, POIlng));
+                                            myPOIListData.add(new POIListData(POIname, categoryImage, POIlat, POIlng,Float.parseFloat(String.valueOf(lat)),Float.parseFloat(String.valueOf(lng)), 0.000F));
                                         }
                                     }
-
                                     POIListAdapter myPOIListAdapter= new POIListAdapter(myPOIListData, paglikas.this,con);
                                     recyclerView.setAdapter(myPOIListAdapter);
+//                                    Collections.sort(myPOIListData, new Comparator<POIListData>() {
+//                                        @Override
+//                                        public int compare(POIListData lhs, POIListData rhs) {
+//                                            return lhs.getDistance().compareTo(rhs.getDistance());
+//                                        }
+//                                    });
+//                                    recyclerView.getAdapter().notifyDataSetChanged();
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -253,10 +268,9 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
                                         String POIlat = Jasonobject.getString("POIlat");
                                         String POIlng = Jasonobject.getString("POIlng");
                                         if(fk_categoryId == 11) {
-                                            myPOIListData.add(new POIListData(POIname, categoryImage, POIlat, POIlng));
+                                            myPOIListData.add(new POIListData(POIname, categoryImage, POIlat, POIlng,Float.parseFloat(String.valueOf(lat)),Float.parseFloat(String.valueOf(lng)),0.000F));
                                         }
                                     }
-
                                     POIListAdapter myPOIListAdapter= new POIListAdapter(myPOIListData, paglikas.this,con);
                                     recyclerView.setAdapter(myPOIListAdapter);
                                 } catch (JSONException e) {
@@ -281,7 +295,7 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
                                         String POIlat = Jasonobject.getString("POIlat");
                                         String POIlng = Jasonobject.getString("POIlng");
                                         if(fk_categoryId == 8) {
-                                            myPOIListData.add(new POIListData(POIname, categoryImage, POIlat, POIlng));
+                                            myPOIListData.add(new POIListData(POIname, categoryImage, POIlat, POIlng,Float.parseFloat(String.valueOf(lat)),Float.parseFloat(String.valueOf(lng)),0.000F));
                                         }
                                     }
 
@@ -309,10 +323,9 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
                                         String POIlat = Jasonobject.getString("POIlat");
                                         String POIlng = Jasonobject.getString("POIlng");
                                         if(fk_categoryId == 14) {
-                                            myPOIListData.add(new POIListData(POIname, categoryImage, POIlat, POIlng));
+                                            myPOIListData.add(new POIListData(POIname, categoryImage, POIlat, POIlng,Float.parseFloat(String.valueOf(lat)),Float.parseFloat(String.valueOf(lng)),0.000F));
                                         }
                                     }
-
                                     POIListAdapter myPOIListAdapter= new POIListAdapter(myPOIListData, paglikas.this,con);
                                     recyclerView.setAdapter(myPOIListAdapter);
                                 } catch (JSONException e) {
@@ -332,15 +345,18 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
         queue.add(jsonObjectRequest);
     }
     public void setRoute(float CurrentX, float CurrentY,float DestinationX, float DestinationY,String DestinationName,String POIyImage) {
+        latDestination=DestinationX;
+        lngDestination=DestinationY;
+        POIDestinationName=DestinationName;
+        POIDestinationImage=POIyImage;
         map.clear();
-        Toast.makeText(paglikas.this, "Lat: " +String.valueOf(DestinationX)+" Long: " +String.valueOf(DestinationY), Toast.LENGTH_SHORT).show();
-        origin = new MarkerOptions().position(new LatLng(CurrentX, CurrentY)).title("You are here.").snippet("origin");
-        destination = new MarkerOptions().position(new LatLng(DestinationX, DestinationY)).title("Destination").snippet(DestinationName).icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromURL(POIyImage)));
         LatLng location = new LatLng(CurrentX, CurrentY);
         LatLng deslocation = new LatLng(DestinationX, DestinationY);
         Double distance = SphericalUtil.computeDistanceBetween(location, deslocation);
-        Toast.makeText(this, String.format("%.2f", distance / 1000) + "km", Toast.LENGTH_SHORT).show();
-        map.addMarker(origin);
+        origin = new MarkerOptions().position(new LatLng(CurrentX, CurrentY)).title("You are here.").snippet(String.format("%.2f", distance / 1000) + "km");
+        destination = new MarkerOptions().position(new LatLng(DestinationX, DestinationY)).title("Destination").snippet(DestinationName).icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromURL(POIyImage)));
+        Marker markerOrigin = map.addMarker(new MarkerOptions().position(new LatLng(CurrentX, CurrentY)).title("You are here.").snippet(String.format("%.2f", distance / 1000) + "km"));
+        markerOrigin.showInfoWindow();
         map.addMarker(destination);
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(origin.getPosition(), 10));
         String url = getDirectionsUrl(origin.getPosition(), destination.getPosition());
@@ -349,20 +365,26 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
         LatLng currentLatLng = new LatLng(CurrentX, CurrentY);
         map.moveCamera(CameraUpdateFactory.newLatLng(currentLatLng));
         map.moveCamera(CameraUpdateFactory.zoomTo(15));
+
     }
     private String getDirectionsUrl(LatLng origin, LatLng dest) {
+        ImageButton drive = (ImageButton) findViewById(R.id.drive);
+        ImageButton walk = (ImageButton) findViewById(R.id.walk);
+        ImageButton transit = (ImageButton) findViewById(R.id.transit);
+
         // Origin of route
         String str_origin = "origin=" + origin.latitude + "," + origin.longitude;
         // Destination of route
         String str_dest = "destination=" + dest.latitude + "," + dest.longitude;
         // Setting mode
-        //String mode = "mode=driving";
-        String mode = "mode=walking";
-        //String mode = "mode=cycling";2
+        String mode = "mode=driving";
         // Building the parameters to the web service
         String parameters = str_origin + "&" + str_dest + "&" + mode;
         // Output format
         String output = "json";
+        Intent intent = new Intent(Intent.ACTION_VIEW,
+                Uri.parse("google.navigation:" + "q="+ dest.latitude + "," + dest.longitude + "&" + mode));
+        intent.setPackage("com.google.android.apps.maps");
         // Building the url to the web service
         String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters + "&key=" + "AIzaSyB2X39piAmceakPNZePVI_Ptdytv_e1ZZY";
         return url;
@@ -382,15 +404,13 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
             xCurrent.setText(String.valueOf(lat));
             TextView yCurrent = (TextView)findViewById(R.id.yCurrent);
             yCurrent.setText(String.valueOf(lng));
-            Toast.makeText(paglikas.this, "Lat: " +String.valueOf(lat)+" Long: " +String.valueOf(lng), Toast.LENGTH_SHORT).show();
+            setRoute(Float.parseFloat(String.valueOf(lat)),Float.parseFloat(String.valueOf(lng)),latDestination,lngDestination,POIDestinationName,POIDestinationImage);
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
     }
-
-
 
     private class DownloadTask extends AsyncTask<String, Void, String> {
 
