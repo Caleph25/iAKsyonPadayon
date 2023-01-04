@@ -41,7 +41,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginTop="70dp">
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="67dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -55,57 +56,58 @@
                 android:id="@+id/imageview"
                 android:layout_width="240dp"
                 android:layout_height="240dp"
-                android:scaleType="fitCenter"
-                 />
+                android:scaleType="fitCenter" />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
             tools:ignore="MissingConstraints">
+
             <Button
                 android:id="@+id/select_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Capture Image"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/style2"
+                android:text="Capture Image"
                 android:textColor="@color/black"
-                android:theme="@style/myButtonTheme"/>
+                android:theme="@style/myButtonTheme" />
         </LinearLayout>
 
         <EditText
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:hint="What kind of Response do you want?"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
+            android:hint="What kind of Response do you want?"
             android:minHeight="48dp" />
 
         <EditText
             android:id="@+id/descript"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:hint="Describe"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
+            android:hint="Describe"
             android:minHeight="48dp" />
 
         <Button
             android:id="@+id/save"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="50dp"
             android:layout_marginRight="20dp"
             android:text="Save Record"
             android:textColor="@color/black"
-            android:theme="@style/myButtonTheme"/>
+            android:theme="@style/myButtonTheme" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

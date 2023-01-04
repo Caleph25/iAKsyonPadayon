@@ -27,13 +27,11 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -76,6 +74,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnMyLocationButtonClickListener,
         OnMyLocationClickListener,
@@ -233,19 +232,30 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
                                         String POIlat = Jasonobject.getString("POIlat");
                                         String POIlng = Jasonobject.getString("POIlng");
 
+                                        float xCurrentDistance=Float.parseFloat(String.valueOf(lat));
+                                        float yCurrentDistance=Float.parseFloat(String.valueOf(lng));
+
+                                        float xDestination= Float.parseFloat(POIlat);
+                                        float yDestination= Float.parseFloat(POIlng);
+
+                                        LatLng Currentlocation = new LatLng(xCurrentDistance, yCurrentDistance);
+                                        LatLng Destinationlocation = new LatLng(xDestination, yDestination);
+                                        Double distance = SphericalUtil.computeDistanceBetween(Currentlocation, Destinationlocation);
+
                                         if(fk_categoryId == 9) {
-                                            myPOIListData.add(new POIListData(POIname, categoryImage, POIlat, POIlng,Float.parseFloat(String.valueOf(lat)),Float.parseFloat(String.valueOf(lng)), 0.000F));
+                                            myPOIListData.add(new POIListData(POIname, categoryImage, POIlat, POIlng,Float.parseFloat(String.valueOf(lat)),Float.parseFloat(String.valueOf(lng)), String.format("%.2f", distance / 1000)));
                                         }
                                     }
                                     POIListAdapter myPOIListAdapter= new POIListAdapter(myPOIListData, paglikas.this,con);
                                     recyclerView.setAdapter(myPOIListAdapter);
-//                                    Collections.sort(myPOIListData, new Comparator<POIListData>() {
-//                                        @Override
-//                                        public int compare(POIListData lhs, POIListData rhs) {
-//                                            return lhs.getDistance().compareTo(rhs.getDistance());
-//                                        }
-//                                    });
-//                                    recyclerView.getAdapter().notifyDataSetChanged();
+
+                                    Collections.sort(myPOIListData, new Comparator<POIListData>() {
+                                        @Override
+                                        public int compare(POIListData o1, POIListData o2) {
+                                            return (int) (Float.parseFloat(o1.getDistance()) - Float.parseFloat(o2.getDistance()));
+                                        }
+                                    });
+
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -267,12 +277,29 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
                                         String categoryImage = Jasonobject.getString("categoryImage");
                                         String POIlat = Jasonobject.getString("POIlat");
                                         String POIlng = Jasonobject.getString("POIlng");
+
+                                        float xCurrentDistance=Float.parseFloat(String.valueOf(lat));
+                                        float yCurrentDistance=Float.parseFloat(String.valueOf(lng));
+
+                                        float xDestination= Float.parseFloat(POIlat);
+                                        float yDestination= Float.parseFloat(POIlng);
+
+                                        LatLng Currentlocation = new LatLng(xCurrentDistance, yCurrentDistance);
+                                        LatLng Destinationlocation = new LatLng(xDestination, yDestination);
+                                        Double distance = SphericalUtil.computeDistanceBetween(Currentlocation, Destinationlocation);
+
                                         if(fk_categoryId == 11) {
-                                            myPOIListData.add(new POIListData(POIname, categoryImage, POIlat, POIlng,Float.parseFloat(String.valueOf(lat)),Float.parseFloat(String.valueOf(lng)),0.000F));
+                                            myPOIListData.add(new POIListData(POIname, categoryImage, POIlat, POIlng,Float.parseFloat(String.valueOf(lat)),Float.parseFloat(String.valueOf(lng)),String.format("%.2f", distance / 1000)));
                                         }
                                     }
                                     POIListAdapter myPOIListAdapter= new POIListAdapter(myPOIListData, paglikas.this,con);
                                     recyclerView.setAdapter(myPOIListAdapter);
+                                    Collections.sort(myPOIListData, new Comparator<POIListData>() {
+                                        @Override
+                                        public int compare(POIListData o1, POIListData o2) {
+                                            return (int) (Float.parseFloat(o1.getDistance()) - Float.parseFloat(o2.getDistance()));
+                                        }
+                                    });
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -294,13 +321,30 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
                                         String categoryImage = Jasonobject.getString("categoryImage");
                                         String POIlat = Jasonobject.getString("POIlat");
                                         String POIlng = Jasonobject.getString("POIlng");
+
+                                        float xCurrentDistance=Float.parseFloat(String.valueOf(lat));
+                                        float yCurrentDistance=Float.parseFloat(String.valueOf(lng));
+
+                                        float xDestination= Float.parseFloat(POIlat);
+                                        float yDestination= Float.parseFloat(POIlng);
+
+                                        LatLng Currentlocation = new LatLng(xCurrentDistance, yCurrentDistance);
+                                        LatLng Destinationlocation = new LatLng(xDestination, yDestination);
+                                        Double distance = SphericalUtil.computeDistanceBetween(Currentlocation, Destinationlocation);
+
                                         if(fk_categoryId == 8) {
-                                            myPOIListData.add(new POIListData(POIname, categoryImage, POIlat, POIlng,Float.parseFloat(String.valueOf(lat)),Float.parseFloat(String.valueOf(lng)),0.000F));
+                                            myPOIListData.add(new POIListData(POIname, categoryImage, POIlat, POIlng,Float.parseFloat(String.valueOf(lat)),Float.parseFloat(String.valueOf(lng)),String.format("%.2f", distance / 1000)));
                                         }
                                     }
 
                                     POIListAdapter myPOIListAdapter= new POIListAdapter(myPOIListData, paglikas.this,con);
                                     recyclerView.setAdapter(myPOIListAdapter);
+                                    Collections.sort(myPOIListData, new Comparator<POIListData>() {
+                                        @Override
+                                        public int compare(POIListData o1, POIListData o2) {
+                                            return (int) (Float.parseFloat(o1.getDistance()) - Float.parseFloat(o2.getDistance()));
+                                        }
+                                    });
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -322,12 +366,30 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
                                         String categoryImage = Jasonobject.getString("categoryImage");
                                         String POIlat = Jasonobject.getString("POIlat");
                                         String POIlng = Jasonobject.getString("POIlng");
+
+                                        float xCurrentDistance=Float.parseFloat(String.valueOf(lat));
+                                        float yCurrentDistance=Float.parseFloat(String.valueOf(lng));
+
+                                        float xDestination= Float.parseFloat(POIlat);
+                                        float yDestination= Float.parseFloat(POIlng);
+
+                                        LatLng Currentlocation = new LatLng(xCurrentDistance, yCurrentDistance);
+                                        LatLng Destinationlocation = new LatLng(xDestination, yDestination);
+                                        Double distance = SphericalUtil.computeDistanceBetween(Currentlocation, Destinationlocation);
+
                                         if(fk_categoryId == 14) {
-                                            myPOIListData.add(new POIListData(POIname, categoryImage, POIlat, POIlng,Float.parseFloat(String.valueOf(lat)),Float.parseFloat(String.valueOf(lng)),0.000F));
+                                            myPOIListData.add(new POIListData(POIname, categoryImage, POIlat, POIlng,Float.parseFloat(String.valueOf(lat)),Float.parseFloat(String.valueOf(lng)),String.format("%.2f", distance / 1000)));
                                         }
                                     }
                                     POIListAdapter myPOIListAdapter= new POIListAdapter(myPOIListData, paglikas.this,con);
                                     recyclerView.setAdapter(myPOIListAdapter);
+                                    Collections.sort(myPOIListData, new Comparator<POIListData>() {
+                                        @Override
+                                        public int compare(POIListData o1, POIListData o2) {
+                                            return (int) (Float.parseFloat(o1.getDistance()) - Float.parseFloat(o2.getDistance()));
+                                        }
+                                    });
+
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -365,6 +427,7 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
         LatLng currentLatLng = new LatLng(CurrentX, CurrentY);
         map.moveCamera(CameraUpdateFactory.newLatLng(currentLatLng));
         map.moveCamera(CameraUpdateFactory.zoomTo(15));
+
 
     }
     private String getDirectionsUrl(LatLng origin, LatLng dest) {
