@@ -37,18 +37,20 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginTop="70dp">
-
+        android:layout_height="0dp"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutHeader"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="-35dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
             android:gravity="center"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             tools:ignore="MissingConstraints">
 
             <ImageView
@@ -56,56 +58,54 @@
                 android:layout_width="240dp"
                 android:layout_height="240dp"
                 android:scaleType="fitCenter"
-                 />
+                android:layout_marginTop="20dp"/>
 
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            tools:ignore="MissingConstraints">
             <Button
                 android:id="@+id/select_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Capture Image"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/style2"
+                android:text="Capture Image"
                 android:textColor="@color/black"
-                android:theme="@style/myButtonTheme"/>
+                android:theme="@style/myButtonTheme" />
+
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:hint="What kind of Response do you want?"
+                android:minHeight="48dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="609dp" />
+
+            <EditText
+                android:id="@+id/descript"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:hint="Describe"
+                android:minHeight="48dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="465dp" />
+
+            <Button
+                android:id="@+id/save"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:text="SEND HELP"
+                android:textColor="#FF0000"
+                android:textStyle="bold"
+                android:theme="@style/myButtonTheme"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="532dp" />
         </LinearLayout>
+    </ScrollView>
 
-        <EditText
-            android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:hint="What kind of Response do you want?"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:minHeight="48dp" />
 
-        <EditText
-            android:id="@+id/descript"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:hint="Describe"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:minHeight="48dp" />
-
-        <Button
-            android:id="@+id/save"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:text="Save Record"
-            android:textColor="@color/black"
-            android:theme="@style/myButtonTheme"/>
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
