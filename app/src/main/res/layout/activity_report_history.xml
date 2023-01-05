@@ -9,8 +9,8 @@
     <LinearLayout
         android:id="@+id/linearLayout14"
         android:layout_width="match_parent"
-        android:layout_height="600dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -21,7 +21,10 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/Historyrecyclerview"
             android:layout_width="match_parent"
-            android:layout_height="250dp" />
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:layout_marginBottom="20dp"
+            />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
