@@ -6,13 +6,13 @@
     android:background="@drawable/border">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="110dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/bghistory"
         android:gravity="center"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="15dp">
+        android:layout_marginRight="15dp">
 
         <TextView
             android:id="@+id/EventType"
@@ -24,7 +24,8 @@
             android:text="Event Type"
             android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"/>
     <TextView
         android:id="@+id/Status"
         android:layout_width="140dp"
@@ -37,6 +38,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:textAlignment="center"
+        android:layout_marginRight="15dp"
         android:background="@drawable/historystatusdesign"/>
 
         <TextView
@@ -48,7 +50,10 @@
             android:fontFamily="@font/pt_sans_caption"
             android:text="Time and Date"
             android:textColor="#474747"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="15dp"
+            />
 
 
     </RelativeLayout>
