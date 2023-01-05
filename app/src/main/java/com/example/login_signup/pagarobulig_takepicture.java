@@ -29,6 +29,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -74,6 +75,11 @@ public class pagarobulig_takepicture extends AppCompatActivity {
         binding = ActivityPagarobuligTakepictureBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         button_name = getIntent().getStringExtra("name");
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getSupportActionBar().hide();
+
 
         if (ContextCompat.checkSelfPermission(pagarobulig_takepicture.this,
                 Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED){

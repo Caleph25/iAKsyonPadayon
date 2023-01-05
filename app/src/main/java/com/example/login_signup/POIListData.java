@@ -1,5 +1,8 @@
 package com.example.login_signup;
 
+import java.util.Comparator;
+import java.util.List;
+
 public class POIListData {
     private String description;
     private String imageUrl;
@@ -7,8 +10,9 @@ public class POIListData {
     private String yLocation;
     private float xCurrentLocation;
     private float yCurrentLocation;
-    private float distance;
-    public POIListData(String description, String imageUrl,String xLocation,String yLocation,float xCurrentLocation,float yCurrentLocation,float distance) {
+    private String distance;
+
+    public POIListData(String description, String imageUrl,String xLocation,String yLocation,float xCurrentLocation,float yCurrentLocation,String distance) {
         this.description = description;
         this.imageUrl = imageUrl;
         this.xLocation = xLocation;
@@ -17,6 +21,8 @@ public class POIListData {
         this.yCurrentLocation = yCurrentLocation;
         this.distance = distance;
     }
+
+
     public String getDescription() {
         return description;
     }
@@ -53,10 +59,11 @@ public class POIListData {
     public void setyLocationCurrent(float yCurrentLocation) {
         this.yCurrentLocation = yCurrentLocation;
     }
-    public float getDistance() {
-        return distance;
-    }
-    public void setDistance(float distance) {
+    public void setDistance(String distance) {
         this.distance = distance;
     }
+    public String getDistance() {
+        return distance;
+    }
+
 }

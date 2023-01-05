@@ -18,6 +18,7 @@ import com.google.maps.android.SphericalUtil;
 import com.squareup.picasso.Picasso;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -53,15 +54,14 @@ public class POIListAdapter extends RecyclerView.Adapter<POIListAdapter.ViewHold
         float xDestination= Float.parseFloat(listdata.get(position).getxLocation());
         float yDestination= Float.parseFloat(listdata.get(position).getyLocation());
 
-
         LatLng Currentlocation = new LatLng(xCurrentDistance, yCurrentDistance);
         LatLng Destinationlocation = new LatLng(xDestination, yDestination);
         Double distance = SphericalUtil.computeDistanceBetween(Currentlocation, Destinationlocation);
-        if(distance!=null){
-            holder.textViewDistance.setText(String.format("%.2f", distance / 1000) + "km");
-            listdata.get(position).setDistance(Float.parseFloat(String.format("%.2f", distance / 1000)));
-        }
-        holder.textView.setText(listdata.get(position).getDescription() + "Distance" + listdata.get(position).getDistance());
+
+        holder.textViewDistance.setText(String.format("%.2f", distance / 1000) + "km");
+        listdata.get(position).setDistance(String.format("%.2f", distance / 1000));
+
+        holder.textView.setText(listdata.get(position).getDescription());
         String POIName = listdata.get(position).getDescription();
         String POIImage=listdata.get(position).getImgId();
         //Need Current Location of the User
@@ -79,6 +79,9 @@ public class POIListAdapter extends RecyclerView.Adapter<POIListAdapter.ViewHold
                 }
             }
         });
+        if (position == 0){
+            holder.itemView.performClick();
+        }
     }
 
 
@@ -99,5 +102,6 @@ public class POIListAdapter extends RecyclerView.Adapter<POIListAdapter.ViewHold
             this.textViewDistance= (TextView) itemView.findViewById(R.id.textViewDistance);
             relativeLayout = (RelativeLayout)itemView.findViewById(R.id.relativeLayout);
         }
+
     }
 }
