@@ -221,9 +221,9 @@
                     android:layout_height="73dp"
                     android:clickable="true"
                     android:focusable="true"
+                    android:paddingTop="20dp"
                     android:fontFamily="@font/pt_sans_caption_bold"
-                    android:text="HISTORY
-                     (REPORT HISTORY)"
+                    android:text="REPORTS HISTORY"
                     android:textColor="@color/white"
                     android:textSize="25sp"
                     android:textStyle="bold" />
