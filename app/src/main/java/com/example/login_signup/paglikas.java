@@ -424,6 +424,9 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
         String url = getDirectionsUrl(origin.getPosition(), destination.getPosition());
         DownloadTask downloadTask = new DownloadTask();
         downloadTask.execute(url);
+        String url2 = getAnotherDirectionsUrl(origin.getPosition(), destination.getPosition());
+        DownloadTask downloadTask2 = new DownloadTask();
+        downloadTask2.execute(url2);
         LatLng currentLatLng = new LatLng(CurrentX, CurrentY);
         map.moveCamera(CameraUpdateFactory.newLatLng(currentLatLng));
         map.moveCamera(CameraUpdateFactory.zoomTo(15));
@@ -452,7 +455,28 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
         String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters + "&key=" + "AIzaSyB2X39piAmceakPNZePVI_Ptdytv_e1ZZY";
         return url;
     }
+    private String getAnotherDirectionsUrl(LatLng origin, LatLng dest) {
+        ImageButton drive = (ImageButton) findViewById(R.id.drive);
+        ImageButton walk = (ImageButton) findViewById(R.id.walk);
+        ImageButton transit = (ImageButton) findViewById(R.id.transit);
 
+        // Origin of route
+        String str_origin = "origin=" + origin.latitude + "," + origin.longitude;
+        // Destination of route
+        String str_dest = "destination=" + dest.latitude + "," + dest.longitude;
+        // Setting mode
+        String mode = "mode=walking";
+        // Building the parameters to the web service
+        String parameters = str_origin + "&" + str_dest + "&" + mode;
+        // Output format
+        String output = "json";
+        Intent intent = new Intent(Intent.ACTION_VIEW,
+                Uri.parse("google.navigation:" + "q="+ dest.latitude + "," + dest.longitude + "&" + mode));
+        intent.setPackage("com.google.android.apps.maps");
+        // Building the url to the web service
+        String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters + "&key=" + "AIzaSyB2X39piAmceakPNZePVI_Ptdytv_e1ZZY";
+        return url;
+    }
     @Override
     public void onLocationChanged(@NonNull Location location) {
         Toast.makeText(this, ""+location.getLatitude()+","+location.getLongitude(), Toast.LENGTH_SHORT).show();
@@ -495,6 +519,7 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
             parserTask.execute(result);
         }
     }
+
     private String downloadUrl(String strUrl) throws IOException {
         String data = "";
         InputStream iStream = null;
@@ -570,8 +595,10 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
 
                 lineOptions.addAll(points);
                 lineOptions.width(10);
-                lineOptions.color(Color.BLUE);
+                lineOptions.color(Color.CYAN);
                 lineOptions.geodesic(true);
+                lineOptions.clickable(true);
+
 
             }
             if (points.size() != 0)

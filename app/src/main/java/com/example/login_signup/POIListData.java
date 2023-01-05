@@ -1,7 +1,5 @@
 package com.example.login_signup;
 
-import java.util.Comparator;
-import java.util.List;
 
 public class POIListData {
     private String description;
