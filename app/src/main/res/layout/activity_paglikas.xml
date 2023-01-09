@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutHeader2"
         android:layout_width="match_parent"
-        android:layout_height="78dp"
+        android:layout_height="65dp"
         android:background="@color/ic_launcher_background"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,7 +25,7 @@
             android:textAlignment="center"
             android:gravity="center"
             android:textColor="@color/darkblue"
-            android:textSize="45sp"
+            android:textSize="40sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.009"
@@ -36,7 +36,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/xCurrent"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="55dp"
             android:inputType="text"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -44,7 +44,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/yCurrent"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="55dp"
             android:inputType="text"
             android:layout_marginTop="200dp"
             android:visibility="invisible"
@@ -55,56 +55,120 @@
     <LinearLayout
         android:id="@+id/buttonslinear1"
         android:layout_width="match_parent"
-        android:layout_height="65dp"
+        android:layout_height="48dp"
         tools:ignore="MissingConstraints"
         app:layout_constraintTop_toBottomOf="@+id/maplinear"
         android:orientation="horizontal"
-        android:background="#8DF2FF">
-
+        android:background="@color/darkblue">
 
         <ImageButton
             android:id="@+id/walk"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/walking"
-            android:clickable="true"
-            tools:ignore="SpeakableTextPresentCheck"
+            android:layout_width="35dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/roundbutton"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"/>
+            android:clickable="true"
+            android:src="@drawable/paglikaswalk"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         <ImageButton
             android:id="@+id/drive"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="5dp"
+            android:layout_width="35dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="2dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/roundbutton"
             android:clickable="true"
-            android:src="@drawable/driving"
-            tools:ignore="SpeakableTextPresentCheck" />
+            android:src="@drawable/paglikascar"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         <ImageButton
             android:id="@+id/transit"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="5dp"
+            android:layout_width="35dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="2dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/roundbutton"
             android:clickable="true"
-            android:src="@drawable/train"
-            tools:ignore="SpeakableTextPresentCheck" />
+            android:src="@drawable/paglikastrain"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="5dp"
+            >
+
+            <ImageButton
+                android:id="@+id/time"
+                android:layout_width="35dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="2dp"
+                android:background="@drawable/roundbutton"
+                android:clickable="true"
+                android:src="@drawable/paglikastime"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+            <TextView
+                android:id="@+id/txtduration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pt_sans_caption_bold"
+                android:text=""
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_marginTop="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.009"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/km"
+                android:layout_width="35dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+
+                android:background="@drawable/roundbutton"
+                android:clickable="true"
+                android:src="@drawable/paglikaskm"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+            <TextView
+                android:id="@+id/txtdistance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pt_sans_caption_bold"
+                android:gravity="center"
+                android:text=""
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_marginTop="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.009"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
 
     </LinearLayout>
+
+
+
     <LinearLayout
         android:id="@+id/maplinear"
         android:layout_width="match_parent"
-        android:layout_height="290dp"
+        android:layout_height="370dp"
         tools:ignore="MissingConstraints"
         app:layout_constraintTop_toBottomOf="@+id/layoutHeader2"
         android:orientation="horizontal"
-        android:background="@color/darkblue">
+        android:background="@color/colorDivider">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/map"
@@ -120,68 +184,65 @@
             app:uiZoomControls="true" />
     </LinearLayout>
 
+
     <LinearLayout
         android:id="@+id/buttonslinear"
         android:layout_width="match_parent"
-        android:layout_height="90dp"
-        tools:ignore="MissingConstraints"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/buttonslinear1"
-        android:orientation="horizontal">
+        tools:ignore="MissingConstraints">
 
         <Button
             android:id="@+id/evacbutton"
-
-            android:layout_width="90dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
             android:text="EVACUATION"
             android:textColor="#000000"
             android:textSize="8sp"
-            android:theme="@style/myButtonTheme"
-            />
+            android:theme="@style/myButtonTheme" />
+
         <Button
             android:id="@+id/policebutton"
-            android:layout_width="80dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:theme="@style/myButtonTheme"
+            android:layout_marginTop="5dp"
             android:text="POLICE"
             android:textColor="@color/black"
             android:textSize="8sp"
-            />
+            android:theme="@style/myButtonTheme" />
+
         <Button
             android:id="@+id/fire"
-            android:layout_width="80dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:theme="@style/myButtonTheme"
+            android:layout_marginTop="5dp"
             android:text="FIRE"
             android:textColor="@color/black"
             android:textSize="8sp"
-            />
+            android:theme="@style/myButtonTheme" />
+
         <Button
             android:id="@+id/hospitalbutton"
-            android:layout_width="80dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:theme="@style/myButtonTheme"
+            android:layout_marginTop="5dp"
             android:text="HOSPITAL"
             android:textColor="@color/black"
             android:textSize="8sp"
-            />
+            android:theme="@style/myButtonTheme" />
     </LinearLayout>
-
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="240dp"
+        android:layout_height="190dp"
         android:gravity="center"
-        android:layout_marginTop="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -191,12 +252,10 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/maprecyclerview"
             android:layout_width="match_parent"
-            android:layout_height="205dp"
-            android:layout_marginBottom="25dp"/>
+            android:layout_height="180dp"
+            />
 
     </LinearLayout>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

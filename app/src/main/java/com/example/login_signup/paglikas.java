@@ -17,6 +17,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Path;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -35,6 +36,15 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.akexorcist.googledirection.DirectionCallback;
+import com.akexorcist.googledirection.GoogleDirection;
+import com.akexorcist.googledirection.constant.RequestResult;
+import com.akexorcist.googledirection.constant.TransportMode;
+import com.akexorcist.googledirection.model.Direction;
+import com.akexorcist.googledirection.model.Info;
+import com.akexorcist.googledirection.model.Leg;
+import com.akexorcist.googledirection.model.Route;
+import com.akexorcist.googledirection.util.DirectionConverter;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -43,6 +53,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -51,6 +62,7 @@ import com.google.android.gms.maps.GoogleMap.OnMyLocationClickListener;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -94,14 +106,13 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
     ProgressBar SHOW_PROGRESS;
     String address;
     private FusedLocationProviderClient client;
-
+    TextView txtduration, txtdistance;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         requestPermission();
-
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         setContentView(R.layout.activity_paglikas);
@@ -112,6 +123,8 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
         SetPOIList(recyclerView,this);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
+        txtduration =(TextView)findViewById(R.id.txtduration);
+        txtdistance =(TextView)findViewById(R.id.txtdistance);
         mapFragment.getMapAsync(this);
     }
     @SuppressLint("MissingPermission")
@@ -185,6 +198,17 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
                 lat = marker.getPosition().latitude;
                 lng = marker.getPosition().longitude;
                 return false;
+            }
+        });
+        googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                MarkerOptions markerOptions = new MarkerOptions();
+                markerOptions.position(latLng);
+                markerOptions.title("Alternative Route");
+                googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+                googleMap.addMarker(markerOptions);
+                setRouteAlternative(Float.parseFloat(String.valueOf(latLng.latitude)),Float.parseFloat(String.valueOf(latLng.longitude)),latDestination,lngDestination,POIDestinationName,POIDestinationImage);
             }
         });
         queue.add(jsonObjectRequest);
@@ -414,24 +438,115 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
         map.clear();
         LatLng location = new LatLng(CurrentX, CurrentY);
         LatLng deslocation = new LatLng(DestinationX, DestinationY);
-        Double distance = SphericalUtil.computeDistanceBetween(location, deslocation);
-        origin = new MarkerOptions().position(new LatLng(CurrentX, CurrentY)).title("You are here.").snippet(String.format("%.2f", distance / 1000) + "km");
-        destination = new MarkerOptions().position(new LatLng(DestinationX, DestinationY)).title("Destination").snippet(DestinationName).icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromURL(POIyImage)));
-        Marker markerOrigin = map.addMarker(new MarkerOptions().position(new LatLng(CurrentX, CurrentY)).title("You are here.").snippet(String.format("%.2f", distance / 1000) + "km"));
-        markerOrigin.showInfoWindow();
-        map.addMarker(destination);
-        map.animateCamera(CameraUpdateFactory.newLatLngZoom(origin.getPosition(), 10));
-        String url = getDirectionsUrl(origin.getPosition(), destination.getPosition());
-        DownloadTask downloadTask = new DownloadTask();
-        downloadTask.execute(url);
-        String url2 = getAnotherDirectionsUrl(origin.getPosition(), destination.getPosition());
-        DownloadTask downloadTask2 = new DownloadTask();
-        downloadTask2.execute(url2);
+
         LatLng currentLatLng = new LatLng(CurrentX, CurrentY);
         map.moveCamera(CameraUpdateFactory.newLatLng(currentLatLng));
         map.moveCamera(CameraUpdateFactory.zoomTo(15));
 
+        String serverKey = "AIzaSyCacAXb0f0MCKnZNK7Xbev0FZT5K8lQTak";
+        GoogleDirection.withServerKey(serverKey)
+                .from(location)
+                .to(deslocation)
+                .transportMode(TransportMode.DRIVING)
+                .execute(new DirectionCallback() {
+                    @Override
+                    public void onDirectionSuccess(Direction direction, String rawBody) {
+                        String status = direction.getStatus();
+                        if (status.equals(RequestResult.OK)) {
+                            Route route = direction.getRouteList().get(0);
+                            Leg leg = route.getLegList().get(0);
+                            Info distanceInfo = leg.getDistance();
+                            Info durationInfo = leg.getDuration();
+                            String distance = distanceInfo.getText();
+                            String duration = durationInfo.getText();
 
+                            origin = new MarkerOptions().position(new LatLng(CurrentX, CurrentY)).title("You are here.").snippet("Distance: "+distance + "Duration: "+duration);
+                            destination = new MarkerOptions().position(new LatLng(DestinationX, DestinationY)).title("Destination").snippet(DestinationName).icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromURL(POIyImage)));
+                            Marker markerOrigin = map.addMarker(new MarkerOptions().position(new LatLng(CurrentX, CurrentY)).title("You are here.").snippet("Distance: "+distance + "Duration: "+duration));
+                            markerOrigin.showInfoWindow();
+                            map.addMarker(destination);
+
+                            txtduration.setText(duration);
+                            txtdistance.setText(distance);
+
+                            ArrayList<LatLng> directionPositionList = leg.getDirectionPoint();
+                            PolylineOptions polylineOptions = DirectionConverter.createPolyline(getApplicationContext(),
+                                    directionPositionList, 5, Color.RED);
+                            map.addPolyline(polylineOptions);
+                            //-----------Zooming the map according to marker bounds-------------\\
+                            LatLngBounds.Builder builder = new LatLngBounds.Builder();
+                            builder.include(location);
+                            builder.include(deslocation);
+                            LatLngBounds bounds = builder.build();
+
+                            int width = getResources().getDisplayMetrics().widthPixels;
+                            int height = getResources().getDisplayMetrics().heightPixels;
+                            int padding = (int) (width * 0.20); // offset from edges of the map 10% of screen
+
+                            CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding);
+                            map.animateCamera(cu);
+                        } else {
+                            Toast.makeText(paglikas.this, "Error: No routes found (" + status + ")", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                    @Override
+                    public void onDirectionFailure(Throwable t) {
+                    }
+                });
+    }
+    public void setRouteAlternative(float CurrentX, float CurrentY,float DestinationX, float DestinationY,String DestinationName,String POIyImage) {
+        LatLng location = new LatLng(CurrentX, CurrentY);
+        LatLng deslocation = new LatLng(DestinationX, DestinationY);
+        LatLng currentLatLng = new LatLng(CurrentX, CurrentY);
+        map.moveCamera(CameraUpdateFactory.newLatLng(currentLatLng));
+        map.moveCamera(CameraUpdateFactory.zoomTo(15));
+        String serverKey = "AIzaSyCacAXb0f0MCKnZNK7Xbev0FZT5K8lQTak";
+        GoogleDirection.withServerKey(serverKey)
+                .from(location)
+                .to(deslocation)
+                .transportMode(TransportMode.DRIVING)
+                .execute(new DirectionCallback() {
+                    @Override
+                    public void onDirectionSuccess(Direction direction, String rawBody) {
+                        String status = direction.getStatus();
+                        if (status.equals(RequestResult.OK)) {
+                            Route route = direction.getRouteList().get(0);
+                            Leg leg = route.getLegList().get(0);
+                            Info distanceInfo = leg.getDistance();
+                            Info durationInfo = leg.getDuration();
+                            String distance = distanceInfo.getText();
+                            String duration = durationInfo.getText();
+
+                            origin = new MarkerOptions().position(new LatLng(CurrentX, CurrentY)).title("You are here.").snippet("Distance: "+distance + "Duration: "+duration);
+                            destination = new MarkerOptions().position(new LatLng(DestinationX, DestinationY)).title("Destination").snippet(DestinationName).icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromURL(POIyImage)));
+                            Marker markerOrigin = map.addMarker(new MarkerOptions().position(new LatLng(CurrentX, CurrentY)).title("You are here.").snippet("Distance: "+distance + "Duration: "+duration));
+                            markerOrigin.showInfoWindow();
+                            map.addMarker(destination);
+
+                            ArrayList<LatLng> directionPositionList = leg.getDirectionPoint();
+                            PolylineOptions polylineOptions = DirectionConverter.createPolyline(getApplicationContext(),
+                                    directionPositionList, 5, Color.GREEN);
+                            map.addPolyline(polylineOptions);
+                            //-----------Zooming the map according to marker bounds-------------\\
+                            LatLngBounds.Builder builder = new LatLngBounds.Builder();
+                            builder.include(location);
+                            builder.include(deslocation);
+                            LatLngBounds bounds = builder.build();
+
+                            int width = getResources().getDisplayMetrics().widthPixels;
+                            int height = getResources().getDisplayMetrics().heightPixels;
+                            int padding = (int) (width * 0.20); // offset from edges of the map 10% of screen
+
+                            CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding);
+                            map.animateCamera(cu);
+                        } else {
+                            Toast.makeText(paglikas.this, "Error: No routes found (" + status + ")", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                    @Override
+                    public void onDirectionFailure(Throwable t) {
+                    }
+                });
     }
     private String getDirectionsUrl(LatLng origin, LatLng dest) {
         ImageButton drive = (ImageButton) findViewById(R.id.drive);
@@ -455,28 +570,7 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
         String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters + "&key=" + "AIzaSyB2X39piAmceakPNZePVI_Ptdytv_e1ZZY";
         return url;
     }
-    private String getAnotherDirectionsUrl(LatLng origin, LatLng dest) {
-        ImageButton drive = (ImageButton) findViewById(R.id.drive);
-        ImageButton walk = (ImageButton) findViewById(R.id.walk);
-        ImageButton transit = (ImageButton) findViewById(R.id.transit);
 
-        // Origin of route
-        String str_origin = "origin=" + origin.latitude + "," + origin.longitude;
-        // Destination of route
-        String str_dest = "destination=" + dest.latitude + "," + dest.longitude;
-        // Setting mode
-        String mode = "mode=walking";
-        // Building the parameters to the web service
-        String parameters = str_origin + "&" + str_dest + "&" + mode;
-        // Output format
-        String output = "json";
-        Intent intent = new Intent(Intent.ACTION_VIEW,
-                Uri.parse("google.navigation:" + "q="+ dest.latitude + "," + dest.longitude + "&" + mode));
-        intent.setPackage("com.google.android.apps.maps");
-        // Building the url to the web service
-        String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters + "&key=" + "AIzaSyB2X39piAmceakPNZePVI_Ptdytv_e1ZZY";
-        return url;
-    }
     @Override
     public void onLocationChanged(@NonNull Location location) {
         Toast.makeText(this, ""+location.getLatitude()+","+location.getLongitude(), Toast.LENGTH_SHORT).show();
