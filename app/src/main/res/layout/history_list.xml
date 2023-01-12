@@ -55,15 +55,7 @@
             android:layout_marginBottom="15dp"
             />
 
-        <ImageView
-            android:id="@+id/historyimage"
-            android:layout_width="240dp"
-            android:layout_height="240dp"
-            android:src=""
-            android:layout_below="@id/TimeandDate"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="20dp"
-            />
+
 
 
     </RelativeLayout>

@@ -262,12 +262,30 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
                                         float xDestination= Float.parseFloat(POIlat);
                                         float yDestination= Float.parseFloat(POIlng);
 
-                                        LatLng Currentlocation = new LatLng(xCurrentDistance, yCurrentDistance);
-                                        LatLng Destinationlocation = new LatLng(xDestination, yDestination);
-                                        Double distance = SphericalUtil.computeDistanceBetween(Currentlocation, Destinationlocation);
+//                                        LatLng Currentlocation = new LatLng(xCurrentDistance, yCurrentDistance);
+//                                        LatLng Destinationlocation = new LatLng(xDestination, yDestination);
+//                                        Double distance = SphericalUtil.computeDistanceBetween(Currentlocation, Destinationlocation);
 
+                                        double lat1 = Math.toRadians(xCurrentDistance);
+                                        double lat2 = Math.toRadians(xDestination);
+                                        double lng1 = Math.toRadians(yCurrentDistance);
+                                        double lng2 = Math.toRadians(yDestination);
+
+                                        double dlon = lng2 - lng1;
+                                        double dlat = lat2 - lat1;
+
+                                        double a = Math.pow (Math.sin(dlat/2), 2)
+                                                + Math.cos(lat1) * Math.cos(lat2)
+                                                * Math.pow(Math.sin(dlon/2),2);
+
+                                        double c = 2 * Math.asin(Math.sqrt(a));
+
+                                        double r = 6371;
+
+                                        String distance = String.valueOf(c * r);
+                                        System.out.println(distance);
                                         if(fk_categoryId == 1) {
-                                            myPOIListData.add(new POIListData(POIname, categoryImage, POIlat, POIlng,Float.parseFloat(String.valueOf(lat)),Float.parseFloat(String.valueOf(lng)), String.format("%.2f", distance / 1000)));
+                                            myPOIListData.add(new POIListData(POIname, categoryImage, POIlat, POIlng,Float.parseFloat(String.valueOf(lat)),Float.parseFloat(String.valueOf(lng)), distance));
                                         }
                                     }
                                     POIListAdapter myPOIListAdapter= new POIListAdapter(myPOIListData, paglikas.this,con);
@@ -308,12 +326,30 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
                                         float xDestination= Float.parseFloat(POIlat);
                                         float yDestination= Float.parseFloat(POIlng);
 
-                                        LatLng Currentlocation = new LatLng(xCurrentDistance, yCurrentDistance);
-                                        LatLng Destinationlocation = new LatLng(xDestination, yDestination);
-                                        Double distance = SphericalUtil.computeDistanceBetween(Currentlocation, Destinationlocation);
+//                                        LatLng Currentlocation = new LatLng(xCurrentDistance, yCurrentDistance);
+//                                        LatLng Destinationlocation = new LatLng(xDestination, yDestination);
+//                                        Double distance = SphericalUtil.computeDistanceBetween(Currentlocation, Destinationlocation);
+
+                                        double lat1 = Math.toRadians(xCurrentDistance);
+                                        double lat2 = Math.toRadians(xDestination);
+                                        double lng1 = Math.toRadians(yCurrentDistance);
+                                        double lng2 = Math.toRadians(yDestination);
+
+                                        double dlon = lng2 - lng1;
+                                        double dlat = lat2 - lat1;
+
+                                        double a = Math.pow (Math.sin(dlat/2), 2)
+                                                + Math.cos(lat1) * Math.cos(lat2)
+                                                * Math.pow(Math.sin(dlon/2),2);
+
+                                        double c = 2 * Math.asin(Math.sqrt(a));
+
+                                        double r = 6371;
+
+                                        String distance = String.valueOf(c * r);
 
                                         if(fk_categoryId == 3) {
-                                            myPOIListData.add(new POIListData(POIname, categoryImage, POIlat, POIlng,Float.parseFloat(String.valueOf(lat)),Float.parseFloat(String.valueOf(lng)),String.format("%.2f", distance / 1000)));
+                                            myPOIListData.add(new POIListData(POIname, categoryImage, POIlat, POIlng,Float.parseFloat(String.valueOf(lat)),Float.parseFloat(String.valueOf(lng)),distance));
                                         }
                                     }
                                     POIListAdapter myPOIListAdapter= new POIListAdapter(myPOIListData, paglikas.this,con);
@@ -352,12 +388,30 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
                                         float xDestination= Float.parseFloat(POIlat);
                                         float yDestination= Float.parseFloat(POIlng);
 
-                                        LatLng Currentlocation = new LatLng(xCurrentDistance, yCurrentDistance);
-                                        LatLng Destinationlocation = new LatLng(xDestination, yDestination);
-                                        Double distance = SphericalUtil.computeDistanceBetween(Currentlocation, Destinationlocation);
+//                                        LatLng Currentlocation = new LatLng(xCurrentDistance, yCurrentDistance);
+//                                        LatLng Destinationlocation = new LatLng(xDestination, yDestination);
+//                                        Double distance = SphericalUtil.computeDistanceBetween(Currentlocation, Destinationlocation);
+
+                                        double lat1 = Math.toRadians(xCurrentDistance);
+                                        double lat2 = Math.toRadians(xDestination);
+                                        double lng1 = Math.toRadians(yCurrentDistance);
+                                        double lng2 = Math.toRadians(yDestination);
+
+                                        double dlon = lng2 - lng1;
+                                        double dlat = lat2 - lat1;
+
+                                        double a = Math.pow (Math.sin(dlat/2), 2)
+                                                + Math.cos(lat1) * Math.cos(lat2)
+                                                * Math.pow(Math.sin(dlon/2),2);
+
+                                        double c = 2 * Math.asin(Math.sqrt(a));
+
+                                        double r = 6371;
+
+                                        String distance = String.valueOf(c * r);
 
                                         if(fk_categoryId == 4) {
-                                            myPOIListData.add(new POIListData(POIname, categoryImage, POIlat, POIlng,Float.parseFloat(String.valueOf(lat)),Float.parseFloat(String.valueOf(lng)),String.format("%.2f", distance / 1000)));
+                                            myPOIListData.add(new POIListData(POIname, categoryImage, POIlat, POIlng,Float.parseFloat(String.valueOf(lat)),Float.parseFloat(String.valueOf(lng)),distance));
                                         }
                                     }
 
@@ -397,12 +451,30 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
                                         float xDestination= Float.parseFloat(POIlat);
                                         float yDestination= Float.parseFloat(POIlng);
 
-                                        LatLng Currentlocation = new LatLng(xCurrentDistance, yCurrentDistance);
-                                        LatLng Destinationlocation = new LatLng(xDestination, yDestination);
-                                        Double distance = SphericalUtil.computeDistanceBetween(Currentlocation, Destinationlocation);
+//                                        LatLng Currentlocation = new LatLng(xCurrentDistance, yCurrentDistance);
+//                                        LatLng Destinationlocation = new LatLng(xDestination, yDestination);
+//                                        Double distance = SphericalUtil.computeDistanceBetween(Currentlocation, Destinationlocation);
+
+                                        double lat1 = Math.toRadians(xCurrentDistance);
+                                        double lat2 = Math.toRadians(xDestination);
+                                        double lng1 = Math.toRadians(yCurrentDistance);
+                                        double lng2 = Math.toRadians(yDestination);
+
+                                        double dlon = lng2 - lng1;
+                                        double dlat = lat2 - lat1;
+
+                                        double a = Math.pow (Math.sin(dlat/2), 2)
+                                                + Math.cos(lat1) * Math.cos(lat2)
+                                                * Math.pow(Math.sin(dlon/2),2);
+
+                                        double c = 2 * Math.asin(Math.sqrt(a));
+
+                                        double r = 6371;
+
+                                        String distance = String.valueOf(c * r);
 
                                         if(fk_categoryId == 2) {
-                                            myPOIListData.add(new POIListData(POIname, categoryImage, POIlat, POIlng,Float.parseFloat(String.valueOf(lat)),Float.parseFloat(String.valueOf(lng)),String.format("%.2f", distance / 1000)));
+                                            myPOIListData.add(new POIListData(POIname, categoryImage, POIlat, POIlng,Float.parseFloat(String.valueOf(lat)),Float.parseFloat(String.valueOf(lng)),distance));
                                         }
                                     }
                                     POIListAdapter myPOIListAdapter= new POIListAdapter(myPOIListData, paglikas.this,con);
@@ -455,19 +527,34 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
                         if (status.equals(RequestResult.OK)) {
                             Route route = direction.getRouteList().get(0);
                             Leg leg = route.getLegList().get(0);
-                            Info distanceInfo = leg.getDistance();
                             Info durationInfo = leg.getDuration();
-                            String distance = distanceInfo.getText();
                             String duration = durationInfo.getText();
 
-                            origin = new MarkerOptions().position(new LatLng(CurrentX, CurrentY)).title("You are here.").snippet("Distance: "+distance + "Duration: "+duration);
+                            double lat1 = Math.toRadians(CurrentX);
+                            double lat2 = Math.toRadians(DestinationX);
+                            double lng1 = Math.toRadians(CurrentY);
+                            double lng2 = Math.toRadians(DestinationY);
+
+                            double dlon = lng2 - lng1;
+                            double dlat = lat2 - lat1;
+
+                            double a = Math.pow (Math.sin(dlat/2), 2)
+                                    + Math.cos(lat1) * Math.cos(lat2)
+                                    * Math.pow(Math.sin(dlon/2),2);
+
+                            double c = 2 * Math.asin(Math.sqrt(a));
+
+                            double r = 6371;
+                            double answer = c * r;
+                            String distance = String.format("%.2f",answer);
+                            origin = new MarkerOptions().position(new LatLng(CurrentX, CurrentY)).title("You are here.").snippet("Distance: "+distance + "km" + " Duration: "+duration);
                             destination = new MarkerOptions().position(new LatLng(DestinationX, DestinationY)).title("Destination").snippet(DestinationName).icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromURL(POIyImage)));
-                            Marker markerOrigin = map.addMarker(new MarkerOptions().position(new LatLng(CurrentX, CurrentY)).title("You are here.").snippet("Distance: "+distance + "Duration: "+duration));
+                            Marker markerOrigin = map.addMarker(new MarkerOptions().position(new LatLng(CurrentX, CurrentY)).title("You are here.").snippet("Distance: "+distance + "km " + "Duration: "+duration));
                             markerOrigin.showInfoWindow();
                             map.addMarker(destination);
 
                             txtduration.setText(duration);
-                            txtdistance.setText(distance);
+                            txtdistance.setText(distance + " km");
 
                             ArrayList<LatLng> directionPositionList = leg.getDirectionPoint();
                             PolylineOptions polylineOptions = DirectionConverter.createPolyline(getApplicationContext(),
