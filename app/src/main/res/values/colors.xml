@@ -11,4 +11,6 @@
     <color name="darkblue">#353850</color>
     <color name="yellow">#F8BA40</color>
     <color name="pusha">#e9a274</color>
+    <color name="cyan">#00FFFF</color>
+    <color name="magenta">#FF00FF</color>
 </resources>

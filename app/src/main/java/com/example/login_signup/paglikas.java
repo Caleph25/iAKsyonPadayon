@@ -2,6 +2,8 @@ package com.example.login_signup;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
+import static com.google.gson.internal.$Gson$Types.arrayOf;
+
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -38,7 +40,9 @@ import android.widget.Toast;
 
 import com.akexorcist.googledirection.DirectionCallback;
 import com.akexorcist.googledirection.GoogleDirection;
+import com.akexorcist.googledirection.constant.AvoidType;
 import com.akexorcist.googledirection.constant.RequestResult;
+import com.akexorcist.googledirection.constant.TransitMode;
 import com.akexorcist.googledirection.constant.TransportMode;
 import com.akexorcist.googledirection.model.Direction;
 import com.akexorcist.googledirection.model.Info;
@@ -519,6 +523,7 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
         GoogleDirection.withServerKey(serverKey)
                 .from(location)
                 .to(deslocation)
+                .alternativeRoute(true)
                 .transportMode(TransportMode.DRIVING)
                 .execute(new DirectionCallback() {
                     @Override
@@ -546,6 +551,7 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
 
                             double r = 6371;
                             double answer = c * r;
+
                             String distance = String.format("%.2f",answer);
                             origin = new MarkerOptions().position(new LatLng(CurrentX, CurrentY)).title("You are here.").snippet("Distance: "+distance + "km" + " Duration: "+duration);
                             destination = new MarkerOptions().position(new LatLng(DestinationX, DestinationY)).title("Destination").snippet(DestinationName).icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromURL(POIyImage)));
@@ -556,10 +562,17 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
                             txtduration.setText(duration);
                             txtdistance.setText(distance + " km");
 
-                            ArrayList<LatLng> directionPositionList = leg.getDirectionPoint();
-                            PolylineOptions polylineOptions = DirectionConverter.createPolyline(getApplicationContext(),
-                                    directionPositionList, 5, Color.RED);
-                            map.addPolyline(polylineOptions);
+                            int[] colors = {R.color.cyan, R.color.pusha, R.color.magenta};
+                            for (int i = 0; i < direction.getRouteList().size(); i++){
+                                Route route1 =direction.getRouteList().get(i);
+                                Leg leg1 = route1.getLegList().get(0);
+                                int color = ContextCompat.getColor(getApplicationContext(), colors[i%colors.length]);
+                                ArrayList<LatLng> directionPositionList = leg1.getDirectionPoint();
+                                PolylineOptions polylineOptions = DirectionConverter.createPolyline(getApplicationContext(),
+                                        directionPositionList, 5, color);
+                                map.addPolyline(polylineOptions);
+                            }
+
                             //-----------Zooming the map according to marker bounds-------------\\
                             LatLngBounds.Builder builder = new LatLngBounds.Builder();
                             builder.include(location);
@@ -591,7 +604,8 @@ public class paglikas extends FragmentActivity implements OnMapReadyCallback,OnM
         GoogleDirection.withServerKey(serverKey)
                 .from(location)
                 .to(deslocation)
-                .transportMode(TransportMode.DRIVING)
+                .transportMode(TransportMode.TRANSIT)
+                .transitMode(TransitMode.BUS)
                 .execute(new DirectionCallback() {
                     @Override
                     public void onDirectionSuccess(Direction direction, String rawBody) {

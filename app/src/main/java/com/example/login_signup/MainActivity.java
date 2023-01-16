@@ -87,13 +87,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        TextView textView3 = findViewById(R.id.reports_text);
-        textView3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, roadreports.class));
-            }
-        });
+//        TextView textView3 = findViewById(R.id.reports_text);
+//        textView3.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(MainActivity.this, roadreports.class));
+//            }
+//        });
 
         TextView textView4 = findViewById(R.id.history_text);
         textView4.setOnClickListener(new View.OnClickListener() {
